@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 
-const url = 'https://bq-lab-2021.herokuapp.com/';
+const url = 'https://bq-lab-2021.herokuapp.com/'
 const cookies = new Cookies();
 
 class Login extends Component {
@@ -21,7 +21,8 @@ class Login extends Component {
         });
     };
     
-    iniciarSesion = () => {
+    signIn = () => {
+    
         axios.post(`${url}auth`, {email: this.state.form.username, password: this.state.form.password})
         .then((res) => res.data)
         .then((res) => {
@@ -55,7 +56,7 @@ class Login extends Component {
                         <input 
                         type='password' className='form-control' name='password' onChange={this.handleChange}/>
                         <br />
-                        <button className='btn btn-login' onClick={() => this.iniciarSesion()}>Iniciar Sesion </button>
+                        <button className='btn btn-login' onClick={() => this.signIn()}>Iniciar Sesion </button>
                     </div>
                 </div>
             </div>
