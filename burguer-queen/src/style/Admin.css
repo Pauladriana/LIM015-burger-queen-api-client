@@ -160,6 +160,9 @@ form {
   .opt-group{
     padding: 15px 0;
   }
+  .formUser .form-group{
+    width: 350px;
+  }
 
   .formUser .form-control{
     width: 320px;
@@ -167,9 +170,15 @@ form {
   .formUser {
     width: fit-content
   }
+  .formUser p{
+    margin: 0;
+    color: red
+  }
 
   .userSubmit {
-    margin-top: 170px;
+    position: relative;
+    margin: auto;
+    top: 15px;
   }
 
  .red {
@@ -184,3 +193,6 @@ form {
     width: 12px;
     padding: 3px;
   }
+.formCnt {
+  height: 436px;
+}

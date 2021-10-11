@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function ProductForm() {
+
   function handleSubmit(event) {
     event.preventDefault()
     window.location.href="./";
