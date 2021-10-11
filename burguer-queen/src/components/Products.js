@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import "../style/Admin.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Products() {
   return (
@@ -21,7 +20,7 @@ function Products() {
             <td>Cafe Americano</td>
             <td>Desayuno</td>
             <td>S/5</td>
-            <td><FontAwesomeIcon icon="check-square" color="green" className='icon'/></td>
+            <td>E</td>
           </tr>
           <tr>
             <td>Cafe con leche</td>
