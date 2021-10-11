@@ -1,67 +1,54 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import Cookies from 'universal-cookie';
 
-const url = 'https://bq-lab-2021.herokuapp.com/'
 const cookies = new Cookies();
 
-class Login extends Component {
-    state = {
-        form:{
-            username: '',
-            password:'',
-        }
-    };
-    handleChange = async (e) => {
-        await this.setState({
-            form: {
-                ...this.state.form,
-                [e.target.name]: e.target.value
-            }
-        });
-    };
-    
-    signIn = () => {
-    
-        axios.post(`${url}auth`, {email: this.state.form.username, password: this.state.form.password})
-        .then((res) => res.data)
-        .then((res) => {
-          if (res.token) {
-            cookies.set('token', res.token, {path: "/"});
-          }
-          window.location.href="./admin";
-        })
-        .catch((rej) => console.log('error aquí',rej.message))
-    };
+const Login = ({signIn, token, setError}) => {
+    const initialForm = {
+        email: '',
+        password: ''
+    }
+    const [form, setForm] = useState(initialForm);
 
-    componentDidMount() {
+    const handleChange = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value,
+        })
+    };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if(!form.email || !form.password) return setError('No ingresó correo o contraseña');
+        return signIn(form);
+    };
+    
+    useEffect(() => {
         if(cookies.get('token')){
             console.log(cookies.get('token'));
             window.location.href="./admin";
         }
-    }
+    }, []); 
 
-    render () {
         return (
             <div className='principalCnt'>
                 <div className='secondCnt'>
-                    <div className='form' >
-                        <label> Usuario: </label>
+                    <form className='form' onSubmit={handleSubmit}>
+                        <label> Correo: </label>
                         <br />
                         <input 
-                        type='text' className='form-control' name='username' onChange={this.handleChange}/>
+                        type='text' className='form-control' name='email' onChange={handleChange} value={form.email}/>
                         <br />
                         <label>Contraseña: </label>
                         <br />
                         <input 
-                        type='password' className='form-control' name='password' onChange={this.handleChange}/>
+                        type='password' className='form-control' name='password' onChange={handleChange}/>
                         <br />
-                        <button className='btn btn-login' onClick={() => this.signIn()}>Iniciar Sesion </button>
-                    </div>
+                        <button className='btn btn-login' type='submit'>Iniciar Sesion </button>
+                    </form>
                 </div>
             </div>
         );
-    }
+
 }
 
 export default Login;
