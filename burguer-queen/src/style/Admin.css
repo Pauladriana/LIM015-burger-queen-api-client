@@ -61,7 +61,6 @@ h1 {
 .buttonAdmin button{
     width: 195px;
     border: none;
-    background-color: white;
     border-radius: 20px;
     padding: 20px;
     text-align: center;
@@ -173,6 +172,15 @@ form {
     margin-top: 170px;
   }
 
- .icon {
-    color: black;
+ .red {
+  color: white;
+  font-weight: 500;
+  background-color: #fa4a0c;
+  }
+  .white {
+    background-color: white;
+    }
+  .optTable {
+    width: 12px;
+    padding: 3px;
   }

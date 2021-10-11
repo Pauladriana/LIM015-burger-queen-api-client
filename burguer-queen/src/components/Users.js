@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import "../style/Admin.css";
+import edit from '../media/pencil.png';
+import remove from '../media/close.png';
 
 function Users() {
   return (
@@ -20,13 +22,13 @@ function Users() {
               <td>Paquita Martinez</td>
               <td>Mesera</td>
               <td>654fygfyeslsmjjjfuufu</td>
-              <td>E</td>
+              <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' /></td>
             </tr>
             <tr>
               <td>Federica Salas</td>
               <td>Cocinera</td>
               <td>3546846548csuhriyg</td>
-              <td>E</td>
+              <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' /></td>
             </tr>
           </tbody>
         </table>

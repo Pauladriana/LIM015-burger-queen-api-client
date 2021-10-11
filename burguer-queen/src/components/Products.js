@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import "../style/Admin.css";
+import edit from '../media/pencil.png';
+import remove from '../media/close.png';
 
 function Products() {
   return (
@@ -20,25 +22,25 @@ function Products() {
             <td>Cafe Americano</td>
             <td>Desayuno</td>
             <td>S/5</td>
-            <td>E</td>
+            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' /></td>
           </tr>
           <tr>
             <td>Cafe con leche</td>
             <td>Desayuno</td>
             <td>S/7</td>
-            <td>E</td>
+            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' /></td>
           </tr>
           <tr>
             <td>Sandwich de jamon y queso</td>
             <td>Desayuno</td>
             <td>S/10</td>
-            <td>E</td>
+            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' /></td>
           </tr>
           <tr>
             <td>Jugo de frutas natural</td>
             <td>Desayuno</td>
             <td>S/7</td>
-            <td>E</td>
+            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' /></td>
           </tr>
           <tr>
             <td><b>Hamburguesas</b></td>
@@ -50,13 +52,13 @@ function Products() {
             <td>Hamburguesa Simple</td>
             <td>Dia</td>
             <td>S/10</td>
-            <td>E</td>
+            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' /></td>
           </tr>
           <tr>
             <td>Hamburguesa Doble</td>
             <td>Dia</td>
             <td>S/15</td>
-            <td>E</td>
+            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' /></td>
           </tr>
           <tr>
             <td><b>Acompañamientos</b></td>
@@ -68,13 +70,13 @@ function Products() {
             <td>Papas fritas</td>
             <td>Dia</td>
             <td>S/5</td>
-            <td>E</td>
+            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' /></td>
           </tr>
           <tr>
             <td>Aros de cebolla</td>
             <td>Dia</td>
             <td>S/5</td>
-            <td>E</td>
+            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' /></td>
           </tr>
           <tr>
             <td><b>Para tomar</b></td>
@@ -86,25 +88,25 @@ function Products() {
             <td>Agua 500ml</td>
             <td>Dia</td>
             <td>S/5</td>
-            <td>E</td>
+            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' /></td>
           </tr>
           <tr>
             <td>Agua 750ml</td>
             <td>Dia</td>
             <td>S/7</td>
-            <td>E</td>
+            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' /></td>
           </tr>
           <tr>
             <td>Bebida/gaseosa 500ml</td>
             <td>Dia</td>
             <td>S/7</td>
-            <td>E</td>
+            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' /></td>
           </tr>
           <tr>
             <td>Bebida/gaseosa 750ml</td>
             <td>Dia</td>
             <td>S/10</td>
-            <td>E</td>
+            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' /></td>
           </tr>
         </tbody>
       </table>
