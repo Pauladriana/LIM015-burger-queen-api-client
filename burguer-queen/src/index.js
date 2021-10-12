@@ -1,13 +1,11 @@
-// import dotenv from 'dotenv';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Routes from './routes/Routes';
-
-// dotenv.config();
+// import Modals from './components/Modals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Routes/>
+      <Routes/>
   </React.StrictMode>,
   document.getElementById('root')
 );

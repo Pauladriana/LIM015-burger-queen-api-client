@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState } from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Login from '../components/Login';
 import Admin from '../pages/Admin';
@@ -8,12 +8,25 @@ import EditProduct from '../pages/EditProduct';
 import AddProduct from '../pages/Addproduct';
 import Waiter from '../pages/Waiter';
 import Chef from '../pages/Chef';
+import Loader from '../components/Loader';
+import Modals from '../components/Modals';
+
 
 const Routes = () => {
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(null);
+  
   return (
     <BrowserRouter>
+      {loading && <Loader/>}
+      {error && <Modals msg={error} setError={setError}/>}
       <Switch>
-        <Route exact path="/" component={Login}/>
+        <Route exact path="/" component={ () => ( 
+          <Login 
+            setLoading={setLoading}
+            setError={setError}/>
+          )} 
+        />
         <Route exact path="/admin" component={Admin}/>
         <Route exact path="/admin/newUser" component={AddUser}/>
         <Route exact path="/admin/editUser" component={EditUser}/>
