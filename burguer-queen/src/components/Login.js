@@ -57,7 +57,6 @@ const Login = ({signIn, token, setError}) => {
                 </div>
             </div>
         );
-
 }
 
 export default Login;

@@ -24,8 +24,8 @@ const Routes = () => {
       post(`${url}auth`, {body : data})
       .then ((data) =>  {
         setLoading(false);
-        if (data.message === 'Invalid password') return setError('Contraseña incorrecta');
-        if (data.message === `User doesn't exists`) return setError('Usuario no registrado');
+        if (data.message === 'Invalid password') return setError('Contraseña incorrecta.');
+        if (data.message === `User doesn't exists`) return setError('Usuario no registrado.');
         setError(null);
         setToken(data.token);
         cookies.set('token', data.token, {path: "/"});
