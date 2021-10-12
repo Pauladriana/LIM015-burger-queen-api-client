@@ -2,15 +2,18 @@ import React, { useState, useEffect } from 'react';
 import Cookies from 'universal-cookie';
 import '../style/Login.css';
 import logo from '../media/logo1.svg';
+import { signIn } from '../services/fetch';
 
 const cookies = new Cookies();
 
-const Login = ({signIn, token, setError}) => {
+const Login = ({setLoading, setError}) => {
     const initialForm = {
         email: '',
         password: ''
-    }
+    };
     const [form, setForm] = useState(initialForm);
+    // eslint-disable-next-line no-unused-vars
+    const [token, setToken] = useState(null);
 
     const handleChange = (e) => {
         setForm({
@@ -18,10 +21,11 @@ const Login = ({signIn, token, setError}) => {
             [e.target.name]: e.target.value,
         })
     };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(!form.email || !form.password) return setError('No ingresó correo o contraseña');
-        return signIn(form);
+        return await signIn( form, setLoading, setError, setToken);
     };
     
     useEffect(() => {
