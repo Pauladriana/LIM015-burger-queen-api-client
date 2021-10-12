@@ -5,7 +5,6 @@ import EditUserForm from '../components/EditFormUser';
 import "../style/Admin.css";
 import logo from '../media/LOGOBQO.png';
 
-
 const cookies = new Cookies();
 
 class EditUser extends Component {

@@ -5,11 +5,11 @@ import edit from '../media/pencil.png';
 import remove from '../media/close.png';
 import Modal from "./remove";
 
-function Users() {
+function Users( { setLoading, users }) {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <div class='OptionContent'>
+    <div className='OptionContent'>
       <div className='tableCnt'>
         <table>
           <thead>
@@ -21,22 +21,16 @@ function Users() {
             </tr>
           </thead>
           <tbody>
+          {users.map((user) => (
             <tr>
-              <td>Paquita Martinez</td>
-              <td>Mesera</td>
-              <td>654fygfyeslsmjjjfuufu</td>
-              <td><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editUser'} /><img src={remove} alt='' className='optTable' onClick={() => {
+              <td key={user}>{user.email}</td>
+              <td key={user}>{user.roles.name}</td>
+              <td key={user}>{user._id}</td>
+              <td key={user}><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editUser'} /><img src={remove} alt='' className='optTable' onClick={() => {
           setModalOpen(true);
         }}/></td>
             </tr>
-            <tr>
-              <td>Federica Salas</td>
-              <td>Cocinera</td>
-              <td>3546846548csuhriyg</td>
-              <td><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editUser'}/><img src={remove} alt='' className='optTable' onClick={() => {
-          setModalOpen(true);
-        }}/></td>
-            </tr>
+            ))}
           </tbody>
         </table>
       </div>

@@ -11,7 +11,6 @@ import Chef from '../pages/Chef';
 import Loader from '../components/Loader';
 import Modals from '../components/Modals';
 
-
 const Routes = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
@@ -27,11 +26,24 @@ const Routes = () => {
             setError={setError}/>
           )} 
         />
-        <Route exact path="/admin" component={Admin}/>
+        <Route exact path="/admin" component={() => (
+          <Admin
+            setLoading={setLoading}
+            setError={setError}
+          />)
+        }/>
         <Route exact path="/admin/newUser" component={AddUser}/>
         <Route exact path="/admin/editUser" component={EditUser}/>
-        <Route exact path="/admin/editProduct" component={EditProduct}/>
-        <Route exact path="/admin/newProduct" component={AddProduct}/>
+        <Route exact path="/admin/editProduct" component={() => (
+          <EditProduct
+            setLoading={setLoading}
+          />
+          )
+        }/>
+        <Route exact path="/admin/newProduct" component={ () => (
+          <AddProduct setLoading={setLoading} setError={setError}/>
+        )
+        }/>
         <Route exact path="/waiter" component={Waiter}/>
         <Route exact path="/chef" component={Chef}/>
       </Switch>

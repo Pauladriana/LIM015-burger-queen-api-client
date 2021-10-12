@@ -4,11 +4,12 @@ import UserInfo from '../components/Usertype';
 import EditProductForm from '../components/EditFormProduct';
 import "../style/Admin.css";
 import logo from '../media/LOGOBQO.png';
-
+import { updateData } from '../services/put';
 
 const cookies = new Cookies();
 
 class EditProduct extends Component {
+
 
   cerrarSesion = () => {
     cookies.remove('token', { path: "/" });

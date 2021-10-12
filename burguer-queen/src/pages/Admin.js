@@ -26,7 +26,7 @@ class Admin extends Component {
           <img src={logo} alt='' className='logo' />
           <button onClick={() => this.cerrarSesion()}>Cerrar Sesión</button>
         </div>
-        < AdminPage />
+        < AdminPage setLoading={this.props.setLoading} setError={this.props.setError}/>
       </div>
     )
   }

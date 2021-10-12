@@ -1,7 +1,12 @@
 import React from "react";
 import "../style/remove.css";
+import {deleteData} from '../services/delete';
 
-function Modal({ setOpenModal }) {
+function Modal({ setOpenModal, setError, id}) {
+  
+  const del = async () => await deleteData(setError, 'products', id, '/admin');
+  // const redirect = () => window.location.href = '/admin';
+
   return (
     <div className="modalBackground">
       <div className="modalContainer">
@@ -20,8 +25,8 @@ function Modal({ setOpenModal }) {
           >
             Cancelar
           </button>
-          <button>Eliminar</button>
-        </div>
+          <button onClick={() => { del()}}>Eliminar</button>
+        </div>()
       </div>
     </div>
   );

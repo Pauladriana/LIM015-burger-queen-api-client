@@ -6,7 +6,7 @@ function UserInfo() {
   return(
     <div>
         <h1>Administrador</h1>
-        <div class='userData'>
+        <div className='userData'>
           <img src={ userPhoto} alt='' className='userPhoto' />
           <p><b>Ana Perez</b></p>
           <p>admin@localhost.com</p>
