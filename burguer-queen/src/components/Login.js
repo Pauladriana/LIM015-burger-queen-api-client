@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'universal-cookie';
+import '../style/Login.css';
+import logo from '../media/logo1.svg';
 
 const cookies = new Cookies();
 
@@ -30,20 +32,27 @@ const Login = ({signIn, token, setError}) => {
     }, []); 
 
         return (
-            <div className='principalCnt'>
-                <div className='secondCnt'>
+            <div className='container'>
+                <div className='header'>
+                    <div className='logo'>
+                        <img src={logo} alt='Logo'/>
+                    </div>
+                    <div className='title'>Iniciar Sesión</div>
+                </div>
+                <div className='formContainer'>
                     <form className='form' onSubmit={handleSubmit}>
-                        <label> Correo: </label>
-                        <br />
+                        <div className='form-section'>
+                        <label className='form-label'> Correo: </label>
                         <input 
-                        type='text' className='form-control' name='email' onChange={handleChange} value={form.email}/>
-                        <br />
-                        <label>Contraseña: </label>
-                        <br />
+                        type='text' className='form-input' name='email' onChange={handleChange} value={form.email}/>
+                        </div>
+                        <div className='form-section'>
+                        <label className='form-label'>Contraseña: </label>
                         <input 
-                        type='password' className='form-control' name='password' onChange={handleChange}/>
-                        <br />
-                        <button className='btn btn-login' type='submit'>Iniciar Sesion </button>
+                        type='password' className='form-input' name='password' onChange={handleChange}/>
+                        </div>
+
+                        <button className='formButton' type='submit'>Iniciar Sesion </button>
                     </form>
                 </div>
             </div>
