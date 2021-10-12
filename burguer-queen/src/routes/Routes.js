@@ -1,11 +1,16 @@
 import React, {useState } from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Login from '../components/Login';
-import Admin from '../components/Admin';
-import Waiter from '../components/Waiter';
-import Chef from '../components/Chef';
+import Admin from '../pages/Admin';
+import AddUser from '../pages/AddUser';
+import EditUser from '../pages/EditUser';
+import EditProduct from '../pages/EditProduct';
+import AddProduct from '../pages/Addproduct';
+import Waiter from '../pages/Waiter';
+import Chef from '../pages/Chef';
 import Loader from '../components/Loader';
 import Modals from '../components/Modals';
+
 
 const Routes = () => {
   const [error, setError] = useState(null);
@@ -23,6 +28,10 @@ const Routes = () => {
           )} 
         />
         <Route exact path="/admin" component={Admin}/>
+        <Route exact path="/admin/newUser" component={AddUser}/>
+        <Route exact path="/admin/editUser" component={EditUser}/>
+        <Route exact path="/admin/editProduct" component={EditProduct}/>
+        <Route exact path="/admin/newProduct" component={AddProduct}/>
         <Route exact path="/waiter" component={Waiter}/>
         <Route exact path="/chef" component={Chef}/>
       </Switch>
