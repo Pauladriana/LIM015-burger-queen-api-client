@@ -25,7 +25,7 @@ function Products() {
             <td>Cafe Americano</td>
             <td>Desayuno</td>
             <td>S/5</td>
-            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' onClick={() => {
+            <td><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editProduct'}/><img src={remove} alt='' className='optTable' onClick={() => {
           setModalOpen(true);
         }}/></td>
           </tr>
@@ -33,7 +33,7 @@ function Products() {
             <td>Cafe con leche</td>
             <td>Desayuno</td>
             <td>S/7</td>
-            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' onClick={() => {
+            <td><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editProduct'}/><img src={remove} alt='' className='optTable' onClick={() => {
           setModalOpen(true);
         }}/></td>
           </tr>
@@ -41,7 +41,7 @@ function Products() {
             <td>Sandwich de jamon y queso</td>
             <td>Desayuno</td>
             <td>S/10</td>
-            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' onClick={() => {
+            <td><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editProduct'}/><img src={remove} alt='' className='optTable' onClick={() => {
           setModalOpen(true);
         }}/></td>
           </tr>
@@ -49,7 +49,7 @@ function Products() {
             <td>Jugo de frutas natural</td>
             <td>Desayuno</td>
             <td>S/7</td>
-            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' onClick={() => {
+            <td><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editProduct'}/><img src={remove} alt='' className='optTable' onClick={() => {
           setModalOpen(true);
         }}/></td>
           </tr>
@@ -63,7 +63,7 @@ function Products() {
             <td>Hamburguesa Simple</td>
             <td>Dia</td>
             <td>S/10</td>
-            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' onClick={() => {
+            <td><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editProduct'}/><img src={remove} alt='' className='optTable' onClick={() => {
           setModalOpen(true);
         }}/></td>
           </tr>
@@ -71,7 +71,7 @@ function Products() {
             <td>Hamburguesa Doble</td>
             <td>Dia</td>
             <td>S/15</td>
-            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' onClick={() => {
+            <td><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editProduct'}/><img src={remove} alt='' className='optTable' onClick={() => {
           setModalOpen(true);
         }}/></td>
           </tr>
@@ -85,7 +85,7 @@ function Products() {
             <td>Papas fritas</td>
             <td>Dia</td>
             <td>S/5</td>
-            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' onClick={() => {
+            <td><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editProduct'}/><img src={remove} alt='' className='optTable' onClick={() => {
           setModalOpen(true);
         }}/></td>
           </tr>
@@ -93,7 +93,7 @@ function Products() {
             <td>Aros de cebolla</td>
             <td>Dia</td>
             <td>S/5</td>
-            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' onClick={() => {
+            <td><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editProduct'}/><img src={remove} alt='' className='optTable' onClick={() => {
           setModalOpen(true);
         }}/></td>
           </tr>
@@ -107,7 +107,7 @@ function Products() {
             <td>Agua 500ml</td>
             <td>Dia</td>
             <td>S/5</td>
-            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' onClick={() => {
+            <td><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editProduct'}/><img src={remove} alt='' className='optTable' onClick={() => {
           setModalOpen(true);
         }}/></td>
           </tr>
@@ -115,7 +115,7 @@ function Products() {
             <td>Agua 750ml</td>
             <td>Dia</td>
             <td>S/7</td>
-            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' onClick={() => {
+            <td><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editProduct'}/><img src={remove} alt='' className='optTable' onClick={() => {
           setModalOpen(true);
         }}/></td>
           </tr>
@@ -123,7 +123,7 @@ function Products() {
             <td>Bebida/gaseosa 500ml</td>
             <td>Dia</td>
             <td>S/7</td>
-            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' onClick={() => {
+            <td><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editProduct'}/><img src={remove} alt='' className='optTable' onClick={() => {
           setModalOpen(true);
         }}/></td>
           </tr>
@@ -131,7 +131,7 @@ function Products() {
             <td>Bebida/gaseosa 750ml</td>
             <td>Dia</td>
             <td>S/10</td>
-            <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' onClick={() => {
+            <td><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editProduct'}/><img src={remove} alt='' className='optTable' onClick={() => {
           setModalOpen(true);
         }}/></td>
           </tr>

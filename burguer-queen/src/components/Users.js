@@ -25,7 +25,7 @@ function Users() {
               <td>Paquita Martinez</td>
               <td>Mesera</td>
               <td>654fygfyeslsmjjjfuufu</td>
-              <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' onClick={() => {
+              <td><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editUser'} /><img src={remove} alt='' className='optTable' onClick={() => {
           setModalOpen(true);
         }}/></td>
             </tr>
@@ -33,7 +33,7 @@ function Users() {
               <td>Federica Salas</td>
               <td>Cocinera</td>
               <td>3546846548csuhriyg</td>
-              <td><img src={edit} alt='' className='optTable' /><img src={remove} alt='' className='optTable' onClick={() => {
+              <td><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editUser'}/><img src={remove} alt='' className='optTable' onClick={() => {
           setModalOpen(true);
         }}/></td>
             </tr>

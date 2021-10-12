@@ -1,5 +1,5 @@
 .modalBackground {
-    width: 100vw;
+    width: 99.8vw;
     height: 205%;
     background-color: rgba(200, 200, 200, 0.534);
     position: absolute;
@@ -9,7 +9,7 @@
     justify-content: center;
     align-items: center;
   }
-  
+
   .modalContainer {
     width: 300px;
     height: 200px;
