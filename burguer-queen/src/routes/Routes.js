@@ -1,6 +1,6 @@
 import React, {useState } from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import Login from '../components/Login';
+import Login from '../pages/Login';
 import Admin from '../pages/Admin';
 import AddUser from '../pages/AddUser';
 import EditUser from '../pages/EditUser';

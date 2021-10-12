@@ -5,7 +5,7 @@
   margin:0;
 
 }
-.container {
+.login-container {
     font-family: 'Times New Roman', Times, serif;
     background-color: rgba(242, 242, 242,1);
     font-size: 20px;
@@ -16,7 +16,7 @@
     display: grid;
     grid-template-rows: 40% 60%;
 }
-.header{
+.login-header{
     position: relative;
     display: flex;
     background-color: white;
@@ -25,7 +25,7 @@
     justify-content: flex-end;
     flex-direction: column;
 }
-.title{
+.login-title{
     height: 49px;
     width: 300px;
     text-align: center;
@@ -35,7 +35,7 @@
     font-size: 25px;
     line-height: 30px;
 }
-.formContainer{
+.login-formContainer{
     position: relative;
     width: 100%;
     display: flex;
@@ -43,24 +43,24 @@
     align-items: center;
     background-color: rgba(242, 242, 242,1);
 }
-.form{
+.login-form{
     display: flex;
     border:none;
     flex-direction: column;
     align-items: center;
 }
-.form-section{
+.login-form-section{
     width: 394px;
     padding-bottom: 25px;
 }
-.form-label{
+.login-form-label{
     font-size: 23px;
     font-weight: 900;
     line-height: 28px;
     opacity: 0.4;
     color: #000000;
 }
-.form-input{
+.login-form-input{
     border: none;
     outline: none;
     width: 380px;
@@ -73,7 +73,7 @@
     font-weight: 500;
 }
 
-.formButton{
+.login-formButton{
     border: none;
     background-color: #fa4a0c;
     color: #f6f6f9;
@@ -84,9 +84,9 @@
     font-weight: 900;
     margin-top: 40px;
 }
-.logo{
+.login-logo{
    padding-bottom: 30px;
 }
-img{
+.login-img{
     height: 140px;
 }
