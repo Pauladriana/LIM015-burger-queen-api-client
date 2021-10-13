@@ -19,3 +19,17 @@ export const signIn = (data, setLoading, setError, setToken) => {
       })
       .catch(err => console.log(err)) 
 };
+
+export const createUser = (data, setLoading, setError) => {
+  setLoading(true);
+    return post(`${url}auth`, {body : data})
+    .then ((data) =>  {
+      setLoading(false);
+      if (data.message === 'Invalid password') return setError('Contraseña incorrecta.');
+      if (data.message === `User doesn't exists`) return setError('Usuario no registrado.');
+      setError(null);
+      cookies.set('token', data.token, {path: "/"});
+      window.location.href="./admin";
+    })
+    .catch(err => console.log(err)) 
+};

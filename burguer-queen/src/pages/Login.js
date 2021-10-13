@@ -54,7 +54,7 @@ const Login = ({ setLoading, setError }) => {
     }
   };
   const goPassword = () => {
-    const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+    const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@.$ %^&*-]).{8,}$/;
     if (reg.test(form.password) === false) {
       setMessages({
         emailMsg: "",
