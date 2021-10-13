@@ -40,7 +40,7 @@ const Products = ({ setLoading, products , setError}) => {
       </table>
     </div>
     <Link to='/admin/newProduct'>Agregar Producto</Link>
-    {modalOpen && <Modal setOpenModal={setModalOpen} setError={setError} id={id}/>}
+    {modalOpen && <Modal setOpenModal={setModalOpen} setError={setError} path='products' id={id}/>}
   </div>
 )
 }

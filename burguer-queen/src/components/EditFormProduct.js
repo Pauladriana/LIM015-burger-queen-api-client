@@ -6,7 +6,7 @@ import { updateData } from '../services/put';
 
 const cookies = new Cookies();
 
-function EditProductForm(props) {
+function EditProductForm() {
   const product = cookies.get('product');
   const {_id, name, type, price, image} = cookies.get('product');
   const [productToEdit, setProductToEdit] = useState(product);
@@ -45,7 +45,6 @@ function EditProductForm(props) {
           <input
             type="text"
             className="form-control"
-            placeholder={props.descr}
             name="description"
             id='description'
           />

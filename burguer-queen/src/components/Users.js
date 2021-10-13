@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Modal from './remove';
 import "../style/Admin.css";
 import edit from '../media/pencil.png';
 import remove from '../media/close.png';
-import Modal from "./remove";
+import Cookies from 'universal-cookie';
 
-function Users( { setLoading, users }) {
+const cookies = new Cookies();
+
+function Users( { setLoading, users, setError }) {
   const [modalOpen, setModalOpen] = useState(false);
+  const [id, setId] = useState(null);
 
   return (
     <div className='OptionContent'>
@@ -26,16 +30,17 @@ function Users( { setLoading, users }) {
               <td key={user}>{user.email}</td>
               <td key={user}>{user.roles.name}</td>
               <td key={user}>{user._id}</td>
-              <td key={user}><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editUser'} /><img src={remove} alt='' className='optTable' onClick={() => {
-          setModalOpen(true);
-        }}/></td>
+              <td key={user}><img src={edit} alt='' className='optTable' onClick={() => {cookies.set('user', user); window.location.href = '/admin/editUser'}}/><img src={remove} alt='' className='optTable' onClick={() => {
+                setModalOpen(true);
+                setId(user._id);
+              }}/></td>
             </tr>
             ))}
           </tbody>
         </table>
       </div>
       <Link to="/admin/newUser">Crear Usuario</Link>
-      {modalOpen && <Modal setOpenModal={setModalOpen} />}
+      {modalOpen && <Modal setOpenModal={setModalOpen} setError={setError} path='users' id={id}/>}
     </div>
   )
 }
