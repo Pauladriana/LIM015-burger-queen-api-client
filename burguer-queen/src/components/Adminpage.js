@@ -31,10 +31,10 @@ function AdminPage({ setLoading, setError }) {
       <div className='buttonAdmin'>
         <button onClick={() => { setActive('UsersCard'); setColor('red'); setColorB('white'); setColorC('white'); showUsers()}} className={background}>Usuarios</button>
         <button onClick={() => { setActive('ProductsCard'); setColorB('red');  setColor('white'); setColorC('white'); showProducts()}} className={background2}>Productos</button>
-        <button onClick={() => { setActive('ProductsCard'); setColorB('white'); setColor('white'); setColorC('red') }} className={background3}>Ordenes</button>
+        <button onClick={() => { setActive('OrdersCard'); setColorB('white'); setColor('white'); setColorC('red') }} className={background3}>Ordenes</button>
       </div>
       <div className='container'>
-        {active === 'UsersCard' && users && <Users users={users}/>}
+        {active === 'UsersCard' && users && <Users users={users} setError={setError}/>}
         {active === 'ProductsCard' && products &&<Products products={products} setError={setError}/>}
       </div>
     </div>

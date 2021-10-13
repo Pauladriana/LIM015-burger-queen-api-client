@@ -2,9 +2,9 @@ import React from "react";
 import "../style/remove.css";
 import {deleteData} from '../services/delete';
 
-function Modal({ setOpenModal, setError, id}) {
+function Modal({ setOpenModal, setError, path, id}) {
   
-  const del = async () => await deleteData(setError, 'products', id, '/admin');
+  const del = async () => await deleteData(setError, path, id, '/admin');
   // const redirect = () => window.location.href = '/admin';
 
   return (
@@ -26,7 +26,7 @@ function Modal({ setOpenModal, setError, id}) {
             Cancelar
           </button>
           <button onClick={() => { del()}}>Eliminar</button>
-        </div>()
+        </div>
       </div>
     </div>
   );

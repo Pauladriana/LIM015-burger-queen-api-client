@@ -37,12 +37,7 @@ class EditProduct extends Component {
             <button>Ordenes</button>
           </div>
         </div>
-        <EditProductForm
-        item='Cafe Americano'
-        descr='Cafe y agua'
-        type='Desayuno'
-        cost='S/5'
-        />
+        <EditProductForm/>
       </div>
     )
   }

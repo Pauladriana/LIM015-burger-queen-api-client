@@ -26,3 +26,24 @@ export const updateData = (data, path, id, route) => {
       })
       .catch(err => console.log(err))
   };
+
+  export const updateUser = (data, path, id, route) => {
+    const token = cookies.get('token');
+    const {email, password, roles} = data;
+    // setLoading(true);
+    return put(`${url}${path}/${id}`, { 
+      headers: { 'Authorization': `Bearer ${token}` },
+      body: {
+          email,
+          password,
+          roles,
+      },
+    })
+      .then((data) => {
+        console.log(data);
+        window.location.href = route;
+        // setLoading(false);
+        //Agregar mensajes de éxito y error
+      })
+      .catch(err => console.log(err))
+  };
