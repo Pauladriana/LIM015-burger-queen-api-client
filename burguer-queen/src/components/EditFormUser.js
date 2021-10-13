@@ -1,14 +1,28 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
-import "../style/Admin.css";
+import Cookies from 'universal-cookie';
+import { updateUser } from '../services/put';
+// import "../style/Admin.css";
+
+const cookies = new Cookies();
 
 function EditUserForm() {
-  const [newEmail, setValidEmail] = useState('');
-  const [newPassword, setValidPassword] = useState('');
-  const [typeEmail, setValidationEmail] = useState('');
-  const [typePassword, setValidationPassword] = useState('');
+  const [newEmail, setValidEmail] = useState(null);
+  const [newPassword, setValidPassword] = useState(null);
+  const [typeEmail, setValidationEmail] = useState(null);
+  const [typePassword, setValidationPassword] = useState(null);
 
-  const propEditEmail = 'admin@localhost'
+  const user = cookies.get('user');
+  const {_id, email, roles} = cookies.get('user');
+
+  const [editedRol, setRole] = useState(roles);
+ 
+  const userToEdit = {
+    email: newEmail,
+    password: newPassword,
+    roles: editedRol,
+  };
+
 
   function goNewEmail(value) {
     const reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
@@ -36,12 +50,14 @@ function EditUserForm() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    window.location.href = "./";
+    updateUser(userToEdit,'users', _id ,'./');
+    cookies.remove('user');
+    console.log(cookies.get('user'));
   }
   return (
     <div className="container">
       <Link to="/admin" className='back'>Atras</Link>
-      <h2> Nuevo Usuario </h2>
+      <h2> Editar Usuario </h2>
       <form onSubmit={handleSubmit} className='formUser'>
         <div className='formCnt'>
           <div className="form-group">
@@ -49,10 +65,10 @@ function EditUserForm() {
             <input
               type="email"
               className="form-control"
-              placeholder={propEditEmail}
+              placeholder={email}
               name="email"
               id='email'
-              onChange={e => goNewEmail(e.target.value)}
+              onChange={(e) => goNewEmail(e.target.value)}
             />
             <br />
             <p className='goNewEmail'>{typeEmail}</p>
@@ -63,7 +79,6 @@ function EditUserForm() {
             <input
               type="password"
               className="form-control"
-              placeholder="contraseña"
               name="password"
               id='password'
               onChange={e => goNewPassword(e.target.value)}
@@ -79,22 +94,37 @@ function EditUserForm() {
               className="form-opt"
               name="opt"
               id="adminOpt"
+              onChange={(e) => {
+                e.target.checked
+                  ? setRole({name: 'administradora'})
+                  : setRole({name: ''});
+              }}
             />
-            <label for="adminOpt">Administrador</label><br />
+            <label for="adminOpt">Administradora</label><br />
             <input
               type="radio"
               className="form-optl"
               name="opt"
               id="waiterOpt"
+              onChange={(e) => {
+                e.target.checked
+                  ? setRole({name: 'mesera'})
+                  : setRole({name: ''});
+              }}
             />
-            <label for="waiterOpt">Mesero</label><br />
+            <label for="waiterOpt">Mesera</label><br />
             <input
               type="radio"
               className="form-opt"
               name="opt"
               id="chefOpt"
+              onChange={(e) => {
+                e.target.checked
+                  ? setRole({name: 'cocinera'})
+                  : setRole({name: ''});
+              }}
             />
-            <label for="chefOpt">Cocinero</label><br />
+            <label for="chefOpt">Cocinera</label><br />
           </div>
         </div>
         <button type="submit" className='userSubmit'>Guardar</button>

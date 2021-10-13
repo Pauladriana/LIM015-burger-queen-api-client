@@ -30,8 +30,8 @@ class AddProduct extends Component {
         <div>
         <UserInfo />
         <div className='buttonAdmin'>
-          <button className='red'>Usuarios</button>
-          <button>Productos</button>
+          <button>Usuarios</button>
+          <button className='red'>Productos</button>
           <button>Ordenes</button>
         </div>
         </div>

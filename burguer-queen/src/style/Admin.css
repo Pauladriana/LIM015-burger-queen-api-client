@@ -10,6 +10,10 @@ body {
     height: 99vh
 }
 
+input {
+  outline: none;
+}
+
 .logo {
     width: 50px;
 }

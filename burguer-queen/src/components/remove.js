@@ -2,9 +2,9 @@ import React from "react";
 import "../style/remove.css";
 import {deleteData} from '../services/delete';
 
-function Modal({ setLoading, setOpenModal, setError, id}) {
+function Modal({ setLoading, setOpenModal, setError, path, id}) {
   
-  const del = async () => await deleteData(setLoading, setError, 'products', id, '/admin');
+  const del = async () => await deleteData(setLoading, setError, path, id, '/admin');
 
   return (
     <div className="modalBackground">

@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import {createUser} from '../services/post';
 import "../style/Admin.css";
 
-function UserForm() {
-  const [newEmail, setValidEmail] = useState('');
-  const [newPassword, setValidPassword] = useState('');
-  const [typeEmail, setValidationEmail] = useState('');
-  const [typePassword, setValidationPassword] = useState('');
+function UserForm(setLoading, setError) {
+  const [newEmail, setValidEmail] = useState(null);
+  const [newPassword, setValidPassword] = useState(null);
+  const [typeEmail, setValidationEmail] = useState(null);
+  const [typePassword, setValidationPassword] = useState(null);
+
+  const [rol, setRole] = useState({name: ''});
+
+  const user = {
+    email: newEmail,
+    password: newPassword,
+    roles: rol,
+  };
 
   function goNewEmail(value) {
     const reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
@@ -32,9 +41,11 @@ function UserForm() {
     }
   }
 
-  function handleSubmit(event) {
-    event.preventDefault()
-    window.location.href = "./";
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(user);
+    // if (!user.email || !user.password || !user.roles) return setError('Debe ingresar todos los datos');
+    return await createUser(user, setLoading, setError, 'users');
   }
   return (
     <div className="container">
@@ -45,12 +56,12 @@ function UserForm() {
           <div className="form-group">
             <label for="email">Correo:</label><br />
             <input
-              type="email"
+              type="text"
               className="form-control"
               placeholder="email"
-              name="email"
+              name='email'
               id='email'
-              onChange={e => goNewEmail(e.target.value)}
+              onChange={(e) => goNewEmail(e.target.value)}
             />
             <br />
             <p className='goNewEmail'>{typeEmail}</p>
@@ -59,12 +70,12 @@ function UserForm() {
           <div className="form-group">
             <label for="password">Contraseña:</label><br />
             <input
-              type="password"
+              type="text"
               className="form-control"
               placeholder="contraseña"
               name="password"
               id='password'
-              onChange={e => goNewPassword(e.target.value)}
+              onChange={(e) => goNewPassword(e.target.value) }
             />
             <br />
             <p className='goNewPassword'>{typePassword}</p>
@@ -77,22 +88,37 @@ function UserForm() {
               className="form-opt"
               name="opt"
               id="adminOpt"
+              onChange={(e) => {
+                e.target.checked
+                  ? setRole({name: 'administradora'})
+                  : setRole({name: ''});
+              }}
             />
-            <label for="adminOpt">Administrador</label><br />
+            <label for="adminOpt">Administradora</label><br />
             <input
               type="radio"
               className="form-optl"
               name="opt"
               id="waiterOpt"
+              onChange={(e) => {
+                e.target.checked
+                  ? setRole({name: 'mesera'})
+                  : setRole({name: ''});
+              }}
             />
-            <label for="waiterOpt">Mesero</label><br />
+            <label for="waiterOpt">Mesera</label><br />
             <input
               type="radio"
               className="form-opt"
               name="opt"
               id="chefOpt"
+              onChange={(e) => {
+                e.target.checked
+                  ? setRole({name: 'cocinera'})
+                  : setRole({name: ''});
+              }}
             />
-            <label for="chefOpt">Cocinero</label><br />
+            <label for="chefOpt">Cocinera</label><br />
           </div>
         </div>
         <button type="submit" className='userSubmit'>Guardar</button>
