@@ -35,7 +35,7 @@ class AddProduct extends Component {
           <button>Ordenes</button>
         </div>
         </div>
-        <ProductForm />
+        <ProductForm setLoading={this.props.setLoading} setError={this.props.setError}/>
       </div>
     )
   }

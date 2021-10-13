@@ -6,7 +6,7 @@ import { updateData } from '../services/put';
 
 const cookies = new Cookies();
 
-function EditProductForm(props) {
+const EditProductForm = ({setLoading, setError}) => {
   const product = cookies.get('product');
   const {_id, name, type, price, image} = cookies.get('product');
   const [productToEdit, setProductToEdit] = useState(product);
@@ -20,13 +20,13 @@ function EditProductForm(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    updateData(productToEdit,'products', _id ,'./');
+    updateData(productToEdit, setLoading, setError,'products', _id ,'./');
     cookies.remove('product');
     console.log(cookies.get('product'));
   }
   return (
     <div className="container">
-      <Link to="/admin" className='back'>Atras</Link>
+      <Link to="/admin" className='back'>Atrás</Link>
       <h2> Editar Producto </h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -41,17 +41,7 @@ function EditProductForm(props) {
           />
         </div>
         <div className="form-group">
-          <label for="description">Descripcion:</label><br />
-          <input
-            type="text"
-            className="form-control"
-            placeholder={props.descr}
-            name="description"
-            id='description'
-          />
-        </div>
-        <div className="form-group">
-          <label for="menu">Menu:</label><br />
+          <label for="menu">Menú:</label><br />
           <input
             type="text"
             className="form-control"
@@ -72,12 +62,10 @@ function EditProductForm(props) {
             onChange={handleChange}
           />
         </div>
-
-
         <button type="submit">Guardar</button>
       </form>
     </div>
   )
-}
+};
 
-export default EditProductForm
+export default EditProductForm;

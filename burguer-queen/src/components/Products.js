@@ -18,7 +18,7 @@ const Products = ({ setLoading, products , setError}) => {
       <table>
         <thead>
           <tr>
-            <th>Item</th>
+            <th>Nombre</th>
             <th>Menu</th>
             <th>Precio</th>
             <th></th>
@@ -26,7 +26,7 @@ const Products = ({ setLoading, products , setError}) => {
         </thead>
         <tbody>
           {products.map((product) => (
-            <tr>
+            <tr key={product._id}>
               <td>{product.name}</td>
               <td>{product.type}</td>
               <td>{`S/ ${product.price}`}</td>
@@ -40,7 +40,7 @@ const Products = ({ setLoading, products , setError}) => {
       </table>
     </div>
     <Link to='/admin/newProduct'>Agregar Producto</Link>
-    {modalOpen && <Modal setOpenModal={setModalOpen} setError={setError} id={id}/>}
+    {modalOpen && <Modal setLoading={setLoading} setOpenModal={setModalOpen} setError={setError} id={id}/>}
   </div>
 )
 }

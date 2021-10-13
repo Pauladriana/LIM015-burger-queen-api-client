@@ -35,7 +35,7 @@ function AdminPage({ setLoading, setError }) {
       </div>
       <div className='container'>
         {active === 'UsersCard' && users && <Users users={users}/>}
-        {active === 'ProductsCard' && products &&<Products products={products} setError={setError}/>}
+        {active === 'ProductsCard' && products &&<Products setLoading={setLoading} products={products} setError={setError}/>}
       </div>
     </div>
   );

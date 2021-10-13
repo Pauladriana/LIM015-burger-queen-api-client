@@ -20,9 +20,9 @@ export const signIn = (data, setLoading, setError) => {
 };
 
 export const createData = (data, setLoading, setError, path) => {
+  setLoading(true);
   const {name, type, price, image} = data;
   const token = cookies.get('token');
-  // setLoading(true);
   post(`${url}${path}`, { 
     headers: { 'Authorization': `Bearer ${token}` },
     body: {
@@ -33,9 +33,9 @@ export const createData = (data, setLoading, setError, path) => {
     }
   })
     .then((data) => {
-      console.log(data);
       setLoading(false);
-      //Agregar mensajes de exito y error
+      console.log(data);
+      setError('Producto creado exitosamente.');
     })
     .catch(err => console.log(err))
 };

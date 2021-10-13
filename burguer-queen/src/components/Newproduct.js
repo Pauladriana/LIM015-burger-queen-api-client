@@ -1,9 +1,9 @@
-import React, {useState, useEffect}from 'react';
+import React, {useState }from 'react';
 import { Link } from 'react-router-dom';
 import {createData} from '../services/post';
 
 
-const ProductForm = (setLoading, setError) => {
+const ProductForm = ({setLoading, setError}) => {
   const initialProduct = {
     name: '',
     type: '',
@@ -23,7 +23,6 @@ const ProductForm = (setLoading, setError) => {
     e.preventDefault()
     if (!product.name || !product.type || !product.price) return setError('No ingresó ningún dato.');
     return await createData(product, setLoading, setError, 'products');
-    // window.location.href="./";
   }
   return (
     <div className="container">
@@ -38,17 +37,6 @@ const ProductForm = (setLoading, setError) => {
             placeholder="nombre de producto"
             name="name"
             id='item'
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="description">Descripcion:</label><br />
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Caracteristicas de producto"
-            name=""
-            id='description'
             onChange={handleChange}
           />
         </div>

@@ -14,7 +14,7 @@ import Modals from '../components/Modals';
 const Routes = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
-  
+ 
   return (
     <BrowserRouter>
       {loading && <Loader/>}
@@ -37,8 +37,8 @@ const Routes = () => {
         <Route exact path="/admin/editProduct" component={() => (
           <EditProduct
             setLoading={setLoading}
-          />
-          )
+            setError={setError}
+          />)
         }/>
         <Route exact path="/admin/newProduct" component={ () => (
           <AddProduct setLoading={setLoading} setError={setError}/>

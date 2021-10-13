@@ -22,11 +22,11 @@ function Users( { setLoading, users }) {
           </thead>
           <tbody>
           {users.map((user) => (
-            <tr>
-              <td key={user}>{user.email}</td>
-              <td key={user}>{user.roles.name}</td>
-              <td key={user}>{user._id}</td>
-              <td key={user}><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editUser'} /><img src={remove} alt='' className='optTable' onClick={() => {
+            <tr key={user._id}>
+              <td>{user.email}</td>
+              <td>{user.roles.name}</td>
+              <td>{user._id}</td>
+              <td><img src={edit} alt='' className='optTable' onClick={() => window.location.href = '/admin/editUser'} /><img src={remove} alt='' className='optTable' onClick={() => {
           setModalOpen(true);
         }}/></td>
             </tr>
