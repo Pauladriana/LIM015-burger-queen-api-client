@@ -13,6 +13,7 @@ export const signIn = (data, setLoading, setError) => {
       if (data.message === 'Invalid password') return setError('Contraseña incorrecta.');
       if (data.message === `User doesn't exists`) return setError('Usuario no registrado.');
       setError(null);
+      cookies.remove('token');
       cookies.set('token', data.token, { path: '/' });
       window.location.href = './admin';
     })

@@ -14,10 +14,10 @@ function AdminPage({ setLoading, setError }) {
   const [users, setUsers] = useState(null);
 
   useEffect(() => {
-    showProducts();
+    // showProducts();
     showUsers();
     return () => {
-      setProducts(null);
+      // setProducts(null);
       setUsers(null);
     };
   }, []);
@@ -34,7 +34,7 @@ function AdminPage({ setLoading, setError }) {
         <button onClick={() => { setActive('OrdersCard'); setColorB('white'); setColor('white'); setColorC('red') }} className={background3}>Ordenes</button>
       </div>
       <div className='container'>
-        {active === 'UsersCard' && users && <Users users={users}/>}
+        {active === 'UsersCard' && users && <Users setLoading={setLoading} users={users} setError={setError}/>}
         {active === 'ProductsCard' && products &&<Products setLoading={setLoading} products={products} setError={setError}/>}
       </div>
     </div>

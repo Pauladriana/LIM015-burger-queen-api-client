@@ -9,11 +9,13 @@ const token = cookies.get('token');
 
 export const getData = (setLoading, setData, path) => {
   // setLoading(true);
+  console.log(token);
   get(`${url}${path}`, { headers: { 'Authorization': `Bearer ${token}` } })
     .then((data) => {
       //Agregar mensajes de error
       setLoading(false);
       setData(data);
+      console.log(data)
     })
     .catch(err => console.log(err))
 };

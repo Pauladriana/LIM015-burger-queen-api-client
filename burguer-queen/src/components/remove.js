@@ -25,7 +25,7 @@ function Modal({ setLoading, setOpenModal, setError, path, id}) {
             Cancelar
           </button>
           <button onClick={() => del()}>Eliminar</button>
-        </div>()
+        </div>
       </div>
     </div>
   );
