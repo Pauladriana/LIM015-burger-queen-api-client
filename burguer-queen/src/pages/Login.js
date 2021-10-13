@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from "react";
-import Cookies from "universal-cookie";
-import "../style/Login.css";
-import logo from "../media/logo1.svg";
-import { signIn } from "../services/fetch";
+import React, { useState, useEffect } from 'react';
+import Cookies from 'universal-cookie';
+import '../style/Login.css';
+import logo from '../media/logo1.svg';
+import { signIn } from '../services/post';
 
 const cookies = new Cookies();
 
 const Login = ({ setLoading, setError }) => {
   const initialForm = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   };
   const [form, setForm] = useState(initialForm);
   const [messages, setMessages] = useState({
-    emailMsg: "",
-    passwordMsg: "",
+    emailMsg: '',
+    passwordMsg: '',
   });
-  // eslint-disable-next-line no-unused-vars
-  const [token, setToken] = useState(null);
 
   const handleChange = e => {
     setForm({
@@ -28,14 +26,14 @@ const Login = ({ setLoading, setError }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    if (!form.email || !form.password) return setError("No ingresó correo o contraseña");
-    return await signIn(form, setLoading, setError, setToken);
+    if (!form.email || !form.password) return setError('No ingresó correo o contraseña');
+    return await signIn(form, setLoading, setError);
   };
 
   useEffect(() => {
-    if (cookies.get("token")) {
-      console.log(cookies.get("token"));
-      window.location.href = "./admin";
+    if (cookies.get('token')) {
+      console.log(cookies.get('token'));
+      window.location.href = './admin';
     }
   }, []);
 
@@ -43,13 +41,13 @@ const Login = ({ setLoading, setError }) => {
     const reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
     if (reg.test(form.email) === false) {
       setMessages({
-        emailMsg: "La estructura es example@correo",
-        passwordMsg: "",
+        emailMsg: 'La estructura es example@correo',
+        passwordMsg: '',
       });
     } else {
       setMessages({
-        emailMsg: "",
-        passwordMsg: "",
+        emailMsg: '',
+        passwordMsg: '',
       });
     }
   };
@@ -57,13 +55,13 @@ const Login = ({ setLoading, setError }) => {
     const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@.$ %^&*-]).{8,}$/;
     if (reg.test(form.password) === false) {
       setMessages({
-        emailMsg: "",
-        passwordMsg: "La contraseña debe contener mayusculas, numeros y caracteres especiales",
+        emailMsg: '',
+        passwordMsg: 'La contraseña debe contener mayusculas, numeros y caracteres especiales',
       });
     } else {
       setMessages({
-        emailMsg: "",
-        passwordMsg: "",
+        emailMsg: '',
+        passwordMsg: '',
       });
     }
   };
@@ -103,7 +101,7 @@ const Login = ({ setLoading, setError }) => {
           </div>
 
           <button className='login-formButton' type='submit'>
-            Iniciar Sesion{" "}
+            Iniciar Sesion{' '}
           </button>
         </form>
       </div>

@@ -5,20 +5,15 @@ import EditProductForm from '../components/EditFormProduct';
 import "../style/Admin.css";
 import logo from '../media/LOGOBQO.png';
 
-
 const cookies = new Cookies();
-
 class EditProduct extends Component {
-
-  cerrarSesion = () => {
-    cookies.remove('token', { path: "/" });
-    console.log(cookies.get('token'));
+  close = () => {
+    cookies.remove('token', { path: '/' });
     window.location.href = './';
   }
   componentDidMount() {
-    console.log(cookies.get('token'));
     if (!cookies.get('token')) {
-      window.location.href = "./";
+      window.location.href = './';
     }
   }
   render() {
@@ -26,7 +21,7 @@ class EditProduct extends Component {
       <div>
         <div className='header'>
           <img src={logo} alt='' className='logo' />
-          <button onClick={() => this.cerrarSesion()}>Cerrar Sesión</button>
+          <button onClick={() => this.close()}>Cerrar Sesión</button>
         </div>
         <div>
           <UserInfo />
@@ -36,12 +31,7 @@ class EditProduct extends Component {
             <button>Ordenes</button>
           </div>
         </div>
-        <EditProductForm
-        item='Cafe Americano'
-        descr='Cafe y agua'
-        type='Desayuno'
-        cost='S/5'
-        />
+        <EditProductForm setLoading={this.props.setLoading} setError={this.props.setError}/>
       </div>
     )
   }

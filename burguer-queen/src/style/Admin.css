@@ -13,6 +13,10 @@ body {
     height: 99vh
 }
 
+input {
+  outline: none;
+}
+
 .logo {
     width: 50px;
 }
@@ -149,6 +153,7 @@ form {
     border-bottom: 1px black solid;
     margin: 25px 0;
     width: 450px;
+    outline: none;
   }
 
   .container h2{

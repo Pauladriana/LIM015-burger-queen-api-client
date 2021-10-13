@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
 import UserInfo from '../components/Usertype';
 import ProductForm from '../components/Newproduct';
-import "../style/Admin.css";
+import '../style/Admin.css';
 import logo from '../media/LOGOBQO.png';
 
 
@@ -10,14 +10,14 @@ const cookies = new Cookies();
 
 class AddProduct extends Component {
   cerrarSesion = () => {
-    cookies.remove('token', { path: "/" });
+    cookies.remove('token', { path: '/' });
     console.log(cookies.get('token'));
     window.location.href = './';
   }
   componentDidMount() {
     console.log(cookies.get('token'));
     if (!cookies.get('token')) {
-      window.location.href = "./";
+      window.location.href = './';
     }
   }
   render() {
@@ -35,7 +35,7 @@ class AddProduct extends Component {
           <button>Ordenes</button>
         </div>
         </div>
-        <ProductForm />
+        <ProductForm setLoading={this.props.setLoading} setError={this.props.setError}/>
       </div>
     )
   }

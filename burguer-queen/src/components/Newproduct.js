@@ -1,11 +1,28 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, {useState }from 'react';
+import { Link } from 'react-router-dom';
+import {createData} from '../services/post';
 
-function ProductForm() {
 
-  function handleSubmit(event) {
-    event.preventDefault()
-    window.location.href="./";
+const ProductForm = ({setLoading, setError}) => {
+  const initialProduct = {
+    name: '',
+    type: '',
+    price: '',
+    image: '',
+  };
+  const [product, setProduct] = useState(initialProduct);
+
+  const handleChange = e => {
+    setProduct({
+      ...product,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    if (!product.name || !product.type || !product.price) return setError('No ingresó ningún dato.');
+    return await createData(product, setLoading, setError, 'products');
   }
   return (
     <div className="container">
@@ -13,43 +30,36 @@ function ProductForm() {
       <h2> Nuevo Producto </h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label for="item">Item:</label><br />
+          <label htmlFor="item">Item:</label><br />
           <input
             type="text"
             className="form-control"
             placeholder="nombre de producto"
-            name="item"
+            name="name"
             id='item'
+            onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label for="description">Descripcion:</label><br />
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Caracteristicas de producto"
-            name="description"
-            id='description'
-          />
-        </div>
-        <div className="form-group">
-          <label for="menu">Menu:</label><br />
+          <label htmlFor="menu">Menu:</label><br />
           <input
             type="text"
             className="form-control"
             placeholder="Desayuno o Diario"
-            name="menu"
+            name="type"
             id='menu'
+            onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label for="description">Precio:</label><br />
+          <label htmlFor="description">Precio:</label><br />
           <input
-            type="text"
+            type="number"
             className="form-control"
             placeholder="S/"
             name="price"
             id='price'
+            onChange={handleChange}
           />
         </div>
 
