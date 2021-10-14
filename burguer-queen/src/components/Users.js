@@ -26,11 +26,11 @@ function Users( { setLoading, users, setError }) {
           </thead>
           <tbody>
           {users.map((user) => (
-            <tr>
-              <td key={user}>{user.email}</td>
-              <td key={user}>{user.roles.name}</td>
-              <td key={user}>{user._id}</td>
-              <td key={user}><img src={edit} alt='' className='optTable' onClick={() => {cookies.set('user', user); window.location.href = '/admin/editUser'}}/><img src={remove} alt='' className='optTable' onClick={() => {
+            <tr key={user._id}>
+              <td >{user.email}</td>
+              <td >{user.roles.name}</td>
+              <td >{user._id}</td>
+              <td ><img src={edit} alt='' className='optTable' onClick={() => {cookies.set('user', user); window.location.href = '/admin/editUser'}}/><img src={remove} alt='' className='optTable' onClick={() => {
                 setModalOpen(true);
                 setId(user._id);
               }}/></td>
@@ -40,7 +40,7 @@ function Users( { setLoading, users, setError }) {
         </table>
       </div>
       <Link to="/admin/newUser">Crear Usuario</Link>
-      {modalOpen && <Modal setOpenModal={setModalOpen} setError={setError} path='users' id={id}/>}
+      {modalOpen && <Modal setLoading={setLoading}  setOpenModal={setModalOpen} setError={setError} path='users' id={id}/>}
     </div>
   )
 }

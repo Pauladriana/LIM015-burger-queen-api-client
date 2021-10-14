@@ -7,6 +7,8 @@ import { signIn } from '../services/post';
 const cookies = new Cookies();
 
 const Login = ({ setLoading, setError }) => {
+
+
   const initialForm = {
     email: '',
     password: '',
@@ -34,7 +36,7 @@ const Login = ({ setLoading, setError }) => {
     if (cookies.get('token')) {
       console.log(cookies.get('token'));
       window.location.href = './admin';
-    }
+    };
   }, []);
 
   const goEmail = () => {
@@ -52,7 +54,7 @@ const Login = ({ setLoading, setError }) => {
     }
   };
   const goPassword = () => {
-    const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+    const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@.$ %^&*-]).{8,}$/;
     if (reg.test(form.password) === false) {
       setMessages({
         emailMsg: '',

@@ -37,7 +37,7 @@ function EditUserForm() {
   }
 
   function goNewPassword(value) {
-    const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/
+    const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!.@$ %^&*-]).{8,}$/
     if (reg.test(value) === true) {
       setValidationPassword('');
       setValidPassword(value);

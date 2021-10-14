@@ -44,7 +44,7 @@ const Routes = () => {
           <AddProduct setLoading={setLoading} setError={setError}/>
         )
         }/>
-        <Route exact path="/waiter" component={Waiter}/>
+        <Route exact path="/meserx" component={Waiter}/>
         <Route exact path="/chef" component={Chef}/>
       </Switch>
     </BrowserRouter>
