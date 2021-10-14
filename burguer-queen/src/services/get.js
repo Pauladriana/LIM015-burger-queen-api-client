@@ -19,3 +19,16 @@ export const getData = (setLoading, setData, path) => {
     })
     .catch(err => console.log(err))
 };
+
+export const getUserLogged = (path, token) => {
+  // setLoading(true);
+  console.log(token);
+  return get(`${url}${path}`, { headers: { 'Authorization': `Bearer ${token}` } })
+    .then((data) => {
+      //Agregar mensajes de error
+      // setData(data);
+      console.log(data);
+      return data
+    })
+    .catch(err => console.log(err))
+};

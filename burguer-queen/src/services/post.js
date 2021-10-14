@@ -1,11 +1,14 @@
 import { helpHttp } from '../helpers/helpHttp';
 import Cookies from 'universal-cookie';
+import {getUserLogged} from './get'
 
 const { post } = helpHttp();
 const url = 'https://bq-lab-2021.herokuapp.com/';
 const cookies = new Cookies();
 
 export const signIn = (data, setLoading, setError) => {
+  const email = data.email
+
   setLoading(true);
   return post(`${url}auth`, { body: data })
     .then(data => {
@@ -15,8 +18,17 @@ export const signIn = (data, setLoading, setError) => {
       setError(null);
       cookies.remove('token');
       cookies.set('token', data.token, { path: '/' });
-      window.location.href = './admin';
-    })
+      console.log(email);
+      return getUserLogged(`users/${email}`, data.token);
+    }).then((res) => { console.log(res); cookies.remove('userLogged'); cookies.set('userLogged', res); 
+    if(res.roles.admin) {
+      window.location.href = './admin'
+    } else if (res.roles.name === 'mesera') {
+      window.location.href = './meserx'
+    } else if (res.roles.name === 'cocinera') {
+      window.location.href = './chef'
+    }
+      console.log(cookies.get('userLogged'))} )
     .catch(err => console.log(err));
 };
 
