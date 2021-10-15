@@ -32,3 +32,25 @@ export const getUserLogged = (path, token) => {
     })
     .catch(err => console.log(err))
 };
+
+export const getProduct = (path) => {
+  // setLoading(true);
+  console.log(token);
+  return get(`${url}${path}`, { headers: { 'Authorization': `Bearer ${token}` } })
+    .then((data) => {
+      //Agregar mensajes de error
+      console.log(data);
+      return data.name
+    })
+    .catch(err => console.log(err))
+};
+
+export const getOrders = () => {
+  // setLoading(true);
+  console.log(token);
+  get(`${url}orders`, { headers: { 'Authorization': `Bearer ${token}` } })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch(err => console.log(err))
+};
