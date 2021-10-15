@@ -10,7 +10,6 @@ export const helpHttp = () => {
 
     options.body = JSON.stringify(options.body) || false;
     if (!options.body) delete options.body;
-
     setTimeout(() => controller.abort(), 5000);
 
     return fetch(endPoint, options)
@@ -20,7 +19,7 @@ export const helpHttp = () => {
           err: true,
           message: (await res.json()).message,
           status: res.status,
-          statusText: res.statusText
+          statusText: res.statusText,
         })
       )
       .catch((err) => err)

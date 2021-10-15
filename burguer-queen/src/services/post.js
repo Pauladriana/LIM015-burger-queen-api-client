@@ -1,14 +1,13 @@
 import { helpHttp } from '../helpers/helpHttp';
 import Cookies from 'universal-cookie';
-import {getUserLogged} from './get'
+import { getUserLogged } from './get'
 
 const { post } = helpHttp();
 const url = 'https://bq-lab-2021.herokuapp.com/';
 const cookies = new Cookies();
 
-export const signIn = (data, setLoading, setError) => {
-  const email = data.email
-
+export const signIn = (data, setLoading, setError, setUserLogged) => {
+  const email = data.email;
   setLoading(true);
   return post(`${url}auth`, { body: data })
     .then(data => {
@@ -16,27 +15,29 @@ export const signIn = (data, setLoading, setError) => {
       if (data.message === 'Invalid password') return setError('Contraseña incorrecta.');
       if (data.message === `User doesn't exists`) return setError('Usuario no registrado.');
       setError(null);
-      cookies.remove('token');
-      cookies.set('token', data.token, { path: '/' });
-      console.log(email);
-      return getUserLogged(`users/${email}`, data.token);
-    }).then((res) => { console.log(res); cookies.remove('userLogged'); cookies.set('userLogged', res); 
-    if(res.roles.admin) {
-      window.location.href = './admin'
-    } else if (res.roles.name === 'mesera') {
-      window.location.href = './meserx'
-    } else if (res.roles.name === 'cocinera') {
-      window.location.href = './chef'
-    }
-      console.log(cookies.get('userLogged'))} )
+      const token = data.token;
+      cookies.remove('token', {path:'/'});
+      cookies.set('token', data.token, {path: '/'});
+      return getUserLogged(`users/${email}`, token);
+    }).then((res) => {
+      cookies.remove('userLogged', {path:'/'}); 
+      cookies.set('userLogged', res, {path: '/'});
+      if (res.roles.admin) {
+        window.location.hash = '#/admin/users';
+      } else if (res.roles.name === 'mesera') {
+        window.location.hash = '#/meserx/neworder';
+      } else if (res.roles.name === 'cocinera') {
+        window.location.hash = '#/chef';
+      }
+    })
     .catch(err => console.log(err));
 };
 
 export const createData = (data, setLoading, setError, path) => {
   setLoading(true);
-  const {name, type, price, image} = data;
+  const { name, type, price, image } = data;
   const token = cookies.get('token');
-  post(`${url}${path}`, { 
+  post(`${url}${path}`, {
     headers: { 'Authorization': `Bearer ${token}` },
     body: {
       name,
@@ -57,7 +58,7 @@ export const createData = (data, setLoading, setError, path) => {
 };
 
 export const createUser = (data, setLoading, setError, path) => {
-  const {email, password, roles} = data;
+  const { email, password, roles } = data;
   const token = cookies.get('token');
   // setLoading(true);
   post(`${url}${path}`, {

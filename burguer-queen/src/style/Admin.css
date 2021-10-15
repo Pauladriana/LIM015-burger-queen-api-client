@@ -86,6 +86,7 @@ h1 {
 }
 
 .OptionContent a {
+    position: relative;
     background-color: #fa4a0c;
     color: white;
     text-decoration: none;

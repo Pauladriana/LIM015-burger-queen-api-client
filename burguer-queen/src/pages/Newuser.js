@@ -1,28 +1,22 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
-import Cookies from 'universal-cookie';
-import { updateUser } from '../services/put';
-// import "../style/Admin.css";
+import { Link, useRouteMatch} from 'react-router-dom';
+import {createUser} from '../services/post';
+import "../style/Admin.css";
 
-const cookies = new Cookies();
-
-function EditUserForm() {
+function NewUser({setLoading, setModalMessage}) {
+  let { url } = useRouteMatch();
   const [newEmail, setValidEmail] = useState(null);
   const [newPassword, setValidPassword] = useState(null);
   const [typeEmail, setValidationEmail] = useState(null);
   const [typePassword, setValidationPassword] = useState(null);
 
-  const user = cookies.get('user');
-  const {_id, email, roles} = cookies.get('user');
+  const [rol, setRole] = useState({name: ''});
 
-  const [editedRol, setRole] = useState(roles);
- 
-  const userToEdit = {
+  const user = {
     email: newEmail,
     password: newPassword,
-    roles: editedRol,
+    roles: rol,
   };
-
 
   function goNewEmail(value) {
     const reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
@@ -37,7 +31,7 @@ function EditUserForm() {
   }
 
   function goNewPassword(value) {
-    const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!.@$ %^&*-]).{8,}$/
+    const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/
     if (reg.test(value) === true) {
       setValidationPassword('');
       setValidPassword(value);
@@ -48,25 +42,26 @@ function EditUserForm() {
     }
   }
 
-  function handleSubmit(event) {
-    event.preventDefault()
-    updateUser(userToEdit,'users', _id ,'./');
-    cookies.remove('user');
-    console.log(cookies.get('user'));
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(user);
+    // if (!user.email || !user.password || !user.roles) return setError('Debe ingresar todos los datos');
+    return await createUser(user, setLoading, setModalMessage, 'users');
   }
+
   return (
     <div className="container">
-      <Link to="/admin" className='back'>Atras</Link>
-      <h2> Editar Usuario </h2>
+      {/* <Link to={'admin/users'} className='back'>Atras</Link> */}
+      <h2> Nuevo Usuario </h2>
       <form onSubmit={handleSubmit} className='formUser'>
         <div className='formCnt'>
           <div className="form-group">
             <label for="email">Correo:</label><br />
             <input
-              type="email"
+              type="text"
               className="form-control"
-              placeholder={email}
-              name="email"
+              placeholder="email"
+              name='email'
               id='email'
               onChange={(e) => goNewEmail(e.target.value)}
             />
@@ -77,11 +72,12 @@ function EditUserForm() {
           <div className="form-group">
             <label for="password">Contraseña:</label><br />
             <input
-              type="password"
+              type="text"
               className="form-control"
+              placeholder="contraseña"
               name="password"
               id='password'
-              onChange={e => goNewPassword(e.target.value)}
+              onChange={(e) => goNewPassword(e.target.value) }
             />
             <br />
             <p className='goNewPassword'>{typePassword}</p>
@@ -133,4 +129,4 @@ function EditUserForm() {
   )
 }
 
-export default EditUserForm
+export default NewUser;

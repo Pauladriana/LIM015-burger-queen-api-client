@@ -1,43 +1,146 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRouteMatch } from 'react-router-dom';
 import Cookies from 'universal-cookie';
-import UserInfo from '../components/Usertype';
-import EditUserForm from '../components/EditFormUser';
 import "../style/Admin.css";
-import logo from '../media/LOGOBQO.png';
+import { updateUser } from '../services/put';
 
 const cookies = new Cookies();
 
-class EditUser extends Component {
-  cerrarSesion = () => {
-    cookies.remove('token', { path: "/" });
-    console.log(cookies.get('token'));
-    window.location.href = './';
-  }
-  componentDidMount() {
-    console.log(cookies.get('token'));
-    if (!cookies.get('token')) {
-      window.location.href = "./";
+const EditUser = () => {
+  const [newEmail, setValidEmail] = useState(null);
+  const [newPassword, setValidPassword] = useState(null);
+  const [typeEmail, setValidationEmail] = useState(null);
+  const [typePassword, setValidationPassword] = useState(null);
+
+  useEffect(() => {
+    console.log(cookies.get('userLogged'));
+    if (!cookies.get('userLogged')) {
+      window.location.href = "#/";
+    }
+
+  }, [])
+
+  const user = cookies.get('user');
+  console.log(user);
+  const { _id, email, roles } = cookies.get('user');
+
+  const [editedRol, setRole] = useState(roles);
+
+  const userToEdit = {
+    email: newEmail,
+    password: newPassword,
+    roles: editedRol,
+  };
+
+
+  function goNewEmail(value) {
+    const reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    if (reg.test(value) === true) {
+      setValidationEmail('');
+      setValidEmail(value);
+      console.log(newEmail)
+    }
+    else {
+      setValidationEmail('La estructura es example@correo');
     }
   }
-  render() {
-    return (
-      <div>
-        <div className='header'>
-          <img src={logo} alt='' className='logo' />
-          <button onClick={() => this.cerrarSesion()}>Cerrar Sesión</button>
-        </div>
-        <div>
-          <UserInfo />
-          <div className='buttonAdmin'>
-            <button className='red'>Usuarios</button>
-            <button>Productos</button>
-            <button>Ordenes</button>
+
+  function goNewPassword(value) {
+    const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!.@$ %^&*-]).{8,}$/
+    if (reg.test(value) === true) {
+      setValidationPassword('');
+      setValidPassword(value);
+      console.log(newPassword)
+    }
+    else {
+      setValidationPassword('La contraseña debe contener mayusculas, numeros y caracteres especiales');
+    }
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    updateUser(userToEdit, 'users', _id, './');
+    cookies.remove('user');
+    console.log(cookies.get('user'));
+  }
+  return (
+    <div className="container">
+      {/* <Link to="/admin" className='back'>Atras</Link> */}
+      <h2> Editar Usuario </h2>
+      <form onSubmit={handleSubmit} className='formUser'>
+        <div className='formCnt'>
+          <div className="form-group">
+            <label for="email">Correo:</label><br />
+            <input
+              type="email"
+              className="form-control"
+              placeholder={email}
+              name="email"
+              id='email'
+              onChange={(e) => goNewEmail(e.target.value)}
+            />
+            <br />
+            <p className='goNewEmail'>{typeEmail}</p>
+            <br />
+          </div>
+          <div className="form-group">
+            <label for="password">Contraseña:</label><br />
+            <input
+              type="password"
+              className="form-control"
+              name="password"
+              id='password'
+              onChange={e => goNewPassword(e.target.value)}
+            />
+            <br />
+            <p className='goNewPassword'>{typePassword}</p>
+            <br />
+          </div>
+          <span>Rol:</span>
+          <div className="opt-group">
+            <input
+              type="radio"
+              className="form-opt"
+              name="opt"
+              id="adminOpt"
+              onChange={(e) => {
+                e.target.checked
+                  ? setRole({ name: 'administradora' })
+                  : setRole({ name: '' });
+              }}
+            />
+            <label for="adminOpt">Administradora</label><br />
+            <input
+              type="radio"
+              className="form-optl"
+              name="opt"
+              id="waiterOpt"
+              onChange={(e) => {
+                e.target.checked
+                  ? setRole({ name: 'mesera' })
+                  : setRole({ name: '' });
+              }}
+            />
+            <label for="waiterOpt">Mesera</label><br />
+            <input
+              type="radio"
+              className="form-opt"
+              name="opt"
+              id="chefOpt"
+              onChange={(e) => {
+                e.target.checked
+                  ? setRole({ name: 'cocinera' })
+                  : setRole({ name: '' });
+              }}
+            />
+            <label for="chefOpt">Cocinera</label><br />
           </div>
         </div>
-        <EditUserForm />
-      </div>
-    )
-  }
+        <button type="submit" className='userSubmit'>Guardar</button>
+      </form>
+    </div>
+  )
+
 }
 
-export default EditUser
+export default EditUser;

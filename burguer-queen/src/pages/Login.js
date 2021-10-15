@@ -6,8 +6,7 @@ import { signIn } from '../services/post';
 
 const cookies = new Cookies();
 
-const Login = ({ setLoading, setError }) => {
-
+const Login = ({ setLoading, setModalMessage, userLogged, setUserLogged}) => {
 
   const initialForm = {
     email: '',
@@ -28,14 +27,14 @@ const Login = ({ setLoading, setError }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    if (!form.email || !form.password) return setError('No ingresó correo o contraseña');
-    return await signIn(form, setLoading, setError);
+    if (!form.email || !form.password) return setModalMessage('No ingresó correo o contraseña');
+    return await signIn(form, setLoading, setModalMessage, setUserLogged);
   };
 
   useEffect(() => {
-    if (cookies.get('token')) {
-      console.log(cookies.get('token'));
-      window.location.href = './admin';
+    if (cookies.get('userLogged')) {
+      console.log(cookies.get('userLogged'));
+      // window.location.href = './admin';
     };
   }, []);
 
