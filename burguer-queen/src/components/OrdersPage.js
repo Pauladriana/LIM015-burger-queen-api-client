@@ -1,43 +1,54 @@
-import React, { useState } from 'react';
-import WaiterOrders from './WaiterOrders';
+import React, { useState, useEffect } from 'react';
 import "../style/Admin.css";
-import { getData } from '../services/get'
+import { getData } from '../services/get';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 
 function OrdersPage({ setLoading, setError }) {
 
-  const [orders, setOrders] = useState([{
-    _id : "6168af6b21c2f84f84270215",
-    userId : "6166425c94579e6cf7aa26c9",
-    client : "Momo",
-    products : [
-        {
-            productId : "61661c040f0735af81006e31",
-            qty : 6
-        }
-    ]
-}, {
-  "_id" : "6168af6b21c2f84f84270215",
-  "userId" : "6166425c94579e6cf7aa26c9",
-  "client" : "Hyuna",
-  "products" : [ 
-      {
-          "productId" : "61661c040f0735af81006e31",
-          "qty" : 6
-      }
-  ]
-}]);
-  // const [buttonDisplay, setDisplay] = useState('none');
+  const [orders, setOrders] = useState(null);
 
-  const showOrders = async () => await getData(setLoading, setOrders, 'orders');
- showOrders().then((res) => console.log(res));
+  useEffect(() => {
+    let cancel = false;
+    getData(setLoading, 'orders', cookies.get('token'))
+      .then((orderTeam) => {
+        if (cancel) return;
+        setOrders(orderTeam);
+      });
+    return () => {
+      cancel = true;
+    }
+  }, []);
 
- console.log(orders)
+
+  const showOrders = (orders) => orders.map((order) => (
+    <div className='waiter-orders' key={order.id}>
+      <p>{order.status}</p>
+      <p>{order.client}</p>
+      <div>
+        <p>{order.products[0].productId.name}</p>
+        <p>{order.products[0].qty}</p>
+      </div>
+      <div>
+        <button >Cancelar</button>
+        <button >Entregar</button>
+      </div>
+    </div>
+  ));
+
+
+  console.log(orders)
 
   return (
     <div>
-      < WaiterOrders orders={orders}/>
+      {orders
+        ? showOrders(orders)
+        : <div></div>
+      }
     </div>
-  )
-}
+  );
+};
+
 
 export default OrdersPage;

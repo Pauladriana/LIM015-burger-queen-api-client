@@ -7,17 +7,14 @@ const cookies = new Cookies();
 
 const token = cookies.get('token');
 
-export const getData = (setLoading, setData, path) => {
-  // setLoading(true);
-  console.log(token);
-  get(`${url}${path}`, { headers: { 'Authorization': `Bearer ${token}` } })
-    .then((data) => {
-      //Agregar mensajes de error
-      setLoading(false);
-      setData(data);
-      console.log(data)
-    })
-    .catch(err => console.log(err))
+export const getData = (setLoading, path, token) => {
+  return get(`${url}${path}`, { headers: { 'Authorization': `Bearer ${token}` } })
+    // .then((data) => {
+    //   setLoading(false);
+    //   // setData(data);
+    //   return data;
+    // })
+    // .catch(err => console.log(err))
 };
 
 export const getUserLogged = (path, token) => {
@@ -29,28 +26,6 @@ export const getUserLogged = (path, token) => {
       // setData(data);
       console.log(data);
       return data
-    })
-    .catch(err => console.log(err))
-};
-
-export const getProduct = (path) => {
-  // setLoading(true);
-  console.log(token);
-  return get(`${url}${path}`, { headers: { 'Authorization': `Bearer ${token}` } })
-    .then((data) => {
-      //Agregar mensajes de error
-      console.log(data);
-      return data.name
-    })
-    .catch(err => console.log(err))
-};
-
-export const getOrders = () => {
-  // setLoading(true);
-  console.log(token);
-  get(`${url}orders`, { headers: { 'Authorization': `Bearer ${token}` } })
-    .then((data) => {
-      console.log(data);
     })
     .catch(err => console.log(err))
 };
