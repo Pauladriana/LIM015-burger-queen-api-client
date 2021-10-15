@@ -11,7 +11,8 @@ const Breakfast = ({setLoading, setModalMessage}) => {
     getData(setLoading, 'products', cookies.get('token'))
       .then((products) => {
         if (cancel) return;
-        setProducts(products);
+        const breakfastProducts = products.filter(p=> p.type==='Desayuno');
+        setProducts(breakfastProducts);
       });
     return () => {
       cancel = true;

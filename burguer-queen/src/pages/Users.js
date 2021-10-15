@@ -20,6 +20,7 @@ function Users( { setLoading, setModalMessage }) {
     getData(setLoading, 'users', cookies.get('token'))
       .then((users) => {
         if (cancel) return;
+        console.log(users);
         setUsers(users);
       });
     return () => {

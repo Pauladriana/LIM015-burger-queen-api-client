@@ -1,13 +1,11 @@
 import { close } from '../helpers/helpers';
 import '../style/Waiter.css';
 import { NavLink, Switch, Route, useRouteMatch, HashRouter } from 'react-router-dom';
-import NewOrder from '../components/NewOrder';
-import AllOrders from '../components/AllOrders';
+import NewOrder from './Neworder';
+import AllOrders from './AllOrders';
 
 const Waiter = ({setLoading, setModalMessage}) => {
   let { path, url } = useRouteMatch();
-  console.log(path);
-  console.log(url);
   return (
     <HashRouter>
       <div className='waiterHeader'>
@@ -15,7 +13,7 @@ const Waiter = ({setLoading, setModalMessage}) => {
         <nav>
           <li>
             <NavLink to={`${url}/neworder`} activeClassName='.active'>Generar Orden</NavLink>
-            <NavLink to={`${url}/allorders`} activeClassName='.active'>Ver Ordenes</NavLink>
+            <NavLink to={`${url}/allorders`} activeClassName='.active'>Ver Órdenes</NavLink>
           </li>
         </nav>
         <button onClick={() => close()}> Cerrar Sesión</button>

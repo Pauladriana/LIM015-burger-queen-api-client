@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import Breakfast from './Breakfast';
-import Diary from './Diary';
+import Breakfast from '../components/Breakfast';
+import Diary from '../components/Diary';
 
 export default function NewOrder({ setLoading, setModalMessage }) {
   const [menu, setMenu] = useState('breakfast');
-  const [order, setOrden] = useState(true);
+  const [order, setOrden] = useState(null);
+
+  const showOrder = (order) => order.map(product => (
+    <ul key={product._id}>
+      <li>{product.name}</li>
+      <li>{product.price}</li>
+    </ul>
+  ));
 
   useEffect(() => {
-    
+
 
   }, []);
 
@@ -24,17 +31,18 @@ export default function NewOrder({ setLoading, setModalMessage }) {
       <section className='waiterBody'>
         <div className='waiterProductsSection'>
           {menu === 'breakfast'
-            ? <Breakfast/>
-            : <Diary/>
+            ? <Breakfast />
+            : <Diary />
           }
         </div>
 
         <div className='waiterOrderSection'>
-          <h3 className='waiterTitle'>Orden</h3>
-          <div>
-          {
-
-          }
+          <h3 className='waiterOrderTitle'>Orden</h3>
+          <div className='waiterOrderTab'>
+            {!order
+              ? <div></div>
+              : showOrder(order)
+            }
           </div>
         </div>
       </section>
