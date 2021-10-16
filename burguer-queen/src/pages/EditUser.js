@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useRouteMatch } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import "../style/Admin.css";
 import { updateUser } from '../services/put';
@@ -13,11 +12,9 @@ const EditUser = () => {
   const [typePassword, setValidationPassword] = useState(null);
 
   useEffect(() => {
-    console.log(cookies.get('userLogged'));
     if (!cookies.get('userLogged')) {
       window.location.href = "#/";
     }
-
   }, [])
 
   const user = cookies.get('user');
@@ -31,7 +28,6 @@ const EditUser = () => {
     password: newPassword,
     roles: editedRol,
   };
-
 
   function goNewEmail(value) {
     const reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
@@ -65,7 +61,7 @@ const EditUser = () => {
   }
   return (
     <div className="container">
-      {/* <Link to="/admin" className='back'>Atras</Link> */}
+      <button onClick={()=> {window.location.href='#/admin/users'}} className='back'>Atrás</button>
       <h2> Editar Usuario </h2>
       <form onSubmit={handleSubmit} className='formUser'>
         <div className='formCnt'>

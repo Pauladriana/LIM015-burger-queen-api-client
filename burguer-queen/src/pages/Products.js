@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
-import Modal from '../components/remove';
+// import ModalRemove from '../components/Modalremove';
 import '../style/Admin.css';
 import edit from '../media/pencil.png';
 import remove from '../media/close.png';
@@ -9,16 +9,17 @@ import { getData } from '../services/get';
 
 const cookies = new Cookies();
 
-const Products = ({ setLoading, setError }) => {
+const Products = ({ setLoading, setModalMessage }) => {
   let { url } = useRouteMatch();
-  const [modalOpen, setModalOpen] = useState(false);
-  const [id, setId] = useState(null);
+  // const [modalOpen, setModalOpen] = useState(false);
+  // const [id, setId] = useState(null);
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
     let cancel = false;
-    getData(setLoading, 'products', cookies.get('token'))
+    getData('products', cookies.get('token'))
       .then((data) => {
+        console.log(data);
         if (cancel) return;
         setProducts(data);
       });
@@ -33,8 +34,15 @@ const Products = ({ setLoading, setError }) => {
       <td>{product.type}</td>
       <td>{`S/ ${product.price}`}</td>
       <td><img src={edit} alt='' className='optTable' onClick={() => { cookies.set('product', product); window.location.href = '#/admin/products/editproduct' }} /><img src={remove} alt='' className='optTable' onClick={() => {
-        setModalOpen(true);
-        setId(product._id);
+        // setModalOpen(true);
+        // setId(product._id);
+        setModalMessage({
+          title:'¿Está Seguro de eliminar este producto?',
+          body:'Al removerse no podrá volver a recuperarlo.',
+          button:'Eliminar',
+          id: product._id,
+          path: 'products'
+         })
       }} /></td>
     </tr>
   ));
@@ -61,7 +69,7 @@ const Products = ({ setLoading, setError }) => {
         </table>
       </div>
       <Link to={`${url}/newproduct`}>Crear Producto</Link>
-      {modalOpen && <Modal setLoading={setLoading} setOpenModal={setModalOpen} setError={setError} id={id} path='products' />}
+      {/* {modalOpen && <ModalRemove setLoading={setLoading} setOpenModal={setModalOpen} setError={setError} id={id} path='products' />} */}
     </div>
   )
 }

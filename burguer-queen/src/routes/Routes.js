@@ -15,7 +15,7 @@ const Routes = () => {
   return (
     <HashRouter>
       {loading && <Loader />}
-      {modalMessage && <Modals modalMessage={modalMessage} setModalMessage={setModalMessage} />}
+      {modalMessage && <Modals setLoading={setLoading} modalMessage={modalMessage} setModalMessage={setModalMessage} />}
       <Switch>
         <Route exact path="/" component={() => (
           <Login setLoading={setLoading} setModalMessage={setModalMessage}/>

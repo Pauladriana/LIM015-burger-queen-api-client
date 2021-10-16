@@ -27,14 +27,16 @@ const Login = ({ setLoading, setModalMessage }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    if (!form.email || !form.password) return setModalMessage('No ingresó correo o contraseña.');
+    if (!form.email || !form.password) return setModalMessage({
+      title: 'No ingresó correo o contraseña.',
+      body: 'Inténtelo nuevamente'
+    });
     return await signIn(form, setLoading, setModalMessage);
   };
-  const userLogged = cookies.get('userLogged');
 
   useEffect(() => {
-    if (userLogged) {
-      if (userLogged.roles.admin) return window.location.href = '#/admin/users';
+    if(cookies.get('userLogged')){
+      if((cookies.get('userLogged')).roles.admin) return window.location.href = '#/admin/users';
       return window.location.href = '#/meserx/neworder';
     }
   }, []);
@@ -58,7 +60,7 @@ const Login = ({ setLoading, setModalMessage }) => {
     if (reg.test(form.password) === false) {
       setMessages({
         emailMsg: '',
-        passwordMsg: 'La contraseña debe contener mayusculas, numeros y caracteres especiales',
+        passwordMsg: 'La contraseña debe contener mayúsculas, números y carácteres especiales',
       });
     } else {
       setMessages({

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { createData } from '../services/post';
 
 
@@ -26,7 +25,7 @@ const ProductForm = ({ setLoading, setModalMessage }) => {
   }
   return (
     <div className="container">
-      <Link to="/admin" className='back'>Atras</Link>
+      <button onClick={()=> {window.location.href='#/admin/products'}} className='back'>Atrás</button>
       <h2> Nuevo Producto </h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">

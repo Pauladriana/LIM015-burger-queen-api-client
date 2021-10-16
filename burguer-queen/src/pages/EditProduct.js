@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import Cookies from 'universal-cookie';
 import { updateData } from '../services/put';
@@ -26,7 +25,7 @@ const EditProductForm = ({ setLoading, setError }) => {
   }
   return (
     <div className="container">
-      <Link to="/admin" className='back'>Atrás</Link>
+      <button onClick={()=> {window.location.href='#/admin/products'}} className='back'>Atrás</button>
       <h2> Editar Producto </h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">

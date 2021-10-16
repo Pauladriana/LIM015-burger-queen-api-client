@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { Link, useRouteMatch} from 'react-router-dom';
 import {createUser} from '../services/post';
 import "../style/Admin.css";
 
 function NewUser({setLoading, setModalMessage}) {
-  let { url } = useRouteMatch();
   const [newEmail, setValidEmail] = useState(null);
   const [newPassword, setValidPassword] = useState(null);
   const [typeEmail, setValidationEmail] = useState(null);
@@ -45,13 +43,13 @@ function NewUser({setLoading, setModalMessage}) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(user);
-    // if (!user.email || !user.password || !user.roles) return setError('Debe ingresar todos los datos');
+    if (!user.email || !user.password || !user.roles) return setModalMessage('Debe ingresar todos los datos');
     return await createUser(user, setLoading, setModalMessage, 'users');
   }
 
   return (
     <div className="container">
-      {/* <Link to={'admin/users'} className='back'>Atras</Link> */}
+      <button onClick={()=> {window.location.href='#/admin/users'}} className='back'>Atrás</button>
       <h2> Nuevo Usuario </h2>
       <form onSubmit={handleSubmit} className='formUser'>
         <div className='formCnt'>

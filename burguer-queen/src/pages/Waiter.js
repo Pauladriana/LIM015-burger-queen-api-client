@@ -1,7 +1,7 @@
 import { close } from '../helpers/helpers';
 import '../style/Waiter.css';
 import { NavLink, Switch, Route, useRouteMatch, HashRouter } from 'react-router-dom';
-import NewOrder from './Neworder';
+import WaiterNewOrder from './Waiterneworder';
 import AllOrders from './AllOrders';
 
 const Waiter = ({setLoading, setModalMessage}) => {
@@ -21,7 +21,7 @@ const Waiter = ({setLoading, setModalMessage}) => {
       <div>
         <Switch>
           <Route path={`${path}/neworder`} component={() => (
-            <NewOrder setLoading={setLoading} setModalMessage={setModalMessage}/>
+            <WaiterNewOrder setLoading={setLoading} setModalMessage={setModalMessage}/>
             )}/>
           <Route path={`${path}/allorders`} component={AllOrders}/>
         </Switch>

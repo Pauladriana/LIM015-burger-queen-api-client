@@ -6,31 +6,38 @@ const { post } = helpHttp();
 const url = 'https://bq-lab-2021.herokuapp.com/';
 const cookies = new Cookies();
 
-export const signIn = (data, setLoading, setModalMessage) => {
-  const email = data.email;
+export const signIn = async (data, setLoading, setModalMessage) => {
   setLoading(true);
-  return post(`${url}auth`, { body: data })
-    .then(data => {
-      setLoading(false);
-      if (data.message === 'Invalid password') return setModalMessage('Contraseña incorrecta.');
-      if (data.message === `User doesn't exists`) return setModalMessage('Usuario no registrado.');
-      setModalMessage(null);
-      const token = data.token;
-      cookies.remove('token', { path: '/' });
-      cookies.set('token', data.token, { path: '/' });
-      return getUserLogged(`users/${email}`, token);
-    }).then((res) => {
-      cookies.remove('userLogged', { path: '/' });
-      cookies.set('userLogged', res, { path: '/' });
-      if (res.roles.admin) {
-        window.location.hash = '#/admin/users';
-      } else if (res.roles.name === 'mesera') {
-        window.location.hash = '#/meserx/neworder';
-      } else if (res.roles.name === 'cocinera') {
-        window.location.hash = '#/chef';
-      }
-    })
-    .catch(err => setModalMessage('Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.'));
+  try {
+    // obteniendo el token o los mensajes de error de la API
+    const response = await post(`${url}auth`, { body: data });
+    setLoading(false);
+
+    // manejo mensajes de error
+    
+    if (response.err && response.message === 'Invalid password') return setModalMessage({ title: 'Contraseña incorrecta.', body: 'Inténtelo nuevamente' })
+    if (response.err && response.message === `User doesn't exists`) return setModalMessage({ title: 'Usuario no registrado.', body: 'Inténtelo nuevamente' });
+    if(response.err) return setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
+    setModalMessage(null);
+    cookies.remove('token', { path: '/' });
+    cookies.set('token', response.token, { path: '/' });
+
+    // Redireccionamiento de acuerdo al perfil
+    const user = await getUserLogged(`users/${data.email}`, response.token);
+    cookies.remove('userLogged', { path: '/' });
+    cookies.set('userLogged', user, { path: '/' });
+    if (user.roles.admin) {
+      window.location.hash = '#/admin/users';
+    } else if (user.roles.name === 'mesera') {
+      window.location.hash = '#/meserx/neworder';
+    } else if (user.roles.name === 'cocinera') {
+      window.location.hash = '#/chef';
+    }
+  } catch (e) {
+    console.log(e);
+    setLoading(false);
+    setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' })
+  }
 };
 
 export const createData = (data, setLoading, setModalMessage, path) => {
@@ -48,9 +55,9 @@ export const createData = (data, setLoading, setModalMessage, path) => {
     .then((data) => {
       setLoading(false);
       console.log(data);
-      setModalMessage('Producto creado exitosamente.');
+      setModalMessage({ title: 'Producto creado exitosamente.' });
     })
-    .catch(err => setModalMessage('Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.'))
+    .catch(err => setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' }))
 };
 
 export const createUser = (data, setLoading, setModalMessage, path) => {
@@ -68,9 +75,9 @@ export const createUser = (data, setLoading, setModalMessage, path) => {
     .then((data) => {
       setLoading(false);
       console.log(data);
-      setModalMessage('Usuario creado exitosamente');
+      setModalMessage({ title: 'Usuario creado exitosamente' });
     })
-    .catch(err => setModalMessage('Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.'))
+    .catch(err => setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' }))
 };
 
 export const createOrder = (client, products, userId, setLoading, setModalMessage, path) => {
@@ -87,7 +94,7 @@ export const createOrder = (client, products, userId, setLoading, setModalMessag
     .then((data) => {
       console.log(data);
       setLoading(false);
-      setModalMessage('Orden creada exitosamente');
+      setModalMessage({ title: 'Orden creada exitosamente' });
     })
-    .catch(err => setModalMessage('Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.'))
+    .catch(err => setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' }))
 };
