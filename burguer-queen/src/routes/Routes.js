@@ -11,7 +11,7 @@ import Modals from '../components/Modals';
 const Routes = () => {
   const [modalMessage, setModalMessage] = useState(null);
   const [loading, setLoading] = useState(null);
-  
+
   return (
     <HashRouter>
       {loading && <Loader />}
@@ -29,7 +29,7 @@ const Routes = () => {
         <Route exact path="/chef" component={() => (
           <Chef setLoading={setLoading} setModalMessage={setModalMessage} />)
         } />
-        <Route path="*" children={<Error404 />} />
+        <Route path="*" children={<Error404/>}/>
       </Switch>
     </HashRouter>
   );

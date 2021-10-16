@@ -11,6 +11,7 @@ export default function NewOrder({ setLoading, setModalMessage }) {
   const [menu, setMenu] = useState('breakfast');
   const [productsOrder, setProductsOrder] = useState([]);
   const [name, setName] = useState('');
+  const [qtychange, setQtyChange] = useState(null);
 
   const removeProduct = (productId) => {
     const newProductsOrder = productsOrder.filter(p => p._id !== productId);
@@ -18,11 +19,11 @@ export default function NewOrder({ setLoading, setModalMessage }) {
       ...newProductsOrder
     ])
   };
-
-  const showOrder = (productsOrder) => productsOrder.map(product => (
+  const showOrder = () => productsOrder.map(product => (
     <tr key={product._id}>
+      <td>{product.qty}</td>
       <td>{product.name}<img src={trash} alt='trash' className='waiterIcon' onClick={() => removeProduct(product._id)} /></td>
-      <td>{product.price}</td>
+      <td>{`S/. ${product.price}`}</td>
     </tr>
   ));
 
@@ -31,10 +32,9 @@ export default function NewOrder({ setLoading, setModalMessage }) {
   }, []);
 
   const saveOrder = () => {
-    const products = productsOrder.map(p => ({ productId: p._id }));
+    const products = productsOrder.map(p => ({ productId: p._id , qty: p.qty }));
     return createOrder(name, products, (cookies.get('userLogged'))._id, setLoading, setModalMessage, 'orders');
   };
-
   return (
     <div className='waiterContainer'>
       <section className='waiterHeader'>
@@ -44,22 +44,23 @@ export default function NewOrder({ setLoading, setModalMessage }) {
         </div>
         <input className='waiterInput' placeholder='Nombre Cliente' onChange={(e) => setName(e.target.value)} />
       </section>
-      
+
       <section className='waiterBody'>
         <div className='waiterProductsSection'>
           {menu === 'breakfast'
-            ? <Breakfast setLoading={setLoading} setModalMessage={setModalMessage} productsOrder={productsOrder} setProductsOrder={setProductsOrder} />
-            : <Diary setLoading={setLoading} setModalMessage={setModalMessage} productsOrder={productsOrder} setProductsOrder={setProductsOrder} />
+            ? <Breakfast setLoading={setLoading} productsOrder={productsOrder} setProductsOrder={setProductsOrder} setQtyChange={setQtyChange}/>
+            : <Diary setLoading={setLoading} productsOrder={productsOrder} setProductsOrder={setProductsOrder} setQtyChange={setQtyChange} />
           }
         </div>
         <div className='waiterOrderSection'>
           <h3 className='waiterOrderTitle'>Orden</h3>
           <div className='waiterOrderTab'>
-            {productsOrder === []
-              ? <div></div>
-              : showOrder(productsOrder)
+            {(productsOrder !== [] ||qtychange)
+              ? showOrder()
+              : <div></div>
             }
           </div>
+          {qtychange ? setQtyChange(null) : false}
           <button onClick={() => saveOrder()}>Guardar</button>
         </div>
       </section>

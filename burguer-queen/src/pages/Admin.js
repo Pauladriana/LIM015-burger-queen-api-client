@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { NavLink, Switch, Route, useRouteMatch, HashRouter} from 'react-router-dom';
+import { NavLink, Switch, Route, useRouteMatch, HashRouter } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import userPhoto from '../media/man.png';
 import '../style/Admin.css';
@@ -73,7 +73,7 @@ const Admin = ({ setLoading, setModalMessage }) => {
         </div>
       }
     </HashRouter>
-  )
-}
+  );
+};
 
 export default Admin;
