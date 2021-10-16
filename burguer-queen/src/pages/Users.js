@@ -43,7 +43,7 @@ function Users({ setLoading, setModalMessage }) {
         // setId(user._id);
         setModalMessage({
          title:'¿Está Seguro de eliminar este usuario?',
-         body:'Al removerse no podrá volver a recuperarlo.',
+         body:'Al removerse no podrá volver a recuperarlo más tarde.',
          button:'Eliminar',
          id: user._id,
          path: 'users',

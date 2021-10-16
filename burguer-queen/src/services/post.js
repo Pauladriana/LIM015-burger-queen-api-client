@@ -14,10 +14,10 @@ export const signIn = async (data, setLoading, setModalMessage) => {
     setLoading(false);
 
     // manejo mensajes de error
-    
+
     if (response.err && response.message === 'Invalid password') return setModalMessage({ title: 'Contraseña incorrecta.', body: 'Inténtelo nuevamente' })
     if (response.err && response.message === `User doesn't exists`) return setModalMessage({ title: 'Usuario no registrado.', body: 'Inténtelo nuevamente' });
-    if(response.err) return setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
+    if (response.err) return setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
     setModalMessage(null);
     cookies.remove('token', { path: '/' });
     cookies.set('token', response.token, { path: '/' });
@@ -92,9 +92,10 @@ export const createOrder = (client, products, userId, setLoading, setModalMessag
     }
   })
     .then((data) => {
-      console.log(data);
       setLoading(false);
-      setModalMessage({ title: 'Orden creada exitosamente' });
+      console.log(data);
+      if (data.err && data.status===400) return setModalMessage({ title: 'Ups!! no puede crear una orden vacía' });
+      setModalMessage({ title: 'Orden creada exitósamente' });
     })
     .catch(err => setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' }))
 };

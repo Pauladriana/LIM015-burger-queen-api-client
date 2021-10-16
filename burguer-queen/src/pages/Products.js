@@ -38,7 +38,7 @@ const Products = ({ setLoading, setModalMessage }) => {
         // setId(product._id);
         setModalMessage({
           title:'¿Está Seguro de eliminar este producto?',
-          body:'Al removerse no podrá volver a recuperarlo.',
+          body:'Al removerse no podrá volver a recuperarlo más tarde.',
           button:'Eliminar',
           id: product._id,
           path: 'products'

@@ -11,7 +11,7 @@ const Diary = ({ setLoading, productsOrder, setProductsOrder, setQtyChange, setS
 
   useEffect(() => {
     let cancel = false;
-    getData(setLoading, 'products', cookies.get('token'))
+    getData('products', cookies.get('token'))
       .then((products) => {
         if (cancel) return;
         const diaryProducts = products.filter(p => p.type === 'Diario');

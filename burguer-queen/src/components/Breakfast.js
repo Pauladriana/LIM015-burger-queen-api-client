@@ -11,7 +11,7 @@ const Breakfast = ({ setLoading, productsOrder, setProductsOrder, setQtyChange, 
 
   useEffect(() => {
     let cancel = false;
-    getData(setLoading, 'products', cookies.get('token'))
+    getData('products', cookies.get('token'))
       .then((products) => {
         if (cancel) return;
         const breakfastProducts = products.filter(p => p.type === 'Desayuno');
