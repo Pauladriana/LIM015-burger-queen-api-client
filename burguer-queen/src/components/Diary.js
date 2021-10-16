@@ -6,7 +6,7 @@ import '../style/Waiter.css';
 
 const cookies = new Cookies();
 
-const Diary = ({ setLoading, productsOrder, setProductsOrder, setQtyChange}) => {
+const Diary = ({ setLoading, productsOrder, setProductsOrder, setQtyChange, setSum, sum}) => {
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
@@ -21,14 +21,15 @@ const Diary = ({ setLoading, productsOrder, setProductsOrder, setQtyChange}) => 
   }, []);
 
   const addProduct = (product) => {
-    const arrayOfId = productsOrder.map(p=> p._id);
-    if (arrayOfId.indexOf(product._id) !== -1){
+    setSum(product.price+sum);
+    const arrayOfId = productsOrder.map(p => p._id);
+    if (arrayOfId.indexOf(product._id) !== -1) {
       const p = productsOrder[(arrayOfId.indexOf(product._id))];
       p.qty++;
       setQtyChange(true);
       return setProductsOrder(productsOrder);
     }
-      return setProductsOrder([...productsOrder, {...product, qty:1}])
+    return setProductsOrder([...productsOrder, { ...product, qty: 1 }])
   };
 
   const showProducts = (products) => products.map((product) => (

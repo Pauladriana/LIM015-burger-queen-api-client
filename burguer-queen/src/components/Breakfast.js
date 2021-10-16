@@ -6,7 +6,7 @@ import '../style/Waiter.css';
 
 const cookies = new Cookies();
 
-const Breakfast = ({ setLoading, productsOrder, setProductsOrder, setQtyChange}) => {
+const Breakfast = ({ setLoading, productsOrder, setProductsOrder, setQtyChange, setSum, sum }) => {
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
@@ -23,20 +23,21 @@ const Breakfast = ({ setLoading, productsOrder, setProductsOrder, setQtyChange})
   }, []);
 
   const addProduct = (product) => {
-    const arrayOfId = productsOrder.map(p=> p._id);
-    if (arrayOfId.indexOf(product._id) !== -1){
+    setSum(product.price + sum);
+    const arrayOfId = productsOrder.map(p => p._id);
+    if (arrayOfId.indexOf(product._id) !== -1) {
       const p = productsOrder[(arrayOfId.indexOf(product._id))];
       p.qty++;
       setQtyChange(true);
-      setProductsOrder(productsOrder);
-    }else{
-      setProductsOrder([...productsOrder, {...product, qty:1}])
+      return setProductsOrder(productsOrder);
     }
+    return setProductsOrder([...productsOrder, { ...product, qty: 1 }])
+
   };
 
   const showProducts = (products) => products.map((product) => (
     <div key={product._id}>
-      <img src={plus} alt='plus' className='waiterIcon' onClick={() => addProduct(product)}/>
+      <img src={plus} alt='plus' className='waiterIcon' onClick={() => addProduct(product)} />
       <p>{product.name}</p>
       <p>{product.type}</p>
       <p>{product.image}</p>
