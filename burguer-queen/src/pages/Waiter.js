@@ -20,7 +20,9 @@ const Waiter = ({setLoading, setModalMessage}) => {
       </div>
       <div>
         <Switch>
-          <Route path={`${path}/neworder`} component={NewOrder}/>
+          <Route path={`${path}/neworder`} component={() => (
+            <NewOrder setLoading={setLoading} setModalMessage={setModalMessage}/>
+            )}/>
           <Route path={`${path}/allorders`} component={AllOrders}/>
         </Switch>
       </div>

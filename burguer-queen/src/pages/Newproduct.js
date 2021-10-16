@@ -1,9 +1,9 @@
-import React, {useState }from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {createData} from '../services/post';
+import { createData } from '../services/post';
 
 
-const ProductForm = ({setLoading, setError}) => {
+const ProductForm = ({ setLoading, setModalMessage }) => {
   const initialProduct = {
     name: '',
     type: '',
@@ -21,8 +21,8 @@ const ProductForm = ({setLoading, setError}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!product.name || !product.type || !product.price) return setError('No ingresó ningún dato.');
-    return await createData(product, setLoading, setError, 'products');
+    if (!product.name || !product.type || !product.price) return setModalMessage('No ingresó ningún dato.');
+    return await createData(product, setLoading, setModalMessage, 'products');
   }
   return (
     <div className="container">

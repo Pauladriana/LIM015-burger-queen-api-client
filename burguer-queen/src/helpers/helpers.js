@@ -6,3 +6,5 @@ export const close = () => {
     cookies.remove('token', { path: '/' });
     window.location.href= '#/';
 };
+
+export const redirectToNotFound = () => <h3> Not found </h3>;

@@ -1,21 +1,28 @@
-import React, { useState, useEffect} from 'react';
-import { Link, useRouteMatch} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useRouteMatch } from 'react-router-dom';
 import Modal from '../components/remove';
-import "../style/Admin.css";
+import '../style/Admin.css';
 import { getData } from '../services/get';
 import edit from '../media/pencil.png';
 import remove from '../media/close.png';
 import Cookies from 'universal-cookie';
+import { redirectToNotFound } from '../helpers/helpers';
 
 const cookies = new Cookies();
 
-function Users( { setLoading, setModalMessage }) {
+function Users({ setLoading, setModalMessage }) {
   let { url } = useRouteMatch();
   const [modalOpen, setModalOpen] = useState(false);
   const [users, setUsers] = useState(null);
   const [id, setId] = useState(null);
+
+  const userLogged = cookies.get('userLogged');
   
-  useEffect(()=> {
+  useEffect(() => {
+    if (!userLogged) return window.location.href = "#/";
+  }, []);
+
+  useEffect(() => {
     let cancel = false;
     getData(setLoading, 'users', cookies.get('token'))
       .then((users) => {
@@ -33,35 +40,40 @@ function Users( { setLoading, setModalMessage }) {
       <td >{user.email}</td>
       <td >{user.roles.name}</td>
       <td >{user._id}</td>
-      <td ><img src={edit} alt='pencil' className='optTable' onClick={() => {cookies.set('user', user); window.location.href = '#/admin/users/editUser'}}/><img src={remove} alt='close' className='optTable' onClick={() => {
+      <td ><img src={edit} alt='pencil' className='optTable' onClick={() => { cookies.set('user', user); window.location.href = '#/admin/users/editUser' }} /><img src={remove} alt='close' className='optTable' onClick={() => {
         setModalOpen(true);
         setId(user._id);
-      }}/></td>
+      }} /></td>
     </tr>
-    ));
+  ));
 
   return (
-    <div className='OptionContent'>
-      <div className='tableCnt'>
-        <h2>Usuarios</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Rol</th>
-              <th>Id</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-          {!users 
-          ? <div></div>
-          : showUsers(users)}
-          </tbody>
-        </table>
-      </div>
-      <Link to={`${url}/newuser`}>Crear Usuario</Link>
-      {modalOpen && <Modal setLoading={setLoading}  setOpenModal={setModalOpen} setModalMessage={setModalMessage} path='users' id={id}/>}
+    <div>
+      {!(cookies.get('userLogged')).roles.admin
+        ? redirectToNotFound()
+        : <div className='OptionContent'>
+          <div className='tableCnt'>
+            <h2>Usuarios</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Rol</th>
+                  <th>Id</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {!users
+                  ? <div></div>
+                  : showUsers(users)}
+              </tbody>
+            </table>
+          </div>
+          <Link to={`${url}/newuser`}>Crear Usuario</Link>
+          {modalOpen && <Modal setLoading={setLoading} setOpenModal={setModalOpen} setModalMessage={setModalMessage} path='users' id={id} />}
+        </div>
+      }
     </div>
   )
 }

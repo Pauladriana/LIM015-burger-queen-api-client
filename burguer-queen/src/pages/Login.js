@@ -6,7 +6,7 @@ import { signIn } from '../services/post';
 
 const cookies = new Cookies();
 
-const Login = ({ setLoading, setModalMessage, userLogged, setUserLogged}) => {
+const Login = ({ setLoading, setModalMessage }) => {
 
   const initialForm = {
     email: '',
@@ -27,15 +27,16 @@ const Login = ({ setLoading, setModalMessage, userLogged, setUserLogged}) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    if (!form.email || !form.password) return setModalMessage('No ingresó correo o contraseña');
-    return await signIn(form, setLoading, setModalMessage, setUserLogged);
+    if (!form.email || !form.password) return setModalMessage('No ingresó correo o contraseña.');
+    return await signIn(form, setLoading, setModalMessage);
   };
+  const userLogged = cookies.get('userLogged');
 
   useEffect(() => {
-    if (cookies.get('userLogged')) {
-      console.log(cookies.get('userLogged'));
-      // window.location.href = './admin';
-    };
+    if (userLogged) {
+      if (userLogged.roles.admin) return window.location.href = '#/admin/users';
+      return window.location.href = '#/meserx/neworder';
+    }
   }, []);
 
   const goEmail = () => {
