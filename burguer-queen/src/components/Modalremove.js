@@ -1,10 +1,11 @@
-import React from "react";
-import "../style/remove.css";
-import {deleteData} from '../services/delete';
+import React from 'react';
+import '../style/remove.css';
+import { deleteData } from '../services/delete';
 
-function ModalRemove({ setLoading, setOpenModal, setModalMessage, path, id}) {
-  
-  const del = async () => await deleteData(setLoading, setModalMessage, path, id, '/admin');
+function ModalRemove({
+  setLoading, setOpenModal, setModalMessage, path, id,
+}) {
+  const del = async () => { await deleteData(setLoading, setModalMessage, path, id, '/admin'); };
 
   return (
     <div className="modalBackground">
@@ -17,6 +18,7 @@ function ModalRemove({ setLoading, setOpenModal, setModalMessage, path, id}) {
         </div>
         <div className="footer">
           <button
+            type="button"
             onClick={() => {
               setOpenModal(false);
             }}
@@ -24,7 +26,7 @@ function ModalRemove({ setLoading, setOpenModal, setModalMessage, path, id}) {
           >
             Cancelar
           </button>
-          <button onClick={() => del()}>Eliminar</button>
+          <button type="button" onClick={() => del()}>Eliminar</button>
         </div>
       </div>
     </div>

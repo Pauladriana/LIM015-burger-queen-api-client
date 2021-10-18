@@ -13,16 +13,15 @@ export const helpHttp = () => {
     setTimeout(() => controller.abort(), 5000);
 
     return fetch(endPoint, options)
-      .then(async res => res.ok
+      .then(async (res) => (res.ok
         ? res.json()
         : Promise.reject({
           err: true,
           message: (await res.json()).message,
           status: res.status,
           statusText: res.statusText,
-        })
-      )
-      .catch((err) => err)
+        })))
+      .catch((err) => err);
   };
   const get = (url, options = {}) => customFetch(url, options);
 
@@ -45,5 +44,5 @@ export const helpHttp = () => {
     post,
     put,
     del,
-  }
+  };
 };

@@ -7,7 +7,6 @@ import { signIn } from '../services/post';
 const cookies = new Cookies();
 
 const Login = ({ setLoading, setModalMessage }) => {
-
   const initialForm = {
     email: '',
     password: '',
@@ -18,26 +17,31 @@ const Login = ({ setLoading, setModalMessage }) => {
     passwordMsg: '',
   });
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.email || !form.password) return setModalMessage({
-      title: 'No ingresó correo o contraseña.',
-      body: 'Inténtelo nuevamente'
-    });
-    return await signIn(form, setLoading, setModalMessage);
+    if (!form.email || !form.password) {
+      return setModalMessage({
+        title: 'No ingresó correo o contraseña.',
+        body: 'Inténtelo nuevamente',
+      });
+    }
+    await signIn(form, setLoading, setModalMessage);
   };
 
   useEffect(() => {
-    if(cookies.get('userLogged')){
-      if((cookies.get('userLogged')).roles.admin) return window.location.href = '#/admin/users';
-      return window.location.href = '#/meserx/neworder';
+    if (cookies.get('userLogged')) {
+      if ((cookies.get('userLogged')).roles.admin) {
+        window.location.href = '#/admin/users';
+      } else {
+        window.location.href = '#/meserx/neworder';
+      }
     }
   }, []);
 
@@ -71,41 +75,44 @@ const Login = ({ setLoading, setModalMessage }) => {
   };
 
   return (
-    <div className='login-container'>
-      <div className='login-header'>
-        <div className='login-logo'>
-          <img className='login-img' src={logo} alt='Logo' />
+    <div className="login-container">
+      <div className="login-header">
+        <div className="login-logo">
+          <img className="login-img" src={logo} alt="Logo" />
         </div>
-        <div className='login-title'>Iniciar Sesión</div>
+        <div className="login-title">Iniciar Sesión</div>
       </div>
-      <div className='login-formContainer'>
-        <form className='login-form' onSubmit={handleSubmit}>
-          <div className='login-form-section'>
-            <label className='login-form-label'> Correo: </label>
+      <div className="login-formContainer">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <div className="login-form-section">
+            <label htmlFor="email" className="login-form-label"> Correo: </label>
             <input
-              type='text'
-              className='login-form-input'
-              name='email'
+              type="text"
+              id="email"
+              className="login-form-input"
+              name="email"
               onChange={handleChange}
               value={form.email}
               onKeyUp={() => goEmail()}
             />
-            <p className='goEmail'>{messages.emailMsg}</p>
+            <p className="goEmail">{messages.emailMsg}</p>
           </div>
-          <div className='login-form-section'>
-            <label className='login-form-label'>Contraseña: </label>
+          <div className="login-form-section">
+            <label htmlFor="password" className="login-form-label">Contraseña: </label>
             <input
-              type='password'
-              className='login-form-input'
-              name='password'
+              type="password"
+              className="login-form-input"
+              name="password"
+              id="password"
               onChange={handleChange}
               onKeyUp={() => goPassword()}
             />
-            <p className='goPassword'>{messages.passwordMsg}</p>
+            <p className="goPassword">{messages.passwordMsg}</p>
           </div>
 
-          <button className='login-formButton' type='submit'>
-            Iniciar Sesion{' '}
+          <button className="login-formButton" type="submit">
+            Iniciar Sesion
+            {' '}
           </button>
         </form>
       </div>

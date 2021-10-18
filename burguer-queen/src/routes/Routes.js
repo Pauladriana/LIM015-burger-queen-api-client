@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { Switch, Route, HashRouter } from 'react-router-dom';
 import Login from '../pages/Login';
 import Admin from '../pages/Admin';
@@ -17,22 +17,33 @@ const Routes = () => {
       {loading && <Loader />}
       {modalMessage && <Modals setLoading={setLoading} modalMessage={modalMessage} setModalMessage={setModalMessage} />}
       <Switch>
-        <Route exact path="/" component={() => (
-          <Login setLoading={setLoading} setModalMessage={setModalMessage}/>
-        )} />
-        <Route path="/admin" component={() => (
-          <Admin setLoading={setLoading} setModalMessage={setModalMessage} />)
-        } />
-        <Route path="/meserx" component={() => (
-          <Waiter setLoading={setLoading} setModalMessage={setModalMessage} />)
-        } />
-        <Route exact path="/chef" component={() => (
-          <Chef setLoading={setLoading} setModalMessage={setModalMessage} />)
-        } />
-        <Route path="*" children={<Error404/>}/>
+        <Route
+          exact
+          path="/"
+          component={() => (
+            <Login setLoading={setLoading} setModalMessage={setModalMessage} />
+          )}
+        />
+        <Route
+          path="/admin"
+          component={() => (
+            <Admin setLoading={setLoading} setModalMessage={setModalMessage} />)}
+        />
+        <Route
+          path="/meserx"
+          component={() => (
+            <Waiter setLoading={setLoading} setModalMessage={setModalMessage} />)}
+        />
+        <Route
+          exact
+          path="/chef"
+          component={() => (
+            <Chef setLoading={setLoading} setModalMessage={setModalMessage} />)}
+        />
+        <Route path="*"><Error404 /></Route>
       </Switch>
     </HashRouter>
   );
-}
+};
 
 export default Routes;
