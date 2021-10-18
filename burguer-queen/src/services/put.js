@@ -43,7 +43,7 @@ export const updateUser = (data, setLoading, setModalMessage, path, id) => {
     .catch((err) => console.log(err));
 };
 
-export const updateOrder = (path, id, status, setModalMessage) => {
+export const updateOrder = (path, id, status, setModalMessage, orderMessage) => {
   const token = cookies.get('token');
   console.log(id);
   console.log(id);
@@ -57,7 +57,7 @@ export const updateOrder = (path, id, status, setModalMessage) => {
   })
     .then((response) => {
       console.log(response);
-      setModalMessage({ title: 'Orden cancelada' });
+      setModalMessage({ title: orderMessage });
       // setLoading(false);
       // Agregar mensajes de éxito y error
     })

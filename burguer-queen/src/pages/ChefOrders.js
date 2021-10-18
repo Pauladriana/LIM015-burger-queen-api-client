@@ -6,14 +6,15 @@ import { updateOrder } from '../services/put';
 
 const cookies = new Cookies();
 
-function ChefOrders({ setLoading, setError }) {
+function ChefOrders({ setLoading, setModalMessage }) {
   const [kitchenOrder, setKitchenOrders] = useState(null);
 
   useEffect(() => {
     let cancel = false;
-    getData(setLoading, 'orders', cookies.get('token'))
+    getData('orders', cookies.get('token'))
       .then((orders) => {
         if (cancel) return;
+        console.log(orders);
         const pendingOrders = orders.filter((order) => order.status === 'pending');
         setKitchenOrders(pendingOrders);
       });
@@ -34,7 +35,7 @@ function ChefOrders({ setLoading, setError }) {
         <button
           type="button"
           onClick={() => {
-            updateOrder(order, 'orders', order._id, 'delivering');
+            updateOrder('orders', order._id, 'delivering', setModalMessage, 'Orden lista para entregarse.');
           }}
         >
           Listo

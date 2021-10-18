@@ -11,7 +11,7 @@ const Modals = ({ setLoading, modalMessage, setModalMessage }) => {
 
   const del = async () => await deleteData(setLoading, setModalMessage, path, id, '/admin');
 
-  const update = async () => await updateOrder(path, id, 'canceled', setModalMessage);
+  const update = async () => await updateOrder(path, id, 'canceled', setModalMessage, 'Orden cancelada');
 
   return (
     <article onClick={() => closeModal()} className="modal is-open">

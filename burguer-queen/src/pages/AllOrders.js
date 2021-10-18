@@ -130,7 +130,7 @@ function ShowPendingOrders({ setLoading, setModalMessage }) {
   );
 }
 
-function ShowDeliveringOrders({ setLoading }) {
+function ShowDeliveringOrders({ setLoading, setModalMessage }) {
   const [orders, setOrders] = useState(null);
 
   useEffect(() => {
@@ -156,28 +156,14 @@ function ShowDeliveringOrders({ setLoading }) {
         <p>{order.products[0].qty}</p>
       </div>
       <div>
-        {order.status === 'pending' ? (
-          <button
-            type="button"
-            onClick={() => {
-              updateOrder(order, 'orders', order._id, 'canceled');
-            }}
-          >
-            Cancelar
-          </button>
-        ) : <div />}
-      </div>
-      <div>
-        {order.status === 'delivering' ? (
-          <button
-            type="button"
-            onClick={() => {
-              updateOrder(order, 'orders', order._id, 'delivered');
-            }}
-          >
-            Entregar
-          </button>
-        ) : <div />}
+        <button
+          type="button"
+          onClick={() => {
+            updateOrder('orders', order._id, 'delivered', setModalMessage, 'Orden finalizada');
+          }}
+        >
+          Entregar
+        </button>
       </div>
     </div>
   ));
@@ -313,7 +299,7 @@ function AllOrders({ setLoading, setModalMessage }) {
         : (filteredOrders === 'pending'
           ? <ShowPendingOrders setLoading={setLoading} setModalMessage={setModalMessage} />
           : (filteredOrders === 'delivering'
-            ? <ShowDeliveringOrders setLoading={setLoading} />
+            ? <ShowDeliveringOrders setLoading={setLoading} setModalMessage={setModalMessage} />
             : (filteredOrders === 'delivered'
               ? <ShowDeliveredOrders setLoading={setLoading} />
               : (filteredOrders === 'canceled'
