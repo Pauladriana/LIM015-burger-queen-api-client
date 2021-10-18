@@ -30,7 +30,13 @@ const Waiter = ({ setLoading, setModalMessage }) => {
               <WaiterNewOrder setLoading={setLoading} setModalMessage={setModalMessage} />
             )}
           />
-          <Route path={`${path}/allorders`} component={AllOrders} />
+          <Route
+            exact
+            path={`${path}/allorders`}
+            component={() => (
+              <AllOrders setLoading={setLoading} setModalMessage={setModalMessage} />
+            )}
+          />
         </Switch>
       </div>
     </HashRouter>

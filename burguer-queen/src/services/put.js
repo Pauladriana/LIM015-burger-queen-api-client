@@ -42,3 +42,24 @@ export const updateUser = (data, setLoading, setModalMessage, path, id) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const updateOrder = (path, id, status, setModalMessage, orderMessage) => {
+  const token = cookies.get('token');
+  console.log(id);
+  console.log(id);
+  // const { userId, client } = data;
+  // setLoading(true);
+  return put(`${url}${path}/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+    body: {
+      status,
+    },
+  })
+    .then((response) => {
+      console.log(response);
+      setModalMessage({ title: orderMessage });
+      // setLoading(false);
+      // Agregar mensajes de éxito y error
+    })
+    .catch((err) => console.log(err));
+};
