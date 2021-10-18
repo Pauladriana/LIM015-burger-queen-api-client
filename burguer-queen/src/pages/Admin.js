@@ -7,11 +7,11 @@ import logo from '../media/LOGOBQO.png';
 import { close } from '../helpers/helpers';
 import Users from './Users';
 import Products from './Products';
-import Orders from './Orders';
+import AllOrders from './AllOrders';
 import NewUser from './Newuser';
-import EditUser from './Edituser';
+import EditUser from './EditUser';
 import Newproduct from './Newproduct';
-import EditProduct from './Editproduct';
+import EditProduct from './EditProduct';
 
 const cookies = new Cookies();
 
@@ -52,7 +52,7 @@ const Admin = ({ setLoading, setError }) => {
           <Route exact path={`${path}/products`} component={Products} />
           <Route path={`${path}/products/newproduct`} component={Newproduct} />
           <Route path={`${path}/products/editproduct`} component={EditProduct} />
-          <Route exact path={`${path}/orders`} component={Orders} />
+          <Route exact path={`${path}/orders`} component={AllOrders} />
         </Switch>
       </div>
     </HashRouter>

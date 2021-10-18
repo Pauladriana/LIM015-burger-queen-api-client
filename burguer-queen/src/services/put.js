@@ -48,3 +48,26 @@ export const updateData = (data, setLoading, setError, path, id, route) => {
       })
       .catch(err => console.log(err))
   };
+
+
+  export const updateOrder = (data, path, id, status) => {
+    const token = cookies.get('token');
+    console.log(id);
+    console.log(typeof id);
+    const {userId, client} = data;
+    // setLoading(true);
+    return put(`${url}${path}/${id}`, {
+      headers: { 'Authorization': `Bearer ${token}` },
+      body: {
+        userId,
+        client,
+        status: status,
+      },
+    })
+      .then((data) => {
+        console.log(data);
+        // setLoading(false);
+        //Agregar mensajes de éxito y error
+      })
+      .catch(err => console.log(err))
+  };

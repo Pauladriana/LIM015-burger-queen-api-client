@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
+import ChefOrders from './ChefOrders';
 
 const cookies = new Cookies();
 
@@ -13,8 +14,10 @@ class Chef extends Component {
     render () {
         return (
             <div>
-                <h1>Chef</h1>
+                
                 <button onClick={() => this.cerrarSesion()}>Cerrar Sesión</button>
+                <h1>Ordenes</h1>
+                <ChefOrders />
             </div>
         );
     }
