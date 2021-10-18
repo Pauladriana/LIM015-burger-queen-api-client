@@ -1,14 +1,17 @@
 import React from 'react';
 import '../style/Modal.css';
 import { deleteData } from '../services/delete';
+import { updateOrder } from '../services/put';
 
 const Modals = ({ setLoading, modalMessage, setModalMessage }) => {
   const {
-    title, body, button, id, path,
+    title, body, button, button2, id, path,
   } = modalMessage;
   const closeModal = () => setModalMessage(null);
 
   const del = async () => await deleteData(setLoading, setModalMessage, path, id, '/admin');
+
+  const update = async () => await updateOrder(path, id, 'canceled', setModalMessage);
 
   return (
     <article onClick={() => closeModal()} className="modal is-open">
@@ -28,6 +31,9 @@ const Modals = ({ setLoading, modalMessage, setModalMessage }) => {
           <button type="button" onClick={() => closeModal()}>Cerrar</button>
           {button
             ? <button type="button" onClick={() => del()}>{button}</button>
+            : <div />}
+          {button2
+            ? <button type="button" onClick={() => update()}>{button2}</button>
             : <div />}
         </div>
       </div>

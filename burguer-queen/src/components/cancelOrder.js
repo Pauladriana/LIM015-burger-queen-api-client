@@ -1,9 +1,10 @@
-import React from "react";
-import "../style/remove.css";
-import {deleteData} from '../services/delete';
+import React from 'react';
+import '../style/remove.css';
+import { deleteData } from '../services/delete';
 
-function Cmodal({ setLoading, setOpenModal, setError, path, id}) {
-  
+function Cmodal({
+  setLoading, setOpenModal, setError, path, id,
+}) {
   const del = async () => await deleteData(setLoading, setError, path, id);
 
   return (
@@ -17,6 +18,7 @@ function Cmodal({ setLoading, setOpenModal, setError, path, id}) {
         </div>
         <div className="footer">
           <button
+            type="button"
             onClick={() => {
               setOpenModal(false);
             }}
@@ -24,7 +26,7 @@ function Cmodal({ setLoading, setOpenModal, setError, path, id}) {
           >
             Cancelar
           </button>
-          <button onClick={() => del()}>Eliminar</button>
+          <button type="button" onClick={() => del()}>Eliminar</button>
         </div>
       </div>
     </div>

@@ -39,29 +39,27 @@ export const updateUser = (data, setLoading, setModalMessage, path, id) => {
       setLoading(false);
       console.log(data);
       setModalMessage({ title: '!Usuario actualizado exitosamente!' });
-    }) 
+    })
     .catch((err) => console.log(err));
 };
 
-  export const updateOrder = (data, path, id, status) => {
-    const token = cookies.get('token');
-    console.log(id);
-    console.log(typeof id);
-    const {userId, client} = data;
-    // setLoading(true);
-    return put(`${url}${path}/${id}`, {
-      headers: { 'Authorization': `Bearer ${token}` },
-      body: {
-        userId,
-        client,
-        status: status,
-      },
+export const updateOrder = (path, id, status, setModalMessage) => {
+  const token = cookies.get('token');
+  console.log(id);
+  console.log(id);
+  // const { userId, client } = data;
+  // setLoading(true);
+  return put(`${url}${path}/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+    body: {
+      status,
+    },
+  })
+    .then((response) => {
+      console.log(response);
+      setModalMessage({ title: 'Orden cancelada' });
+      // setLoading(false);
+      // Agregar mensajes de éxito y error
     })
-      .then((data) => {
-        console.log(data);
-        // setLoading(false);
-        //Agregar mensajes de éxito y error
-      })
-      .catch(err => console.log(err))
-  };
-
+    .catch((err) => console.log(err));
+};
