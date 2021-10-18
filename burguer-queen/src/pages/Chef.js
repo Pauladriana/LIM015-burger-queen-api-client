@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Chef extends Component {
-    render () {
-        return (
-            <div>
-                <h1>Chef</h1>
-            </div>
-        );
-    }
-}
+const Chef = () => {
+  return (
+    <div>
+      <h1>Chef</h1>
+    </div>
+  );
+};
 
 export default Chef;

@@ -1,40 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { createData } from '../services/post';
 
-import Cookies from 'universal-cookie';
-import { updateData } from '../services/put';
-
-const cookies = new Cookies();
-
-const EditProductForm = ({ setLoading, setModalMessage }) => {
-  const product = cookies.get('product');
-  const {
-    _id, name, type, price, image,
-  } = cookies.get('product');
-
-  const [productToEdit, setProductToEdit] = useState(product);
-
-  useEffect(() => {
-    if (!cookies.get('userLogged')) {
-      window.location.href = '#/';
-    }
-  }, []);
+const ProductForm = ({ setLoading, setModalMessage }) => {
+  const initialProduct = {
+    name: '',
+    type: '',
+    price: '',
+    image: '',
+  };
+  const [product, setProduct] = useState(initialProduct);
 
   const handleChange = (e) => {
-    setProductToEdit({
-      ...productToEdit,
+    setProduct({
+      ...product,
       [e.target.name]: e.target.value,
     });
   };
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    if (!productToEdit) return setModalMessage({ title: 'Debe ingresar al menos un campo' });
-    updateData(productToEdit, setLoading, setModalMessage, 'products', _id);
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!product.name || !product.type || !product.price) return setModalMessage({ body: 'Los campos nombre, menú y precio son obligatorios.' });
+    await createData(product, setLoading, setModalMessage, 'products');
+  };
   return (
     <div className="container">
       <button type="button" onClick={() => { window.location.href = '#/admin/products'; }} className="back">Atrás</button>
-      <h2> Editar Producto </h2>
+      <h2> Nuevo Producto </h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Nombre:</label>
@@ -42,38 +33,38 @@ const EditProductForm = ({ setLoading, setModalMessage }) => {
           <input
             type="text"
             className="form-control"
-            placeholder={name}
+            placeholder="nombre de producto"
             name="name"
             id="name"
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="type">Menú:</label>
+          <label htmlFor="menu">Menu:</label>
           <br />
           <input
             type="text"
             className="form-control"
-            placeholder={type}
+            placeholder="Desayuno o Diario"
             name="type"
-            id="type"
+            id="menu"
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="price">Precio:</label>
+          <label htmlFor="description">Precio:</label>
           <br />
           <input
-            type="text"
+            type="number"
             className="form-control"
-            placeholder={price}
+            placeholder="S/"
             name="price"
             id="price"
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="urlImage">Cambiar Imagen</label>
+          <label htmlFor="urlImage">Agregar Imagen</label>
           <br />
           <input
             type="file"
@@ -90,4 +81,4 @@ const EditProductForm = ({ setLoading, setModalMessage }) => {
   );
 };
 
-export default EditProductForm;
+export default ProductForm;

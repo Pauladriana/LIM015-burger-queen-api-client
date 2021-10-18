@@ -1,33 +1,19 @@
-import React, { useEffect, useState } from 'react';
-
-import Cookies from 'universal-cookie';
+import React, { useState } from 'react';
+import { createUser } from '../services/post';
 import '../style/Admin.css';
-import { updateUser } from '../services/put';
 
-const cookies = new Cookies();
-
-const EditUser = ({ setLoading, setModalMessage }) => {
+function NewUser({ setLoading, setModalMessage }) {
   const [newEmail, setValidEmail] = useState(null);
   const [newPassword, setValidPassword] = useState(null);
   const [typeEmail, setValidationEmail] = useState(null);
   const [typePassword, setValidationPassword] = useState(null);
 
-  useEffect(() => {
-    if (!cookies.get('userLogged')) {
-      window.location.href = '#/';
-    }
-  }, []);
+  const [rol, setRole] = useState({ name: '' });
 
-  const {
-    _id, email, roles, password,
-  } = cookies.get('user');
-
-  const [editedRol, setRole] = useState(roles);
-
-  const userToEdit = {
-    email: (newEmail || email),
-    password: (newPassword || password),
-    roles: (editedRol || roles),
+  const user = {
+    email: newEmail,
+    password: newPassword,
+    roles: rol,
   };
 
   function goNewEmail(value) {
@@ -42,7 +28,7 @@ const EditUser = ({ setLoading, setModalMessage }) => {
   }
 
   function goNewPassword(value) {
-    const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!.@$ %^&*-]).{8,}$/;
+    const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
     if (reg.test(value) === true) {
       setValidationPassword('');
       setValidPassword(value);
@@ -52,23 +38,26 @@ const EditUser = ({ setLoading, setModalMessage }) => {
     }
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    updateUser(userToEdit, setLoading, setModalMessage, 'users', _id);
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(user);
+    if (!user.email || !user.password || !user.roles) return setModalMessage({ title: 'Debe ingresar todos los datos' });
+    await createUser(user, setLoading, setModalMessage, 'users');
+  };
+
   return (
     <div className="container">
       <button type="button" onClick={() => { window.location.href = '#/admin/users'; }} className="back">Atrás</button>
-      <h2> Editar Usuario </h2>
+      <h2> Nuevo Usuario </h2>
       <form onSubmit={handleSubmit} className="formUser">
         <div className="formCnt">
           <div className="form-group">
             <label htmlFor="email">Correo:</label>
             <br />
             <input
-              type="email"
+              type="text"
               className="form-control"
-              placeholder={email}
+              placeholder="email"
               name="email"
               id="email"
               onChange={(e) => goNewEmail(e.target.value)}
@@ -81,8 +70,9 @@ const EditUser = ({ setLoading, setModalMessage }) => {
             <label htmlFor="password">Contraseña:</label>
             <br />
             <input
-              type="password"
+              type="text"
               className="form-control"
+              placeholder="contraseña"
               name="password"
               id="password"
               onChange={(e) => goNewPassword(e.target.value)}
@@ -100,7 +90,7 @@ const EditUser = ({ setLoading, setModalMessage }) => {
               id="adminOpt"
               onChange={(e) => (
                 e.target.checked
-                  ? setRole({ admin: true, name: 'administradora' })
+                  ? setRole({ name: 'administradora' })
                   : setRole({ name: '' })
               )}
             />
@@ -113,7 +103,7 @@ const EditUser = ({ setLoading, setModalMessage }) => {
               id="waiterOpt"
               onChange={(e) => (
                 e.target.checked
-                  ? setRole({ admin: false, name: 'mesera' })
+                  ? setRole({ name: 'mesera' })
                   : setRole({ name: '' })
               )}
             />
@@ -124,9 +114,10 @@ const EditUser = ({ setLoading, setModalMessage }) => {
               className="form-opt"
               name="opt"
               id="chefOpt"
-              onChange={(e) => (e.target.checked
-                ? setRole({ admin: false, name: 'cocinera' })
-                : setRole({ name: '' })
+              onChange={(e) => (
+                e.target.checked
+                  ? setRole({ name: 'cocinera' })
+                  : setRole({ name: '' })
               )}
             />
             <label htmlFor="chefOpt">Cocinera</label>
@@ -137,6 +128,6 @@ const EditUser = ({ setLoading, setModalMessage }) => {
       </form>
     </div>
   );
-};
+}
 
-export default EditUser;
+export default NewUser;

@@ -4,10 +4,17 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
 }
+input {
+  outline: none
+}
 body {
     background-color: #f5f5f8;
     width: 99vw;
     height: 99vh
+}
+
+input {
+  outline: none;
 }
 
 .logo {
@@ -79,6 +86,7 @@ h1 {
 }
 
 .OptionContent a {
+    position: relative;
     background-color: #fa4a0c;
     color: white;
     text-decoration: none;
@@ -146,6 +154,7 @@ form {
     border-bottom: 1px black solid;
     margin: 25px 0;
     width: 450px;
+    outline: none;
   }
 
   .container h2{

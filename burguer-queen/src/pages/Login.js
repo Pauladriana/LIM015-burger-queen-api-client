@@ -1,41 +1,47 @@
-import React, { useState, useEffect } from "react";
-import Cookies from "universal-cookie";
-import "../style/Login.css";
-import logo from "../media/logo1.svg";
-import { signIn } from "../services/fetch";
+import React, { useState, useEffect } from 'react';
+import Cookies from 'universal-cookie';
+import '../style/Login.css';
+import logo from '../media/logo1.svg';
+import { signIn } from '../services/post';
 
 const cookies = new Cookies();
 
-const Login = ({ setLoading, setError }) => {
+const Login = ({ setLoading, setModalMessage }) => {
   const initialForm = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   };
   const [form, setForm] = useState(initialForm);
   const [messages, setMessages] = useState({
-    emailMsg: "",
-    passwordMsg: "",
+    emailMsg: '',
+    passwordMsg: '',
   });
-  // eslint-disable-next-line no-unused-vars
-  const [token, setToken] = useState(null);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.email || !form.password) return setError("No ingresó correo o contraseña");
-    return await signIn(form, setLoading, setError, setToken);
+    if (!form.email || !form.password) {
+      return setModalMessage({
+        title: 'No ingresó correo o contraseña.',
+        body: 'Inténtelo nuevamente',
+      });
+    }
+    await signIn(form, setLoading, setModalMessage);
   };
 
   useEffect(() => {
-    if (cookies.get("token")) {
-      console.log(cookies.get("token"));
-      window.location.href = "./admin";
+    if (cookies.get('userLogged')) {
+      if ((cookies.get('userLogged')).roles.admin) {
+        window.location.href = '#/admin/users';
+      } else {
+        window.location.href = '#/meserx/neworder';
+      }
     }
   }, []);
 
@@ -43,67 +49,70 @@ const Login = ({ setLoading, setError }) => {
     const reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
     if (reg.test(form.email) === false) {
       setMessages({
-        emailMsg: "La estructura es example@correo",
-        passwordMsg: "",
+        emailMsg: 'La estructura es example@correo',
+        passwordMsg: '',
       });
     } else {
       setMessages({
-        emailMsg: "",
-        passwordMsg: "",
+        emailMsg: '',
+        passwordMsg: '',
       });
     }
   };
   const goPassword = () => {
-    const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+    const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@.$ %^&*-]).{8,}$/;
     if (reg.test(form.password) === false) {
       setMessages({
-        emailMsg: "",
-        passwordMsg: "La contraseña debe contener mayusculas, numeros y caracteres especiales",
+        emailMsg: '',
+        passwordMsg: 'La contraseña debe contener mayúsculas, números y carácteres especiales',
       });
     } else {
       setMessages({
-        emailMsg: "",
-        passwordMsg: "",
+        emailMsg: '',
+        passwordMsg: '',
       });
     }
   };
 
   return (
-    <div className='login-container'>
-      <div className='login-header'>
-        <div className='login-logo'>
-          <img className='login-img' src={logo} alt='Logo' />
+    <div className="login-container">
+      <div className="login-header">
+        <div className="login-logo">
+          <img className="login-img" src={logo} alt="Logo" />
         </div>
-        <div className='login-title'>Iniciar Sesión</div>
+        <div className="login-title">Iniciar Sesión</div>
       </div>
-      <div className='login-formContainer'>
-        <form className='login-form' onSubmit={handleSubmit}>
-          <div className='login-form-section'>
-            <label className='login-form-label'> Correo: </label>
+      <div className="login-formContainer">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <div className="login-form-section">
+            <label htmlFor="email" className="login-form-label"> Correo: </label>
             <input
-              type='text'
-              className='login-form-input'
-              name='email'
+              type="text"
+              id="email"
+              className="login-form-input"
+              name="email"
               onChange={handleChange}
               value={form.email}
               onKeyUp={() => goEmail()}
             />
-            <p className='goEmail'>{messages.emailMsg}</p>
+            <p className="goEmail">{messages.emailMsg}</p>
           </div>
-          <div className='login-form-section'>
-            <label className='login-form-label'>Contraseña: </label>
+          <div className="login-form-section">
+            <label htmlFor="password" className="login-form-label">Contraseña: </label>
             <input
-              type='password'
-              className='login-form-input'
-              name='password'
+              type="password"
+              className="login-form-input"
+              name="password"
+              id="password"
               onChange={handleChange}
               onKeyUp={() => goPassword()}
             />
-            <p className='goPassword'>{messages.passwordMsg}</p>
+            <p className="goPassword">{messages.passwordMsg}</p>
           </div>
 
-          <button className='login-formButton' type='submit'>
-            Iniciar Sesion{" "}
+          <button className="login-formButton" type="submit">
+            Iniciar Sesion
+            {' '}
           </button>
         </form>
       </div>
