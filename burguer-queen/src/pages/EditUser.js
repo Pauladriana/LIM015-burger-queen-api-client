@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import Cookies from 'universal-cookie';
 import '../style/Admin.css';
 import { updateUser } from '../services/put';

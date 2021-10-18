@@ -9,25 +9,26 @@ import { redirectToNotFound } from '../helpers/helpers';
 
 const cookies = new Cookies();
 
-function Users({ setLoading, setModalMessage }) {
+function Users({ setModalMessage }) {
   const { url } = useRouteMatch();
   const [users, setUsers] = useState(null);
 
   const userLogged = cookies.get('userLogged');
-  useEffect(() => {
-    if (!userLogged) window.location.href = '#/';
-  }, []);
 
   useEffect(() => {
     let cancel = false;
-    getData('users', cookies.get('token'))
-      .then((users) => {
-        if (cancel) return;
-        setUsers(users);
-      });
-    return () => {
-      cancel = true;
-    };
+    if (!userLogged) {
+      window.location.href = '#/';
+    } else {
+      getData('users', cookies.get('token'))
+        .then((users) => {
+          if (cancel) return;
+          setUsers(users);
+        });
+      return () => {
+        cancel = true;
+      };
+    }
   }, []);
 
   const showUsers = (users) => users.map((user) => (
@@ -44,7 +45,7 @@ function Users({ setLoading, setModalMessage }) {
         />
         <img
           src={remove}
-          alt="close"
+          alt="remove"
           className="optTable"
           onClick={() => {
             setModalMessage({

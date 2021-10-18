@@ -22,7 +22,7 @@ export const updateData = (data, setLoading, setModalMessage, path, id) => {
   })
     .then((data) => {
       setLoading(false);
-      cookies.set('product', data);
+      console.log(data);
       setModalMessage({ title: '¡Producto actualizado exitosamente!' });
     })
     .catch((err) => console.log(err));
@@ -38,7 +38,6 @@ export const updateUser = (data, setLoading, setModalMessage, path, id) => {
     .then((data) => {
       setLoading(false);
       console.log(data);
-      console.log(cookies.get('user'));
       setModalMessage({ title: '!Usuario actualizado exitosamente!' });
     })
     .catch((err) => console.log(err));

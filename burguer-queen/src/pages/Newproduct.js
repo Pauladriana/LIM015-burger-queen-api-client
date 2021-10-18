@@ -19,7 +19,7 @@ const ProductForm = ({ setLoading, setModalMessage }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!product.name || !product.type || !product.price) return setModalMessage('No ingresó ningún dato.');
+    if (!product.name || !product.type || !product.price) return setModalMessage({ body: 'Los campos nombre, menú y precio son obligatorios.' });
     await createData(product, setLoading, setModalMessage, 'products');
   };
   return (
@@ -28,14 +28,14 @@ const ProductForm = ({ setLoading, setModalMessage }) => {
       <h2> Nuevo Producto </h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="item">Item:</label>
+          <label htmlFor="name">Nombre:</label>
           <br />
           <input
             type="text"
             className="form-control"
             placeholder="nombre de producto"
             name="name"
-            id="item"
+            id="name"
             onChange={handleChange}
           />
         </div>
@@ -63,7 +63,18 @@ const ProductForm = ({ setLoading, setModalMessage }) => {
             onChange={handleChange}
           />
         </div>
-
+        <div className="form-group">
+          <label htmlFor="urlImage">Agregar Imagen</label>
+          <br />
+          <input
+            type="file"
+            accept="image/*"
+            className="form-control"
+            name="image"
+            id="urlImage"
+            onChange={handleChange}
+          />
+        </div>
         <button type="submit">Guardar</button>
       </form>
     </div>
