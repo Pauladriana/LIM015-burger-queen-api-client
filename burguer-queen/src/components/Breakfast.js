@@ -1,26 +1,44 @@
 import React, { useEffect, useState } from 'react';
-import { getData } from '../services/get';
 import Cookies from 'universal-cookie';
+import { getData } from '../services/get';
+import plus from '../media/plus.svg';
+import '../style/Waiter.css';
+
 const cookies = new Cookies();
 
-const Breakfast = ({setLoading, setModalMessage}) => {
+const Breakfast = ({
+  productsOrder, setProductsOrder, setQtyChange, setSum, sum,
+}) => {
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
     let cancel = false;
-    getData(setLoading, 'products', cookies.get('token'))
+    getData('products', cookies.get('token'))
       .then((products) => {
         if (cancel) return;
-        const breakfastProducts = products.filter(p=> p.type==='Desayuno');
+        const breakfastProducts = products.filter((p) => p.type === 'Desayuno');
         setProducts(breakfastProducts);
       });
     return () => {
       cancel = true;
-    }
+    };
   }, []);
+
+  const addProduct = (product) => {
+    setSum(product.price + sum);
+    const arrayOfId = productsOrder.map((p) => p._id);
+    if (arrayOfId.indexOf(product._id) !== -1) {
+      const p = productsOrder[(arrayOfId.indexOf(product._id))];
+      p.qty += 1;
+      setQtyChange(true);
+      return setProductsOrder(productsOrder);
+    }
+    return setProductsOrder([...productsOrder, { ...product, qty: 1 }]);
+  };
 
   const showProducts = (products) => products.map((product) => (
     <div key={product._id}>
+      <button type="button" onClick={() => addProduct(product)}><img src={plus} alt="plus" className="waiterIcon" /></button>
       <p>{product.name}</p>
       <p>{product.type}</p>
       <p>{product.image}</p>
@@ -31,8 +49,7 @@ const Breakfast = ({setLoading, setModalMessage}) => {
     <div>
       {products
         ? showProducts(products)
-        : <div></div>
-      }
+        : <div />}
     </div>
   );
 };

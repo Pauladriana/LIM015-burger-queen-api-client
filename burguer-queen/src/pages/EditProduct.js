@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
 import Cookies from 'universal-cookie';
 import { updateData } from '../services/put';
 
 const cookies = new Cookies();
 
-const EditProductForm = ({ setLoading, setError }) => {
+const EditProductForm = ({ setLoading, setModalMessage }) => {
   const product = cookies.get('product');
-  const { _id, name, type, price, image } = cookies.get('product');
+  const {
+    _id, name, type, price, image,
+  } = cookies.get('product');
+
   const [productToEdit, setProductToEdit] = useState(product);
 
-  const handleChange = e => {
+  useEffect(() => {
+    if (!cookies.get('userLogged')) {
+      window.location.href = '#/';
+    }
+  }, []);
+
+  const handleChange = (e) => {
     setProductToEdit({
       ...productToEdit,
       [e.target.name]: e.target.value,
@@ -20,52 +28,66 @@ const EditProductForm = ({ setLoading, setError }) => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    updateData(productToEdit, setLoading, setError, 'products', _id, './');
-    cookies.remove('product');
-    console.log(cookies.get('product'));
+    if (!productToEdit) return setModalMessage({ title: 'Debe ingresar al menos un campo' });
+    updateData(productToEdit, setLoading, setModalMessage, 'products', _id);
   }
   return (
     <div className="container">
-      <Link to="/admin" className='back'>Atrás</Link>
+      <button type="button" onClick={() => { window.location.href = '#/admin/products'; }} className="back">Atrás</button>
       <h2> Editar Producto </h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label for="item">Nombre:</label><br />
+          <label htmlFor="name">Nombre:</label>
+          <br />
           <input
             type="text"
             className="form-control"
             placeholder={name}
             name="name"
-            id='item'
+            id="name"
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label for="menu">Menú:</label><br />
+          <label htmlFor="type">Menú:</label>
+          <br />
           <input
             type="text"
             className="form-control"
             placeholder={type}
             name="type"
-            id='type'
+            id="type"
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label for="description">Precio:</label><br />
+          <label htmlFor="price">Precio:</label>
+          <br />
           <input
             type="text"
             className="form-control"
             placeholder={price}
             name="price"
-            id='price'
+            id="price"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="urlImage">Cambiar Imagen</label>
+          <br />
+          <input
+            type="file"
+            accept="image/*"
+            className="form-control"
+            name="image"
+            id="urlImage"
             onChange={handleChange}
           />
         </div>
         <button type="submit">Guardar</button>
       </form>
     </div>
-  )
+  );
 };
 
 export default EditProductForm;
