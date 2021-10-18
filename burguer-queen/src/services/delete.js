@@ -6,7 +6,6 @@ const url = 'https://bq-lab-2021.herokuapp.com/';
 const cookies = new Cookies();
 
 export const deleteData = (setLoading, setModalMessage, path, id) => {
-  console.log(id);
   setLoading(true);
   const token = cookies.get('token');
   return del(`${url}${path}/${id}`, {
@@ -17,5 +16,5 @@ export const deleteData = (setLoading, setModalMessage, path, id) => {
       setLoading(false);
       setModalMessage({ body: '¡Producto eliminado!' });
     })
-    .catch(() => setModalMessage('Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.'));
+    .catch(() => setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' }));
 };

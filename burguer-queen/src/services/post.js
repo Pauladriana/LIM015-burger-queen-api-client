@@ -21,7 +21,6 @@ export const signIn = async (data, setLoading, setModalMessage) => {
     setModalMessage(null);
     cookies.remove('token', { path: '/' });
     cookies.set('token', response.token, { path: '/' });
-
     // Redireccionamiento de acuerdo al perfil
     const user = await getUserLogged(`users/${data.email}`, response.token);
     cookies.remove('userLogged', { path: '/' });
