@@ -9,11 +9,11 @@ import logo from '../media/LOGOBQO.png';
 import { close, redirectToNotFound } from '../helpers/helpers';
 import Users from './Users';
 import Products from './Products';
-import Orders from './Orders';
+import AllOrders from './AllOrders';
 import NewUser from './Newuser';
-import EditUser from './Edituser';
+import EditUser from './EditUser';
 import Newproduct from './Newproduct';
-import EditProduct from './Editproduct';
+import EditProduct from './EditProduct';
 
 const cookies = new Cookies();
 
@@ -98,7 +98,17 @@ const Admin = ({ setLoading, setModalMessage }) => {
               </Switch>
             </div>
           </div>
-        )}
+        </div>
+        <Switch>
+          <Route exact path={`${path}/users`} component={Users} />
+          <Route path={`${path}/users/newuser`} component={NewUser} />
+          <Route path={`${path}/users/edituser`} component={EditUser} />
+          <Route exact path={`${path}/products`} component={Products} />
+          <Route path={`${path}/products/newproduct`} component={Newproduct} />
+          <Route path={`${path}/products/editproduct`} component={EditProduct} />
+          <Route exact path={`${path}/orders`} component={AllOrders} />
+        </Switch>
+      </div>
     </HashRouter>
   );
 };
