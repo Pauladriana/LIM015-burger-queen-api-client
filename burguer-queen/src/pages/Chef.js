@@ -1,22 +1,45 @@
 import React from 'react';
-import Cookies from 'universal-cookie';
+import {
+  HashRouter, NavLink, Switch, Route, useRouteMatch,
+} from 'react-router-dom';
 import ChefOrders from './ChefOrders';
-
-const cookies = new Cookies();
+import { close } from '../helpers/helpers';
+import Chefdelivering from './Chefdelivering';
 
 const Chef = ({ setLoading, setModalMessage }) => {
-  const cerrarSesion = () => {
-    cookies.remove('token', { path: '/' });
-    console.log(cookies.get('token'));
-    window.location.href = './';
-  };
-
+  const { path, url } = useRouteMatch();
   return (
-    <div>
-      <button type="button" onClick={() => cerrarSesion()}>Cerrar Sesión</button>
+    <HashRouter>
+      <div className="chefHeader">
+        <img alt="logo" className="chefHeaderLogo" />
+        <nav>
+          <li>
+            <NavLink to={`${url}/pendingorders`} activeClassName=".active">Ordenes Pendientes</NavLink>
+            <NavLink to={`${url}/deliveringorders`} activeClassName=".active">Ordenes Listas</NavLink>
+          </li>
+        </nav>
+        <button type="button" onClick={() => close()}> Cerrar Sesión</button>
+      </div>
       <h1>Ordenes</h1>
-      <ChefOrders setLoading={setLoading} setModalMessage={setModalMessage} />
-    </div>
+      <div>
+        <Switch>
+          <Route
+            exact
+            path={`${path}/pendingorders`}
+            component={() => (
+              <ChefOrders setLoading={setLoading} setModalMessage={setModalMessage} />
+            )}
+          />
+          <Route
+            exact
+            path={`${path}/deliveringorders`}
+            component={() => (
+              <Chefdelivering setLoading={setLoading} setModalMessage={setModalMessage} />
+            )}
+          />
+        </Switch>
+      </div>
+    </HashRouter>
   );
 };
 

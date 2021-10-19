@@ -35,7 +35,6 @@ const Routes = () => {
             <Waiter setLoading={setLoading} setModalMessage={setModalMessage} />)}
         />
         <Route
-          exact
           path="/chef"
           component={() => (
             <Chef setLoading={setLoading} setModalMessage={setModalMessage} />)}
