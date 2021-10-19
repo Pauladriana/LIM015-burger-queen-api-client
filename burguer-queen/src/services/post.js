@@ -30,10 +30,9 @@ export const signIn = async (data, setLoading, setModalMessage) => {
     } else if (user.roles.name === 'mesera') {
       window.location.hash = '#/meserx/neworder';
     } else if (user.roles.name === 'cocinera') {
-      window.location.hash = '#/chef';
+      window.location.hash = '#/chef/pendingorders';
     }
   } catch (err) {
-    console.log(err);
     setLoading(false);
     setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
   }
