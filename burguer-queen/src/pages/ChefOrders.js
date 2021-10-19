@@ -14,7 +14,6 @@ function ChefOrders({ setLoading, setModalMessage }) {
     getData('orders', cookies.get('token'))
       .then((orders) => {
         if (cancel) return;
-        console.log(orders);
         const pendingOrders = orders.filter((order) => order.status === 'pending');
         setKitchenOrders(pendingOrders);
       });

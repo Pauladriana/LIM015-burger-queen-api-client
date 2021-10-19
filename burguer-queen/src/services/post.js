@@ -33,7 +33,6 @@ export const signIn = async (data, setLoading, setModalMessage) => {
       window.location.hash = '#/chef/pendingorders';
     }
   } catch (err) {
-    console.log(err);
     setLoading(false);
     setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
   }

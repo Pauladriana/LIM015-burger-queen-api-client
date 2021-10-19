@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import '../style/Admin.css';
 import Cookies from 'universal-cookie';
 import { getData } from '../services/get';
-import { updateOrder } from '../services/put';
 
 const cookies = new Cookies();
 
@@ -14,7 +13,6 @@ function ChefOrders({ setLoading, setModalMessage }) {
     getData('orders', cookies.get('token'))
       .then((orders) => {
         if (cancel) return;
-        console.log(orders);
         const pendingOrders = orders.filter((order) => order.status === 'delivering');
         setKitchenOrders(pendingOrders);
       });
