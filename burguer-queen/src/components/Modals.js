@@ -28,12 +28,12 @@ const Modals = ({ setLoading, modalMessage, setModalMessage }) => {
             : <div />}
         </div>
         <div className="modal-footer">
-          <button type="button" onClick={() => closeModal()}>Cerrar</button>
+          <button type="button" className="modal-cancel" onClick={() => closeModal()}>Cerrar</button>
           {button
-            ? <button type="button" onClick={() => del()}>{button}</button>
+            ? <button type="button" className="modal-remove" onClick={() => del()}>{button}</button>
             : <div />}
           {button2
-            ? <button type="button" onClick={() => update()}>{button2}</button>
+            ? <button type="button" className="modal-update" onClick={() => update()}>{button2}</button>
             : <div />}
         </div>
       </div>
