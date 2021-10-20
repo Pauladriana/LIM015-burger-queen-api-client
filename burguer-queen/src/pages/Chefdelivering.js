@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../style/Admin.css';
+import '../style/Orders.css';
 import Cookies from 'universal-cookie';
 import { getData } from '../services/get';
 
@@ -34,12 +34,12 @@ function ChefOrders({ setLoading, setModalMessage }) {
   };
 
   const showOrders = (orders) => orders.map((order) => (
-    <div className="waiter-orders" key={order._id}>
-      <p>{time(order)}</p>
-      <p>{order.client}</p>
-      <div>
-        <p>{order.products[0].productId.name}</p>
-        <p>{order.products[0].qty}</p>
+    <div className="ordersCard" key={order._id}>
+      <p className="orderTimer">{time(order)}</p>
+      <p className="orderClient">{order.client}</p>
+      <div className="chef-orderContent">
+        <p className="chef-item">{order.products[0].productId.name}</p>
+        <p className="chef-qty">{order.products[0].qty}</p>
       </div>
     </div>
   ));
