@@ -1,15 +1,122 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200&display=swap');
-
-.waiterButtons{
-    background-color: burlywood;
-    color: black;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap');
+*{
+    font-family: 'Cormorant Upright';
+}
+/*--------------------------Waiter------------------*/ 
+.waiterContainer{
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
 }
 
-.waiterButtons.setStyleActive{
+.waiterNavContainer{
+    color: white;
+    position: absolute;
+    height: 10%;
     background-color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+.waiterNav{
+    display: flex;
+    width: 50%;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.waiterLine{
+    height: 20px;
+    width: 1.5px;
+    background-color: white;
+    border:0;
+}
+.waiterNavLinkActive{
+    color: #cac2a5;
+    text-decoration: none;
+}
+.waiterNavLink{
+    text-decoration: none;
+}
+/*--------------------------Waiter New Order------------------*/ 
+.waiterNewOrderContainer{
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    height: 90vh;
+    background-image: url('../media/background.jpg');
     color: white;
 }
-
-.waiterIcon{
-    width: 20px;
+.waiterHeader{
+    padding: 5% 0 5% 10%;
+}
+.waiterInput{
+    width: 30%;
+    font-size: 16px;
+    color: white;
+    background-color: black;
+    border: 1px solid #cac2a5;
+    outline: none;
+    text-align: center;
+}
+.waiterBody{
+    display: grid;
+    grid-template-columns: 45% 50%;
+    column-gap: 5%;
+    height: 100%;
+}
+.waiterProductsSection{
+    padding: 0 5% 5% 15%;
+    overflow-y: auto;
+    max-height: 56%;
+}
+.waiterOrderSection{
+    padding: 0 15% 5% 5%;
+    overflow-y: auto;
+    max-height: 56%;
+}
+.waiterProductsContainer{
+    display: grid;
+    grid-template-rows: max-content;
+    row-gap: 20px;
+}
+.waiterProductCardText{
+    font-size: 16px;
+    color: #b9b08c;
+    line-height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.waiterProductCardImage{
+    padding: 5% 0;
+}
+.waiterImgCard{
+    max-width: 100%;
+    height: auto;
+}
+/*---------------------Waiter Table Order----------------*/
+.waiterOrderTitle{
+    text-align: center;
+    padding-bottom: 5%;
+}
+.waiterOrderTable th{
+    padding: 0;
+    color: #b9b08c;
+    border-bottom: 0;
+    text-align: initial;
+}
+.waiterOrderTable td{
+    padding: 10px 0;
+    text-align: initial;
+}
+.golden{
+    color: #b9b08c;
+}
+.buttonContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
