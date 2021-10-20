@@ -1,49 +1,49 @@
-import React from 'react';
+import * as React from 'react';
 import {
   NavLink, Switch, Route, useRouteMatch, HashRouter,
 } from 'react-router-dom';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import Cookies from 'universal-cookie';
 import { close, redirectToNotFound } from '../helpers/helpers';
-import '../style/Waiter.css';
 import WaiterNewOrder from './Waiterneworder';
 import AllOrders from './AllOrders';
+import '../style/Waiter.css';
+import bqLogo from '../media/bq-logo.svg';
 
 const cookies = new Cookies();
 
 const Waiter = ({ setLoading, setModalMessage }) => {
   const { path, url } = useRouteMatch();
+
   return (
     <HashRouter>
       {(cookies.get('userLogged')).roles.name === 'mesera'
         ? (
-          <div>
-            <div className="waiterHeader">
-              <img alt="logo" className="waiterHeaderLogo" />
-              <nav>
-                <li>
-                  <NavLink to={`${url}/neworder`} activeClassName=".active">Generar Orden</NavLink>
-                  <NavLink to={`${url}/allorders`} activeClassName=".active">Ver Órdenes</NavLink>
-                </li>
+          <div className="waiterContainer">
+            <div className="waiterNavContainer">
+              <img src={bqLogo} alt="logo" className="waiterHeaderLogo" />
+              <nav className="waiterNav">
+                <NavLink className="waiterNavLink" to={`${url}/neworder`} activeClassName="waiterNavLinkActive">Generar Orden</NavLink>
+                <div className="waiterLine" />
+                <NavLink className="waiterNavLink" to={`${url}/allorders`} activeClassName="waiterNavLinkActive">Ver Órdenes</NavLink>
               </nav>
-              <button type="button" onClick={() => close()}> Cerrar Sesión</button>
+              <ExitToAppIcon onClick={() => close()} />
             </div>
-            <div>
-              <Switch>
-                <Route
-                  path={`${path}/neworder`}
-                  component={() => (
-                    <WaiterNewOrder setLoading={setLoading} setModalMessage={setModalMessage} />
-                  )}
-                />
-                <Route
-                  exact
-                  path={`${path}/allorders`}
-                  component={() => (
-                    <AllOrders setLoading={setLoading} setModalMessage={setModalMessage} />
-                  )}
-                />
-              </Switch>
-            </div>
+            <Switch>
+              <Route
+                path={`${path}/neworder`}
+                component={() => (
+                  <WaiterNewOrder setLoading={setLoading} setModalMessage={setModalMessage} />
+                )}
+              />
+              <Route
+                exact
+                path={`${path}/allorders`}
+                component={() => (
+                  <AllOrders setLoading={setLoading} setModalMessage={setModalMessage} />
+                )}
+              />
+            </Switch>
           </div>
         )
         : redirectToNotFound()}

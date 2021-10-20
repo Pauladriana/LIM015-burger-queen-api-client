@@ -35,11 +35,14 @@ const Diary = ({
   };
 
   const showProducts = (products) => products.map((product) => (
-    <div key={product._id}>
-      <button type="button" onClick={() => addProduct(product)}><img src={plus} alt="plus" className="waiterIcon" /></button>
-      <p>{product.name}</p>
-      <p>{product.type}</p>
-      <p>{product.image}</p>
+    <div key={product._id} className="waiterProductCard" onClick={() => addProduct(product)}>
+      <div className="waiterProductCardText">
+        <h3>{product.name}</h3>
+        <span>{product.type}</span>
+      </div>
+      <div className="waiterProductCardImage">
+        <img className="waiterImgCard" src={product.image} alt="food" />
+      </div>
     </div>
   ));
 
