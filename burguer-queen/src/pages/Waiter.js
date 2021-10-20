@@ -21,7 +21,8 @@ const Waiter = ({ setLoading, setModalMessage }) => {
         ? (
           <div className="waiterContainer">
             <div className="waiterNavContainer">
-              <img src={bqLogo} alt="logo" className="waiterHeaderLogo" />
+              {/* <p role="banner" className="logo">BQ</p> */}
+              <img role="banner" src={bqLogo} alt="logo" className="waiterHeaderLogo" />
               <nav className="waiterNav">
                 <NavLink className="waiterNavLink" to={`${url}/neworder`} activeClassName="waiterNavLinkActive">Generar Orden</NavLink>
                 <div className="waiterLine" />

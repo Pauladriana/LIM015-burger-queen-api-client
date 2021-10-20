@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
 import { getData } from '../services/get';
-import plus from '../media/plus.svg';
 import '../style/Waiter.css';
 
 const cookies = new Cookies();
@@ -38,7 +37,7 @@ const Diary = ({
     <div key={product._id} className="waiterProductCard" onClick={() => addProduct(product)}>
       <div className="waiterProductCardText">
         <h3>{product.name}</h3>
-        <span>{product.type}</span>
+        <span>{product.price}</span>
       </div>
       <div className="waiterProductCardImage">
         <img className="waiterImgCard" src={product.image} alt="food" />
