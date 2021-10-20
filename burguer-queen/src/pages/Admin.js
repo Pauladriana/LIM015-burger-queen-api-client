@@ -5,7 +5,6 @@ import {
 import Cookies from 'universal-cookie';
 import userPhoto from '../media/man.png';
 import '../style/Admin.css';
-import logo from '../media/LOGOBQO.png';
 import { close, redirectToNotFound } from '../helpers/helpers';
 import Users from './Users';
 import Products from './Products';
