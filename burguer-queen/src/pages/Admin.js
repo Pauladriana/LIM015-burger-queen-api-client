@@ -33,17 +33,17 @@ const Admin = ({ setLoading, setModalMessage }) => {
           <div>
             <div>
               <div className="header">
-                <img src={logo} alt="" className="logo" />
+                <p className="logo">BQ</p>
                 <nav>
-                  <NavLink to={`${url}/users`} activeClassName="red">Usuarios</NavLink>
-                  <NavLink to={`${url}/products`} activeClassName="red">Productos</NavLink>
-                  <NavLink to={`${url}/allorders`} activeClassName="red">Órdenes</NavLink>
+                  <NavLink to={`${url}/users`} activeClassName="active" className="navlink">Usuarios</NavLink>
+                  <NavLink to={`${url}/products`} activeClassName="active" className="navlink">Productos</NavLink>
+                  <NavLink to={`${url}/allorders`} activeClassName="active" className="navlink">Órdenes</NavLink>
                 </nav>
                 <button type="button" onClick={() => close()}>Cerrar Sesión</button>
               </div>
               <div>
                 <div>
-                  <h1>Administradx</h1>
+                  <h1>Administradorx</h1>
                   <div className="userData">
                     <img src={userPhoto} alt="" className="userPhoto" />
                     <p><b>{userLogged.roles.name}</b></p>

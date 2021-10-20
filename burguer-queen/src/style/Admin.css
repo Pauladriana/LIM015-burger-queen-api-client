@@ -1,14 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+
+/* font-family: 'Cormorant Upright', serif;
+font-family: ;'Open Sans', sans-serif*/
 
 *{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 14px;
 }
 input {
   outline: none
 }
+
+.navlink{
+  font-size: 20px;
+  text-decoration: none;
+  font-family: 'Cormorant Upright', serif;
+  color: white;
+  margin: 10px;
+}
+
 body {
-    background-color: #f5f5f8;
     width: 99vw;
     height: 99vh
 }
@@ -17,40 +28,49 @@ input {
   outline: none;
 }
 
-.logo {
-    width: 50px;
+.logo{
+  font-family: 'Cormorant Upright', serif;
+  color: #dcca87;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 5px 10px;
 }
 
 .header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
 
 .header button{
     border: none;
     background-color: transparent;
-    color: #fa4a0c;
+    color: #dcca87;
     font-weight: 600;
 
 }
 h1 {
     text-align: center;
-    font-size: 28px;
+    font-size: 40px;
+    color: #dcca87;
+    font-family: 'Cormorant Upright', serif;
+    margin-bottom: 20px;
 }
 
 .userData {
     width: 15%;
     min-width: fit-content;
     height: 8%;
-    background-color: white;
-    border-radius: 20px;
+    background-color: black;
+    border: 1px solid white;
     margin: auto;
     padding: 10px;
 }
 .userData p{
     text-align: center;
     font-size: 14px;
+    color: white;
     margin: 5px
 }
 
@@ -76,28 +96,34 @@ h1 {
     padding: 15px;
     text-align: center;
 }
-.container {
-    background-color: white;
-    border-radius: 50px;
-    margin: auto;
-    padding: 30px;
-    width: 60%;
-    height: 40%
-}
+
 
 .OptionContent a {
     position: relative;
-    background-color: #fa4a0c;
-    color: white;
+    background-color: #dcca87;
+    color: black;
     text-decoration: none;
+    font-family: 'Cormorant Upright', serif;
+    font-size: 18px;
+    font-weight: bold;
     display: block;
     margin: auto;
     width: 155px;
-    border-radius: 20px;
     text-align: center;
     padding: 20px 0;
     margin-top: 20px;
 }
+
+.OptionContent, .container{
+  width: 600px;
+  height: 580px;
+  display: block;
+  margin: auto;
+  border: 1px solid white;
+  margin-top: 40px;
+  background-color: black;
+}
+
 
 table {
     width: 100%;
@@ -114,10 +140,16 @@ th, td {
   }
 
 .tableCnt {
-  height: 550px;
-  display: block;
-  margin: auto;
-  Overflow-y:scroll
+  padding: 20px;
+  Overflow-y:scroll;
+  height: 430px;
+  }
+
+  .tableCnt h2{
+    text-align: center;
+    font-family: 'Cormorant Upright', serif;
+    font-size: 30px;
+    color: #dcca87;
   }
 
   ::-webkit-scrollbar {
@@ -127,7 +159,7 @@ th, td {
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: #fa4a0c;
+    background: #dcca87;
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
@@ -138,20 +170,21 @@ form {
 }
   form button {
     border: none;
-    background-color: #fa4a0c;
-    color: white;
+    background-color: #dcca87;
+    color: black;
     display: block;
     margin: auto;
     width: 155px;
-    border-radius: 20px;
     text-align: center;
     padding: 20px 0;
-    margin-top: 100px;
+    font-family: 'Cormorant Upright', serif;
+    font-weight: bold;
+    font-size: 20px
   }
 
   .form-control{
     border: none;
-    border-bottom: 1px black solid;
+    border-bottom: 1px white solid;
     margin: 25px 0;
     width: 450px;
     outline: none;
@@ -161,13 +194,24 @@ form {
     font-size: 28px;
     font-weight: bold;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 30px;
+    font-family: 'Cormorant Upright', serif;
+    color: #dcca87;
   }
 
   .back {
     text-decoration: none;
+    margin-top: 25px;
+    margin-left: 25px;
     font-weight: bold;
-    color: #fa4a0c;
+    color: #dcca87;
+    background: none;
+    border: 1px solid white;
+    height: 40px;
+    width: 80px;
+    font-family: 'Cormorant Upright', serif;
+    font-size: 20px;
+    font-weight: bold;
   }
 
   .opt-group{
@@ -185,7 +229,7 @@ form {
   }
   .formUser p{
     margin: 0;
-    color: red
+    color: #dcca87
   }
 
   .userSubmit {
@@ -194,18 +238,18 @@ form {
     top: 15px;
   }
 
- .red {
-  color: white;
-  font-weight: 500;
-  background-color: #fa4a0c;
+ .active {
+  font-weight: bold;
+  color: #dcca87;
   }
   .white {
-    background-color: white;
+    background-color: black;
     }
   .optTable {
     width: 12px;
     padding: 3px;
+    background-color: #dcca87;
   }
 .formCnt {
-  height: 436px;
+  height: 336px;
 }
