@@ -24,7 +24,15 @@ function ShowAllOrders({ setLoading, setModalMessage }) {
 
   const showOrders = (orders) => orders.map((order) => (
     <div className="waiter-orders" key={order._id}>
-      <p>{order.status}</p>
+      <p>
+        {
+          order.status === 'pending' ? 'Pendiente'
+            : order.status === 'delivering' ? 'Lista'
+              : order.status === 'delivered' ? 'Entregada'
+                : order.status === 'canceled' ? 'Cancelada'
+                  : 'Error'
+        }
+      </p>
       <p>{order.client}</p>
       <div>
         <p>{order.products[0].productId.name}</p>
@@ -86,7 +94,7 @@ function ShowPendingOrders({ setLoading, setModalMessage }) {
 
   const showOrders = (orders) => orders.map((order) => (
     <div className="waiter-orders" key={order._id}>
-      <p>{order.status}</p>
+      <p>{order.status === 'pending' ? 'Pendiente' : 'Error'}</p>
       <p>{order.client}</p>
       <div>
         <p>{order.products[0].productId.name}</p>
@@ -149,7 +157,7 @@ function ShowDeliveringOrders({ setLoading, setModalMessage }) {
 
   const showOrders = (orders) => orders.map((order) => (
     <div className="waiter-orders" key={order._id}>
-      <p>{order.status}</p>
+      <p>{order.status === 'delivering' ? 'Lista' : 'Error'}</p>
       <p>{order.client}</p>
       <div>
         <p>{order.products[0].productId.name}</p>
@@ -196,7 +204,7 @@ function ShowDeliveredOrders({ setLoading }) {
 
   const showOrders = (orders) => orders.map((order) => (
     <div className="waiter-orders" key={order._id}>
-      <p>{order.status}</p>
+      <p>{order.status === 'delivered' ? 'Entregada' : 'Error'}</p>
       <p>{order.client}</p>
       <div>
         <p>{order.products[0].productId.name}</p>
@@ -255,7 +263,7 @@ function ShowCanceledOrders({ setLoading }) {
 
   const showOrders = (orders) => orders.map((order) => (
     <div className="waiter-orders" key={order._id}>
-      <p>{order.status}</p>
+      <p>{order.status === 'canceled' ? 'Cancelada' : 'Error'}</p>
       <p>{order.client}</p>
       <div>
         <p>{order.products[0].productId.name}</p>
