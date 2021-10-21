@@ -87,15 +87,17 @@ export default function NewOrder({ setLoading, setModalMessage }) {
   return (
     <div className="waiterNewOrderContainer">
       <section className="waiterHeader">
-        <Stack direction="row" spacing={5}>
+        <div className="waiterHeaderSection1">
           <ColorButton onClick={() => { setMenu('breakfast'); setStyleButton1(styleOne); setStyleButton2(styleTwo); }}>
             Desayuno
           </ColorButton>
           <ColorButton2 onClick={() => { setMenu('diary'); setStyleButton1(styleTwo); setStyleButton2(styleOne); }}>
             Diario
           </ColorButton2>
+        </div>
+        <div className="waiterHeaderSection2">
           <input className="waiterInput" onChange={(e) => setName(e.target.value)} placeholder="Nombre Cliente" />
-        </Stack>
+        </div>
       </section>
 
       <section className="waiterBody">
