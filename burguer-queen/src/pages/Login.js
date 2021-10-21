@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import Cookies from 'universal-cookie';
 import '../style/Login.css';
-import logo from '../media/logo1.svg';
 import { signIn } from '../services/post';
 
 const cookies = new Cookies();
 
 const Login = ({ setLoading, setModalMessage }) => {
+  const [inputType, setInputType] = useState('password');
+
   const initialForm = {
     email: '',
     password: '',
@@ -93,15 +96,20 @@ const Login = ({ setLoading, setModalMessage }) => {
             <p className="goEmail">{messages.emailMsg}</p>
           </div>
           <div className="login-form-section">
-            <label htmlFor="password" className="login-form-label">Contraseña: </label>
-            <input
-              type="password"
-              className="login-form-input"
-              name="password"
-              id="password"
-              onChange={handleChange}
-              onKeyUp={() => goPassword()}
-            />
+            <label htmlFor="password" className="login-form-label">Contraseña:</label>
+            <label className="login-form-label-password">
+              <input
+                type={inputType}
+                className="login-form-input"
+                name="password"
+                id="password"
+                onChange={handleChange}
+                onKeyUp={() => goPassword()}
+              />
+              {inputType === 'password'
+                ? <VisibilityOffIcon onClick={() => setInputType('text')} className="login-eye-icon" />
+                : <VisibilityIcon onClick={() => setInputType('password')} className="login-eye-icon" />}
+            </label>
             <p className="goPassword">{messages.passwordMsg}</p>
           </div>
 
