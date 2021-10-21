@@ -1,15 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
-
 /* font-family: 'Cormorant Upright', serif;
 font-family: 'Open Sans', sans-serif;*/
-body{
-    background: url("../media/pattern.png") no-repeat center center;
-    background-size: cover;
-    height: 100%;
-    color: white;
-    font-family: 'Open Sans', sans-serif;
-}
-
 .chefHeader{
     display: flex;
     flex-direction: row;
@@ -17,7 +7,6 @@ body{
     align-items: center;
     
 }
-
 .logo{
     font-family: 'Cormorant Upright', serif;
     color: #dcca87;

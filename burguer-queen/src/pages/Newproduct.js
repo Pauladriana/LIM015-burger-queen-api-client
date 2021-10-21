@@ -67,8 +67,7 @@ const ProductForm = ({ setLoading, setModalMessage }) => {
           <label htmlFor="urlImage">Agregar Imagen</label>
           <br />
           <input
-            type="file"
-            accept="image/*"
+            type="text"
             className="form-control"
             name="image"
             id="urlImage"
