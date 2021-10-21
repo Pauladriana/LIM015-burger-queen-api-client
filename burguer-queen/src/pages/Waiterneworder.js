@@ -111,7 +111,7 @@ export default function NewOrder({ setLoading, setModalMessage }) {
             <table className="waiterOrderTable">
               <thead>
                 <tr>
-                  <th>Qty</th>
+                  <th>Cant.</th>
                   <th>Producto</th>
                   <th>Precio Unit.</th>
                 </tr>
