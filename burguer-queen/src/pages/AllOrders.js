@@ -41,6 +41,13 @@ const styleTwo = {
   },
 };
 
+const showProductsOrder = (array) => array.map((products) => (
+  <div className="chef-orderContent">
+    <p className="chef-item">{products.productId && products.productId.name}</p>
+    <p className="chef-qty">{products.qty}</p>
+  </div>
+));
+
 function ShowAllOrders({ setLoading, setModalMessage }) {
   const [orders, setOrders] = useState(null);
 
@@ -68,9 +75,8 @@ function ShowAllOrders({ setLoading, setModalMessage }) {
         }
       </p>
       <p className="orderClient">{order.client}</p>
-      <div className="chef-orderContent">
-        <p className="chef-item">{order.products[0].productId.name}</p>
-        <p className="chef-qty">{order.products[0].qty}</p>
+      <div>
+        {showProductsOrder(order.products)}
       </div>
       <div>
         {order.status === 'pending' ? (
@@ -102,6 +108,7 @@ function ShowAllOrders({ setLoading, setModalMessage }) {
       </div>
     </div>
   ));
+  console.log(orders);
 
   return (
     <div className="waiterOrdersCardContainer">
@@ -132,10 +139,8 @@ function ShowPendingOrders({ setLoading, setModalMessage }) {
     <div className="ordersCard" key={order._id}>
       <p className="orderStatus">{order.status === 'pending' ? 'Pendiente' : 'Error'}</p>
       <p className="orderClient">{order.client}</p>
-      <div className="chef-orderContent">
-        <p className="chef-item">{order.products[0].productId.name}</p>
-        <p className="chef-qty">{order.products[0].qty}</p>
-
+      <div>
+        {showProductsOrder(order.products)}
       </div>
       <div>
         {order.status === 'pending' ? (
@@ -197,10 +202,8 @@ function ShowDeliveringOrders({ setLoading, setModalMessage }) {
     <div className="ordersCard" key={order._id}>
       <p className="orderStatus">{order.status === 'delivering' ? 'Lista' : 'Error'}</p>
       <p className="orderClient">{order.client}</p>
-      <div className="chef-orderContent">
-        <p className="chef-item">{order.products[0].productId.name}</p>
-        <p className="chef-qty">{order.products[0].qty}</p>
-
+      <div>
+        {showProductsOrder(order.products)}
       </div>
       <div>
         <button
@@ -246,10 +249,8 @@ function ShowDeliveredOrders({ setLoading }) {
     <div className="ordersCard" key={order._id}>
       <p className="orderStatus">{order.status === 'delivered' ? 'Entregada' : 'Error'}</p>
       <p className="orderClient">{order.client}</p>
-      <div className="chef-orderContent">
-        <p className="chef-item">{order.products[0].productId.name}</p>
-        <p className="chef-qty">{order.products[0].qty}</p>
-
+      <div>
+        {showProductsOrder(order.products)}
       </div>
       <div>
         {order.status === 'pending' ? (
@@ -307,9 +308,8 @@ function ShowCanceledOrders({ setLoading }) {
     <div className="ordersCard" key={order._id}>
       <p className="orderStatus">{order.status === 'canceled' ? 'Cancelada' : 'Error'}</p>
       <p className="orderClient">{order.client}</p>
-      <div className="chef-orderContent">
-        <p className="chef-item">{order.products[0].productId.name}</p>
-        <p className="chef-qty">{order.products[0].qty}</p>
+      <div>
+        {showProductsOrder(order.products)}
       </div>
       <div>
         {order.status === 'delivering' ? (
@@ -348,6 +348,7 @@ function AllOrders({ setLoading, setModalMessage }) {
   const ColorButton3 = styled(Button)(styleButton3);
   const ColorButton4 = styled(Button)(styleButton4);
   const ColorButton5 = styled(Button)(styleButton5);
+
   return (
     <div className="waiterNewOrderContainer">
       <div className="waiterHeader allOrder">

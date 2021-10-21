@@ -84,10 +84,8 @@ body{
 }
 
 .chef-orderContent{
-    height: 180px;
     display: flex;
     flex-direction: row;
-    padding: 20px 10px;
 }
 .chef-item{
     flex: 90;
