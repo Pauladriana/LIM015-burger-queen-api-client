@@ -51,37 +51,52 @@
     color: white;
 }
 .waiterHeader{
-    padding: 5% 0 5% 10%;
+    padding: 4% 0 5%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 45% 45%;
+}
+.waiterHeaderSection1{
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+}
+.waiterHeaderSection2{
+    padding-left: 10%;
 }
 .waiterInput{
-    width: 30%;
+    width: 60%;
     font-size: 16px;
     color: white;
     background-color: black;
     border: 1px solid #cac2a5;
     outline: none;
     text-align: center;
+    height: 95%;
 }
 .waiterBody{
     display: grid;
-    grid-template-columns: 45% 50%;
-    column-gap: 5%;
-    height: 85%;
+    justify-content: center;
+    grid-template-columns: 45% 45%;
+    height: 78%;
 }
 .waiterProductsSection{
-    padding: 0 5% 5% 15%;
     overflow-y: auto;
     max-height: 95%;
 }
 .waiterOrderSection{
-    padding: 0 15% 5% 5%;
+    padding: 0 0 0 10%;
     overflow-y: auto;
     max-height: 95%;
 }
 .waiterProductsContainer{
-    display: grid;
-    grid-template-rows: max-content;
-    row-gap: 20px;
+    padding-top: 10%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.waiterProductCard{
+    width: 40%;
+    padding: 5%;
 }
 .waiterProductCardText{
     font-size: 16px;
