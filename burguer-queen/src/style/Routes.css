@@ -11,6 +11,77 @@ body {
   background: url('../media/background.jpg') repeat;
   box-sizing: border-box;
 }
-.waiterHeaderLogo {
-  fill: '#dcca87';
+/*--------------------Nav-------------------------*/
+.navContainer {
+  color: white;
+  position: absolute;
+  height: 10%;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+.nav {
+  display: flex;
+  width: 50%;
+  height: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.navlogo {
+  font-family: 'Cormorant Upright', serif;
+  color: #dcca87;
+  font-size: 50px;
+  font-weight: bold;
+  margin: 5px 10px;
+}
+.navLine {
+  height: 40%;
+  width: 1px;
+  background-color: white;
+  border: 0;
+}
+.navlink {
+  font-size: 20px;
+  text-decoration: none;
+  font-family: 'Cormorant Upright', serif;
+  color: white;
+  margin: 10px;
+}
+.active {
+  font-weight: bold;
+  color: #dcca87;
+}
+/*----------------------Forms-----------------------*/
+.form-section {
+  width: 394px;
+  padding-bottom: 25px;
+}
+.form-label {
+  font-family: 'Cormorant Upright', serif;
+  font-size: 23px;
+  font-weight: 900;
+  line-height: 28px;
+  opacity: 0.8;
+  color: white;
+}
+.form-input {
+  border: none;
+  outline: none;
+  width: 380px;
+  font-weight: lighter;
+  background-color: black;
+  border-bottom: 0.5px solid #dcca87;
+  color: white;
+  height: 20px;
+  padding: 30px 10px 10px;
+  line-height: 24px;
+  font-size: 20px;
+}
+.formValidation {
+  margin: 0;
+  color: #dcca87;
 }

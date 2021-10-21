@@ -82,25 +82,25 @@ const Login = ({ setLoading, setModalMessage }) => {
       <div className="login-formContainer">
         <p className="login-title">Iniciar Sesion</p>
         <form className="login-form" onSubmit={handleSubmit}>
-          <div className="login-form-section">
-            <label htmlFor="email" className="login-form-label"> Correo: </label>
+          <div className="form-section">
+            <label htmlFor="email" className="form-label"> Correo: </label>
             <input
               type="text"
               id="email"
-              className="login-form-input"
+              className="form-input"
               name="email"
               onChange={handleChange}
               value={form.email}
               onKeyUp={() => goEmail()}
             />
-            <p className="goEmail">{messages.emailMsg}</p>
+            <p className="goEmail formValidation">{messages.emailMsg}</p>
           </div>
-          <div className="login-form-section">
-            <label htmlFor="password" className="login-form-label">Contraseña:</label>
+          <div className="form-section">
+            <label htmlFor="password" className="form-label">Contraseña:</label>
             <label className="login-form-label-password">
               <input
                 type={inputType}
-                className="login-form-input"
+                className="form-input"
                 name="password"
                 id="password"
                 onChange={handleChange}
@@ -110,7 +110,7 @@ const Login = ({ setLoading, setModalMessage }) => {
                 ? <VisibilityOffIcon onClick={() => setInputType('text')} className="login-eye-icon" />
                 : <VisibilityIcon onClick={() => setInputType('password')} className="login-eye-icon" />}
             </label>
-            <p className="goPassword">{messages.passwordMsg}</p>
+            <p className="goPassword formValidation">{messages.passwordMsg}</p>
           </div>
 
           <button className="login-formButton" type="submit">
