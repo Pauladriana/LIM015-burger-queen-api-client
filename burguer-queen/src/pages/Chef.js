@@ -14,7 +14,7 @@ const Chef = ({ setLoading, setModalMessage }) => {
   const { path, url } = useRouteMatch();
   return (
     <HashRouter>
-      {(cookies.get('userLogged')).roles.name === 'cocinera'
+      {(cookies.get('userLogged')).roles.name === 'cocinera' || (cookies.get('userLogged')).roles.admin
         ? (
           <div>
             <div className="chefHeader">

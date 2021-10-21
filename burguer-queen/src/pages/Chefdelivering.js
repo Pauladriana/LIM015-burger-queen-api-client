@@ -5,6 +5,13 @@ import { getData } from '../services/get';
 
 const cookies = new Cookies();
 
+const showProductsOrder = (array) => array.map((products) => (
+  <div className="chef-orderContent">
+    <p className="chef-item">{products.productId && products.productId.name}</p>
+    <p className="chef-qty">{products.qty}</p>
+  </div>
+));
+
 function ChefOrders({ setLoading, setModalMessage }) {
   const [kitchenOrder, setKitchenOrders] = useState(null);
 
@@ -37,9 +44,8 @@ function ChefOrders({ setLoading, setModalMessage }) {
     <div className="ordersCard" key={order._id}>
       <p className="orderTimer">{time(order)}</p>
       <p className="orderClient">{order.client}</p>
-      <div className="chef-orderContent">
-        <p className="chef-item">{order.products[0].productId.name}</p>
-        <p className="chef-qty">{order.products[0].qty}</p>
+      <div>
+        {showProductsOrder(order.products)}
       </div>
     </div>
   ));
