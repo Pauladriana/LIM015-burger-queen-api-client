@@ -58,7 +58,15 @@ function ShowAllOrders({ setLoading, setModalMessage }) {
 
   const showOrders = (orders) => orders.map((order) => (
     <div className="ordersCard" key={order._id}>
-      <p className="orderStatus">{order.status}</p>
+      <p className="orderStatus">
+        {
+          order.status === 'pending' ? 'Pendiente'
+            : order.status === 'delivering' ? 'Lista'
+              : order.status === 'delivered' ? 'Entregada'
+                : order.status === 'canceled' ? 'Cancelada'
+                  : 'Error'
+        }
+      </p>
       <p className="orderClient">{order.client}</p>
       <div className="chef-orderContent">
         <p className="chef-item">{order.products[0].productId.name}</p>
@@ -122,11 +130,12 @@ function ShowPendingOrders({ setLoading, setModalMessage }) {
 
   const showOrders = (orders) => orders.map((order) => (
     <div className="ordersCard" key={order._id}>
-      <p className="orderStatus">{order.status}</p>
+      <p className="orderStatus">{order.status === 'pending' ? 'Pendiente' : 'Error'}</p>
       <p className="orderClient">{order.client}</p>
       <div className="chef-orderContent">
         <p className="chef-item">{order.products[0].productId.name}</p>
         <p className="chef-qty">{order.products[0].qty}</p>
+
       </div>
       <div>
         {order.status === 'pending' ? (
@@ -186,11 +195,12 @@ function ShowDeliveringOrders({ setLoading, setModalMessage }) {
 
   const showOrders = (orders) => orders.map((order) => (
     <div className="ordersCard" key={order._id}>
-      <p className="orderStatus">{order.status}</p>
+      <p className="orderStatus">{order.status === 'delivering' ? 'Lista' : 'Error'}</p>
       <p className="orderClient">{order.client}</p>
       <div className="chef-orderContent">
         <p className="chef-item">{order.products[0].productId.name}</p>
         <p className="chef-qty">{order.products[0].qty}</p>
+
       </div>
       <div>
         <button
@@ -234,11 +244,12 @@ function ShowDeliveredOrders({ setLoading }) {
 
   const showOrders = (orders) => orders.map((order) => (
     <div className="ordersCard" key={order._id}>
-      <p className="orderStatus">{order.status}</p>
+      <p className="orderStatus">{order.status === 'delivered' ? 'Entregada' : 'Error'}</p>
       <p className="orderClient">{order.client}</p>
       <div className="chef-orderContent">
         <p className="chef-item">{order.products[0].productId.name}</p>
         <p className="chef-qty">{order.products[0].qty}</p>
+
       </div>
       <div>
         {order.status === 'pending' ? (
@@ -294,7 +305,7 @@ function ShowCanceledOrders({ setLoading }) {
 
   const showOrders = (orders) => orders.map((order) => (
     <div className="ordersCard" key={order._id}>
-      <p className="orderStatus">{order.status}</p>
+      <p className="orderStatus">{order.status === 'canceled' ? 'Cancelada' : 'Error'}</p>
       <p className="orderClient">{order.client}</p>
       <div className="chef-orderContent">
         <p className="chef-item">{order.products[0].productId.name}</p>
