@@ -13,6 +13,7 @@
   },
   "plugins": ["react"],
   "rules": {
+    "linebreak-style": 0,
     "no-console": 1,
     "no-case-declarations": 0,
     "arrow-body-style": 0,
