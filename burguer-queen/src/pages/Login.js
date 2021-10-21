@@ -76,13 +76,8 @@ const Login = ({ setLoading, setModalMessage }) => {
 
   return (
     <div className="login-container">
-      <div className="login-header">
-        <div className="login-logo">
-          <img className="login-img" src={logo} alt="Logo" />
-        </div>
-        <div className="login-title">Iniciar Sesión</div>
-      </div>
       <div className="login-formContainer">
+        <p className="login-title">Iniciar Sesion</p>
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="login-form-section">
             <label htmlFor="email" className="login-form-label"> Correo: </label>
