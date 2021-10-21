@@ -7,7 +7,7 @@
     z-index: 999;
     width: 100%;
     min-height: 100vh;
-    background-color: rgba(0,0,0, 0.5);
+    background-color: rgba(0,0,0, 0.7);
     display: none;
     align-items: center;
     justify-content: center;
@@ -23,7 +23,7 @@
     min-height: 200px;
     max-height: 600px;
     overflow-y: auto;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.493),0 6px 20px 0 rgba(0, 0, 0, 0.527);
     animation-name: animatetop;
     animation-duration: 0.4s;
     display: flex;
