@@ -30,12 +30,20 @@ function ChefOrders({ setLoading, setModalMessage }) {
 
   const time = (order) => {
     const { dateProcessed, dateEntry } = order;
-    if (dateProcessed.slice(0, -14) === dateEntry.slice(0, -14)) {
-      const finalHour = Number(dateProcessed.slice(11, -11)) - Number(dateEntry.slice(11, -11));
-      const finalMinutes = Number(dateProcessed.slice(14, -8)) - Number(dateEntry.slice(14, -8));
-      const finalSeconds = Number(dateProcessed.slice(17, -5)) - Number(dateEntry.slice(17, -5));
-      return (
-        `${finalHour < 10 ? `0${finalHour}` : finalHour}: ${finalMinutes < 10 ? `0${finalMinutes}` : finalMinutes}: ${finalSeconds < 10 ? `0${finalSeconds}` : finalSeconds}`);
+    const localDateProcessed = (new Date(dateProcessed)).toString();
+    const localDateEntry = (new Date(dateEntry)).toString();
+    if (localDateProcessed.slice(0, 15) === localDateEntry.slice(0, 15)) {
+      const miliseconds = Math.abs(new Date(dateProcessed) - new Date(dateEntry));
+      const msToTime = (duration) => {
+        let seconds = Math.floor((duration / 1000) % 60);
+        let minutes = Math.floor((duration / (1000 * 60)) % 60);
+        let hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+        hours = (hours < 10) ? `0${hours}` : hours;
+        minutes = (minutes < 10) ? `0${minutes}` : minutes;
+        seconds = (seconds < 10) ? `0${seconds}` : seconds;
+        return `${hours} : ${minutes} : ${seconds}`;
+      };
+      return msToTime(miliseconds);
     }
     return 'Orden fuera de tiempo';
   };
