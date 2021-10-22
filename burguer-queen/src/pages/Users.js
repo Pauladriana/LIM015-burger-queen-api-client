@@ -10,7 +10,7 @@ import { redirectToNotFound } from '../helpers/helpers';
 const cookies = new Cookies();
 
 function Users({ setModalMessage }) {
-  const { url } = useRouteMatch();
+  // const { url } = useRouteMatch();
   const [users, setUsers] = useState(null);
 
   const userLogged = cookies.get('userLogged');
@@ -84,7 +84,7 @@ function Users({ setModalMessage }) {
                 </tbody>
               </table>
             </div>
-            <Link to={`${url}/newuser`}>Crear Usuario</Link>
+            <Link to="admin/users/newuser">Crear Usuario</Link>
           </div>
         )}
     </div>

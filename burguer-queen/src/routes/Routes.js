@@ -14,6 +14,7 @@ const Routes = () => {
 
   return (
     <HashRouter>
+      <div>Login</div>
       {loading && <Loader />}
       {modalMessage && <Modals setLoading={setLoading} modalMessage={modalMessage} setModalMessage={setModalMessage} />}
       <Switch>
