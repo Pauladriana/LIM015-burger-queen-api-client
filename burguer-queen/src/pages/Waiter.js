@@ -8,7 +8,6 @@ import { close, redirectToNotFound } from '../helpers/helpers';
 import WaiterNewOrder from './Waiterneworder';
 import AllOrders from './AllOrders';
 import '../style/Waiter.css';
-import bqLogo from '../media/bq-logo.svg';
 
 const cookies = new Cookies();
 
@@ -20,15 +19,14 @@ const Waiter = ({ setLoading, setModalMessage }) => {
       {(cookies.get('userLogged')).roles.name === 'mesera' || (cookies.get('userLogged')).roles.admin
         ? (
           <div className="waiterContainer">
-            <div className="waiterNavContainer">
-              {/* <p role="banner" className="logo">BQ</p> */}
-              <img role="banner" src={bqLogo} alt="logo" className="waiterHeaderLogo" />
-              <nav className="waiterNav">
-                <NavLink className="waiterNavLink" to={`${url}/neworder`} activeClassName="waiterNavLinkActive">Generar Orden</NavLink>
-                <div className="waiterLine" />
-                <NavLink className="waiterNavLink" to={`${url}/allorders`} activeClassName="waiterNavLinkActive">Ver Órdenes</NavLink>
+            <div className="navContainer">
+              <p role="banner" className="navlogo">BQ</p>
+              <nav className="nav">
+                <NavLink className="navlink" to={`${url}/neworder`} activeClassName="active">Generar Orden</NavLink>
+                <div className="navLine" />
+                <NavLink className="navlink" to={`${url}/allorders`} activeClassName="active">Ver Órdenes</NavLink>
               </nav>
-              <ExitToAppIcon onClick={() => close()} />
+              <ExitToAppIcon fontSize="medium" onClick={() => close()} />
             </div>
             <Switch>
               <Route

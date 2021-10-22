@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
+import DeleteIcon from '@mui/icons-material/Delete';
+import CreateIcon from '@mui/icons-material/Create';
 import '../style/Admin.css';
 import Cookies from 'universal-cookie';
 import { getData } from '../services/get';
-import edit from '../media/pencil.png';
-import remove from '../media/close.png';
 import { redirectToNotFound } from '../helpers/helpers';
 
 const cookies = new Cookies();
@@ -37,17 +37,15 @@ function Users({ setModalMessage }) {
       <td>{user.roles.name}</td>
       <td>{user._id}</td>
       <td>
-        <img
-          src={edit}
-          alt="pencil"
+        <CreateIcon
+          fontSize="small"
           className="optTable"
           onClick={() => { cookies.remove('user', { path: '/' }); cookies.set('user', user, { path: '/' }); window.location.href = '#/admin/users/editUser'; }}
         />
-        <img
-          src={remove}
-          alt="remove"
+        <DeleteIcon
+          fontSize="small"
           className="optTable"
-          onClick={() => {
+          onClick={() => () => {
             setModalMessage({
               title: '¿Está Seguro de eliminar este usuario?',
               body: 'Al removerse no podrá volver a recuperarlo más tarde.',
@@ -62,13 +60,12 @@ function Users({ setModalMessage }) {
   ));
 
   return (
-    <div>
+    <div className="container">
       {!(cookies.get('userLogged')).roles.admin
         ? redirectToNotFound()
         : (
-          <div className="OptionContent">
+          <div className="optionContent">
             <div className="tableCnt">
-              <h2>Usuarios</h2>
               <table>
                 <thead>
                   <tr>
@@ -84,7 +81,7 @@ function Users({ setModalMessage }) {
                 </tbody>
               </table>
             </div>
-            <Link to={`${url}/newuser`}>Crear Usuario</Link>
+            <div className="linkAdmin"><Link to={`${url}/newuser`}>Crear Usuario</Link></div>
           </div>
         )}
     </div>
