@@ -351,8 +351,8 @@ function AllOrders({ setLoading, setModalMessage }) {
 
   return (
     <div className="waiterNewOrderContainer">
-      <div className="waiterHeader allOrder">
-        <Stack direction="row" spacing={1}>
+      <div className="waiterHeaderAllOrder">
+        <div className="waiterButtonsContainer">
           <ColorButton
             onClick={() => { setFilterOrders('allOrders'); setStyleButton1(styleOne); setStyleButton2(styleTwo); setStyleButton3(styleTwo); setStyleButton4(styleTwo); setStyleButton5(styleTwo); }}
           >
@@ -378,7 +378,7 @@ function AllOrders({ setLoading, setModalMessage }) {
           >
             Canceladas
           </ColorButton5>
-        </Stack>
+        </div>
       </div>
       <div className="waiterAllOrdersBody">
         {filteredOrders === 'allOrders'

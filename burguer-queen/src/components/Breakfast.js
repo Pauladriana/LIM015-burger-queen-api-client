@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from '@material-ui/icons/Search';
 import { getData } from '../services/get';
 import '../style/Waiter.css';
 

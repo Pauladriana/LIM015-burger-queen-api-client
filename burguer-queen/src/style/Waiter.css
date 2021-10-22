@@ -109,12 +109,15 @@
 }
 
 /*-------------Waiter All Orders------------------*/
-.waiterHeader.allOrder{
-    padding-left: 4%;
+.waiterHeaderAllOrder{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 10%;
+    align-items: center;
 }
 .waiterAllOrdersBody{
-    padding: 5% 0;
-    max-height: 78%;
+    max-height: 90%;
     overflow-y: scroll;
 }
 .waiterOrdersCardContainer{

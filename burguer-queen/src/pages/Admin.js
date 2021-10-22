@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import {
   NavLink, Switch, Route, useRouteMatch, HashRouter,
 } from 'react-router-dom';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Cookies from 'universal-cookie';
 import userPhoto from '../media/man.png';
 import '../style/Admin.css';

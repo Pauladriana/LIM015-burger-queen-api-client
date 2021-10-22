@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import Cookies from 'universal-cookie';
 import '../style/Login.css';
 import { signIn } from '../services/post';
