@@ -8,11 +8,9 @@ export const getData = (path, token) => get(`${url}${path}?limit=0`, {
 });
 
 export const getUserLogged = (path, token) => {
-  console.log(token);
   return get(`${url}${path}`, { headers: { Authorization: `Bearer ${token}` } })
     .then((data) => {
-      console.log(data);
       return data;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.info(err));
 };

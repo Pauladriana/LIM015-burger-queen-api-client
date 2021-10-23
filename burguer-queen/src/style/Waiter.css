@@ -1,154 +1,189 @@
-/*--------------------------Waiter------------------*/ 
-.waiterContainer{
-    position: absolute;
-    height: 100vh;
-    width: 100%;
+/*--------------------------Waiter------------------*/
+.waiterContainer {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
 }
 
-/*--------------------------Waiter New Order------------------*/ 
-.waiterNewOrderContainer{
-    position: relative;
-    top: 10%;
-    width: 100%;
-    height: 90vh;
-    color: white;
+/*--------------------------Waiter New Order------------------*/
+.waiterNewOrderContainer {
+  position: relative;
+  top: 10%;
+  width: 100%;
+  height: 90vh;
+  color: white;
 }
-.waiterHeader{
-    padding: 4% 0 5%;
-    display: grid;
-    justify-content: center;
-    grid-template-columns: 45% 45%;
+.waiterHeader {
+  padding: 4% 0 5%;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 45% 45%;
 }
-.waiterHeaderSection1{
-    padding: 0 5%;
-    display: flex;
-    justify-content: space-between;
+.waiterHeaderSection1 {
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
 }
-.waiterHeaderSection2{
-    padding-left: 10%;
+.waiterHeaderSection2 {
+  padding-left: 10%;
 }
-.waiterInput{
-    width: 60%;
-    font-size: 16px;
-    color: white;
-    background-color: black;
-    border: 1px solid #cac2a5;
-    outline: none;
-    text-align: center;
-    height: 95%;
+.waiterInput {
+  width: 60%;
+  font-size: 16px;
+  color: white;
+  background-color: black;
+  border: 1px solid #cac2a5;
+  outline: none;
+  text-align: center;
+  height: 95%;
 }
-.waiterBody{
-    display: grid;
-    justify-content: center;
-    grid-template-columns: 45% 45%;
-    height: 78%;
+.waiterBody {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 45% 45%;
+  height: 70%;
 }
-.waiterProductsSection{
-    overflow-y: auto;
-    max-height: 95%;
+.waiterProductsSection {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 95%;
 }
-.waiterOrderSection{
-    padding: 0 0 0 10%;
-    overflow-y: auto;
-    max-height: 95%;
+.waiterOrderSection {
+  padding: 0 0 0 10%;
+  overflow-y: auto;
+  max-height: 95%;
 }
-.waiterProductsContainer{
-    padding-top: 10%;
-    display: flex;
-    flex-wrap: wrap;
+.waiterProductsContainer {
+  padding-top: 1%;
+  display: flex;
+  flex-wrap: wrap;
 }
-.waiterProductCard{
-    width: 40%;
-    padding: 5%;
+.waiterProductCard {
+  width: 40%;
+  padding: 0 5%;
 }
-.waiterProductCardText{
-    font-size: 16px;
-    color: #b9b08c;
-    line-height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.waiterProductCardText {
+  font-size: 16px;
+  color: #b9b08c;
+  line-height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
-.waiterProductCardImage{
-    padding: 5% 0;
+.waiterProductCardImage {
+  padding: 5% 0;
 }
-.waiterImgCard{
-    max-width: 100%;
-    height: auto;
+.waiterImgCard {
+  max-width: 100%;
+  height: auto;
 }
 /*---------------------Waiter Table Order----------------*/
-.waiterOrderTitle{
-    text-align: center;
-    padding-bottom: 5%;
+.waiterOrderTitle {
+  text-align: center;
+  padding-bottom: 5%;
 }
-.waiterOrderTable th{
-    padding: 0;
-    color: #b9b08c;
-    border-bottom: 0;
-    text-align: initial;
+.waiterOrderTable th {
+  padding: 0;
+  color: #b9b08c;
+  border-bottom: 0;
+  text-align: initial;
 }
-.waiterOrderTable td{
-    padding: 10px 0;
-    text-align: initial;
+.waiterOrderTable td {
+  padding: 10px 0;
+  text-align: initial;
 }
-.golden{
-    color: #b9b08c;
+.golden {
+  color: #b9b08c;
 }
-.buttonContainer{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding-top: 5%;
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 5%;
 }
-.logo{
-    font-family: 'Cormorant Upright', serif;
-    color: #dcca87;
-    font-size: 30px;
-    font-weight: bold;
-    margin: 5px 10px;
+.logo {
+  font-family: 'Cormorant Upright', serif;
+  color: #dcca87;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 5px 10px;
+}
+.searchContent {
+  position: relative;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.15);
+  margin-right: 16px;
+  margin-left: 5%;
+  width: 90%;
+}
+.waiterSearchInputContent {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.00938em;
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  color: inherit;
+  left: 27%;
+}
+.waiterSearchInput {
+  padding: 8px 8px 8px 0;
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentColor;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: 1.4375em;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  animation-duration: 10ms;
+  outline: none;
 }
 
 /*-------------Waiter All Orders------------------*/
-.waiterHeaderAllOrder{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    height: 10%;
-    align-items: center;
+.waiterHeaderAllOrder {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  height: 15%;
+  align-items: center;
 }
-.waiterAllOrdersBody{
-    max-height: 90%;
-    overflow-y: scroll;
+.waiterAllOrdersBody {
+  max-height: 85%;
+  overflow-y: scroll;
 }
-.waiterOrdersCardContainer{
-    flex-wrap: wrap;
-    display: flex;
-    justify-content: center;
+.waiterOrdersCardContainer {
+  flex-wrap: wrap;
+  padding: 3% 3.85%;
+  display: flex;
+  justify-content: space-evenly;
 }
-.ordersCard {
-    margin: 4%;
-    border: 1px solid white;
-    background-color: black;
-    width: 300px;
-    height: 320px;
+.chef-item {
+  flex: 90;
+  text-align: left;
 }
-.chef-item{
-    flex: 90;
-    text-align: left;
+.chef-qty {
+  flex: 10;
+  text-align: center;
 }
-.chef-qty{
-    flex: 10;
-    text-align: center;
+@media only screen and (max-width: 1200px) {
 }
-.chef-orderReady{
-    display: block;
-    margin: auto;
-    font-family: 'Cormorant Upright', serif;
-    background-color: #dcca87;
-    color: black;
-    font-weight: bolder;
-    font-size: 20px;
-    border: 1px solid #dcca87;
-    width: 80px;
-    height: 40px;
+
+@media only screen and (max-width: 768px) {
+}
+
+@media only screen and (max-width: 500px) {
+  .waiterProductCardText {
+    font-size: 12px;
+  }
+  .waiterOrderTitle {
+    margin: 0;
+  }
 }

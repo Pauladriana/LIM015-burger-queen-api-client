@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import React, { useEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
 import Button from '@mui/material/Button';

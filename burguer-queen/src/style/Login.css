@@ -12,44 +12,36 @@
   font-size: 60px;
   color: black;
   font-weight: bolder;
-  font-family: 'Cormorant Upright', serif;
 }
-
+.login-form{
+  width: 50%;
+}
 .login-title {
-  display: block;
-  text-align: center;
-  font-family: 'Cormorant Upright', serif;
   font-size: 34px;
   font-weight: 900;
   color: #dcca87;
 }
 .login-formContainer {
-  width: 70%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: black;
-  height: 650px;
-}
-.login-form {
-  display: flex;
-  border: none;
-  flex-direction: column;
-  align-items: center;
+  height: 80%;
 }
 
 .login-eye-icon {
   position: relative;
-  bottom: 27%;
-  left: 95%;
+  bottom: 30px;
+  left: 94%;
 }
 
 .login-formButton {
   border: none;
   background-color: #dcca87;
-  color: black;
-  width: 354px;
+  color: #000000;
+  width: 100%;
   height: 70px;
   font-size: 25px;
   font-weight: 900;
@@ -60,4 +52,28 @@
 }
 .login-img {
   height: 140px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .login-formContainer{
+    width: 70%;
+  }
+  .login-form{
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .login-form{
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .login-formContainer{
+    height: 70%;
+  }
+  .login-formContainer{
+    width: 100%;
+  }
 }

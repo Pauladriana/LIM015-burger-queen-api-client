@@ -2,6 +2,7 @@ import React from 'react';
 import {
   HashRouter, NavLink, Switch, Route, useRouteMatch,
 } from 'react-router-dom';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Cookies from 'universal-cookie';
 import '../style/Orders.css';
 import ChefOrders from './ChefOrders';
@@ -16,39 +17,32 @@ const Chef = ({ setLoading, setModalMessage }) => {
     <HashRouter>
       {(cookies.get('userLogged')).roles.name === 'cocinera' || (cookies.get('userLogged')).roles.admin
         ? (
-          <div>
-            <div className="chefHeader">
-              <p className="logo">BQ</p>
-              <nav>
-                <NavLink to={`${url}/pendingorders`} activeClassName="active" className="chef-navlink">Ordenes Pendientes</NavLink>
-                <NavLink to={`${url}/deliveringorders`} activeClassName="active" className="chef-navlink">Ordenes Listas</NavLink>
+          <div className="chefContainer">
+            <div className="navContainer">
+              <p role="banner" className="navlogo">BQ</p>
+              <nav className="nav">
+                <NavLink to={`${url}/pendingorders`} activeClassName="active" className="navlink">Ordenes Pendientes</NavLink>
+                <div className="navLine" />
+                <NavLink to={`${url}/deliveringorders`} activeClassName="active" className="navlink">Ordenes Listas</NavLink>
               </nav>
-              <button type="button" onClick={() => close()}> Cerrar Sesión</button>
+              <ExitToAppIcon fontSize="medium" onClick={() => close()} />
             </div>
-            <div>
-              <Switch>
-                <Route
-                  exact
-                  path={`${path}/pendingorders`}
-                  component={() => (
-                    <div className="chef-ordersContainer">
-                      <h1>Ordenes Pendientes</h1>
-                      <ChefOrders setLoading={setLoading} setModalMessage={setModalMessage} />
-                    </div>
-                  )}
-                />
-                <Route
-                  exact
-                  path={`${path}/deliveringorders`}
-                  component={() => (
-                    <div className="chef-ordersContainer">
-                      <h1>Ordenes Listas</h1>
-                      <Chefdelivering setLoading={setLoading} setModalMessage={setModalMessage} />
-                    </div>
-                  )}
-                />
-              </Switch>
-            </div>
+            <Switch>
+              <Route
+                exact
+                path={`${path}/pendingorders`}
+                component={() => (
+                  <ChefOrders setLoading={setLoading} setModalMessage={setModalMessage} />
+                )}
+              />
+              <Route
+                exact
+                path={`${path}/deliveringorders`}
+                component={() => (
+                  <Chefdelivering setLoading={setLoading} setModalMessage={setModalMessage} />
+                )}
+              />
+            </Switch>
           </div>
         )
         : redirectToNotFound()}

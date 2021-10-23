@@ -3,12 +3,13 @@
   font-family: 'Cormorant Upright', 'Open Sans', sans-serif;
 }
 body {
+  position: absolute;
   background-size: cover;
   margin: 0;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   color: white;
-  background: url('../media/background.jpg') repeat;
+  background: url('../media/background.jpg') repeat center center;
   box-sizing: border-box;
 }
 /*--------------------Nav-------------------------*/
@@ -57,8 +58,10 @@ body {
 }
 /*----------------------Forms-----------------------*/
 .form-section {
-  width: 394px;
+  max-width: 100%;
   padding-bottom: 25px;
+  display: flex;
+  flex-direction: column;
 }
 .form-label {
   font-family: 'Cormorant Upright', serif;
@@ -71,7 +74,6 @@ body {
 .form-input {
   border: none;
   outline: none;
-  width: 380px;
   font-weight: lighter;
   background-color: black;
   border-bottom: 0.5px solid #dcca87;
@@ -84,4 +86,24 @@ body {
 .formValidation {
   margin: 0;
   color: #dcca87;
+}
+@media only screen and (max-width: 1200px) {
+}
+
+@media only screen and (max-width: 768px) {
+}
+
+@media only screen and (max-width: 500px) {
+  .navContainer{
+    height: 8%;
+  }
+  .adminBodyContainer{
+    top:8%;
+  }
+  .navlogo{
+    font-size: 30px;
+  }
+  .navlink{
+    font-size: 14px;
+  }
 }

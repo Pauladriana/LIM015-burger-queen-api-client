@@ -47,7 +47,7 @@ const showProductsOrder = (array) => array.map((products) => (
   </div>
 ));
 
-function ShowAllOrders({ setLoading, setModalMessage }) {
+function ShowAllOrders({ setModalMessage }) {
   const [orders, setOrders] = useState(null);
 
   useEffect(() => {
@@ -77,7 +77,7 @@ function ShowAllOrders({ setLoading, setModalMessage }) {
       <div>
         {showProductsOrder(order.products)}
       </div>
-      <div>
+      <div className="orderCardButtonContainer">
         {order.status === 'pending' ? (
           <button
             type="button"
@@ -91,8 +91,6 @@ function ShowAllOrders({ setLoading, setModalMessage }) {
             Cancelar
           </button>
         ) : <div />}
-      </div>
-      <div>
         {order.status === 'delivering' ? (
           <button
             type="button"
@@ -107,8 +105,6 @@ function ShowAllOrders({ setLoading, setModalMessage }) {
       </div>
     </div>
   ));
-  console.log(orders);
-
   return (
     <div className="waiterOrdersCardContainer">
       {orders
@@ -118,7 +114,7 @@ function ShowAllOrders({ setLoading, setModalMessage }) {
   );
 }
 
-function ShowPendingOrders({ setLoading, setModalMessage }) {
+function ShowPendingOrders({ setModalMessage }) {
   const [orders, setOrders] = useState(null);
 
   useEffect(() => {
@@ -141,7 +137,7 @@ function ShowPendingOrders({ setLoading, setModalMessage }) {
       <div>
         {showProductsOrder(order.products)}
       </div>
-      <div>
+      <div className="orderCardButtonContainer">
         {order.status === 'pending' ? (
           <button
             type="button"
@@ -155,8 +151,6 @@ function ShowPendingOrders({ setLoading, setModalMessage }) {
             Cancelar
           </button>
         ) : <div />}
-      </div>
-      <div>
         {order.status === 'delivering' ? (
           <button
             type="button"
@@ -181,7 +175,7 @@ function ShowPendingOrders({ setLoading, setModalMessage }) {
   );
 }
 
-function ShowDeliveringOrders({ setLoading, setModalMessage }) {
+function ShowDeliveringOrders({ setModalMessage }) {
   const [orders, setOrders] = useState(null);
 
   useEffect(() => {
@@ -204,7 +198,7 @@ function ShowDeliveringOrders({ setLoading, setModalMessage }) {
       <div>
         {showProductsOrder(order.products)}
       </div>
-      <div>
+      <div className="orderCardButtonContainer">
         <button
           type="button"
           className="chef-orderReady"
@@ -227,7 +221,7 @@ function ShowDeliveringOrders({ setLoading, setModalMessage }) {
   );
 }
 
-function ShowDeliveredOrders({ setLoading }) {
+function ShowDeliveredOrders() {
   const [orders, setOrders] = useState(null);
 
   useEffect(() => {
@@ -235,7 +229,6 @@ function ShowDeliveredOrders({ setLoading }) {
     getData('orders', cookies.get('token'))
       .then((orderTeam) => {
         if (cancel) return;
-        console.log(orderTeam);
         const newOrders = orderTeam.filter((order) => order.status === 'delivered');
         setOrders(newOrders);
       });
@@ -251,7 +244,7 @@ function ShowDeliveredOrders({ setLoading }) {
       <div>
         {showProductsOrder(order.products)}
       </div>
-      <div>
+      <div className="orderCardButtonContainer">
         {order.status === 'pending' ? (
           <button
             className="chef-orderReady"
@@ -263,8 +256,6 @@ function ShowDeliveredOrders({ setLoading }) {
             Cancelar
           </button>
         ) : <div />}
-      </div>
-      <div>
         {order.status === 'delivering' ? (
           <button
             type="button"
@@ -287,7 +278,7 @@ function ShowDeliveredOrders({ setLoading }) {
     </div>
   );
 }
-function ShowCanceledOrders({ setLoading }) {
+function ShowCanceledOrders() {
   const [orders, setOrders] = useState(null);
 
   useEffect(() => {
@@ -310,7 +301,7 @@ function ShowCanceledOrders({ setLoading }) {
       <div>
         {showProductsOrder(order.products)}
       </div>
-      <div>
+      <div className="orderCardButtonContainer">
         {order.status === 'delivering' ? (
           <button
             type="button"
@@ -351,33 +342,31 @@ function AllOrders({ setLoading, setModalMessage }) {
   return (
     <div className="waiterNewOrderContainer">
       <div className="waiterHeaderAllOrder">
-        <div className="waiterButtonsContainer">
-          <ColorButton
-            onClick={() => { setFilterOrders('allOrders'); setStyleButton1(styleOne); setStyleButton2(styleTwo); setStyleButton3(styleTwo); setStyleButton4(styleTwo); setStyleButton5(styleTwo); }}
-          >
-            Todas
-          </ColorButton>
-          <ColorButton2
-            onClick={() => { setFilterOrders('pending'); setStyleButton1(styleTwo); setStyleButton2(styleOne); setStyleButton3(styleTwo); setStyleButton4(styleTwo); setStyleButton5(styleTwo); }}
-          >
-            Pendientes
-          </ColorButton2>
-          <ColorButton3
-            onClick={() => { setFilterOrders('delivering'); setStyleButton1(styleTwo); setStyleButton2(styleTwo); setStyleButton3(styleOne); setStyleButton4(styleTwo); setStyleButton5(styleTwo); }}
-          >
-            Listas
-          </ColorButton3>
-          <ColorButton4
-            onClick={() => { setFilterOrders('delivered'); setStyleButton1(styleTwo); setStyleButton2(styleTwo); setStyleButton3(styleTwo); setStyleButton4(styleOne); setStyleButton5(styleTwo); }}
-          >
-            Entregadas
-          </ColorButton4>
-          <ColorButton5
-            onClick={() => { setFilterOrders('canceled'); setStyleButton1(styleTwo); setStyleButton2(styleTwo); setStyleButton3(styleTwo); setStyleButton4(styleTwo); setStyleButton5(styleOne); }}
-          >
-            Canceladas
-          </ColorButton5>
-        </div>
+        <ColorButton
+          onClick={() => { setFilterOrders('allOrders'); setStyleButton1(styleOne); setStyleButton2(styleTwo); setStyleButton3(styleTwo); setStyleButton4(styleTwo); setStyleButton5(styleTwo); }}
+        >
+          Todas
+        </ColorButton>
+        <ColorButton2
+          onClick={() => { setFilterOrders('pending'); setStyleButton1(styleTwo); setStyleButton2(styleOne); setStyleButton3(styleTwo); setStyleButton4(styleTwo); setStyleButton5(styleTwo); }}
+        >
+          Pendientes
+        </ColorButton2>
+        <ColorButton3
+          onClick={() => { setFilterOrders('delivering'); setStyleButton1(styleTwo); setStyleButton2(styleTwo); setStyleButton3(styleOne); setStyleButton4(styleTwo); setStyleButton5(styleTwo); }}
+        >
+          Listas
+        </ColorButton3>
+        <ColorButton4
+          onClick={() => { setFilterOrders('delivered'); setStyleButton1(styleTwo); setStyleButton2(styleTwo); setStyleButton3(styleTwo); setStyleButton4(styleOne); setStyleButton5(styleTwo); }}
+        >
+          Entregadas
+        </ColorButton4>
+        <ColorButton5
+          onClick={() => { setFilterOrders('canceled'); setStyleButton1(styleTwo); setStyleButton2(styleTwo); setStyleButton3(styleTwo); setStyleButton4(styleTwo); setStyleButton5(styleOne); }}
+        >
+          Canceladas
+        </ColorButton5>
       </div>
       <div className="waiterAllOrdersBody">
         {filteredOrders === 'allOrders'

@@ -35,7 +35,7 @@ function Users({ setModalMessage }) {
     <tr key={user._id}>
       <td>{user.email}</td>
       <td>{user.roles.name}</td>
-      <td>{user._id}</td>
+      <td className="tableIdContent">{user._id}</td>
       <td>
         <CreateIcon
           fontSize="small"
@@ -71,7 +71,7 @@ function Users({ setModalMessage }) {
                   <tr>
                     <th>Nombre</th>
                     <th>Rol</th>
-                    <th>Id</th>
+                    <th className="tableIdContent">Id</th>
                   </tr>
                 </thead>
                 <tbody>
