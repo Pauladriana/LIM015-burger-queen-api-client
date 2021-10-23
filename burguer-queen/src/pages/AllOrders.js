@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../style/Admin.css';
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import Cookies from 'universal-cookie';
 import { getData } from '../services/get';
