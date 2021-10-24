@@ -11,6 +11,6 @@ export const getUserLogged = (path, token) => {
   return get(`${url}${path}`, { headers: { Authorization: `Bearer ${token}` } })
     .then((data) => {
       return data;
-    })
-    .catch((err) => console.info(err));
+    });
+// .catch((err) => console.info(err));
 };
