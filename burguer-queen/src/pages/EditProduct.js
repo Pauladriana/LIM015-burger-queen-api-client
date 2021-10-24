@@ -76,6 +76,7 @@ const EditProductForm = ({ setLoading, setModalMessage }) => {
           <label htmlFor="urlImage">Cambiar Imagen</label>
           <br />
           <input
+            placeholder={image}
             type="file"
             accept="image/*"
             className="form-control"

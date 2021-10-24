@@ -8,12 +8,10 @@ const cookies = new Cookies();
 
 export const signIn = async (data, setLoading, setModalMessage) => {
   setLoading(true);
-  console.log(data.email);
   try {
     // obteniendo el token o los mensajes de error de la API
     const response = await post(`${url}auth`, { body: data });
     setLoading(false);
-    console.log(response);
     // manejo mensajes de error
     if (response.err && response.message === 'Invalid password') return setModalMessage({ title: 'Contraseña incorrecta.', body: 'Inténtelo nuevamente' });
     if (response.err && response.message === 'User doesn\'t exists') return setModalMessage({ title: 'Usuario no registrado.', body: 'Inténtelo nuevamente' });
@@ -33,6 +31,7 @@ export const signIn = async (data, setLoading, setModalMessage) => {
       window.location.hash = '#/chef/pendingorders';
     }
   } catch (err) {
+    console.info(err);
     setLoading(false);
     setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
   }
@@ -52,12 +51,14 @@ export const createData = (data, setLoading, setModalMessage, path) => {
       image,
     },
   })
-    .then((data) => {
+    .then(() => {
       setLoading(false);
-      console.log(data);
       setModalMessage({ title: 'Producto creado exitosamente.' });
     })
-    .catch(() => setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' }));
+    .catch((err) => {
+      console.info(err);
+      setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
+    });
 };
 
 export const createUser = (data, setLoading, setModalMessage, path) => {
@@ -73,7 +74,6 @@ export const createUser = (data, setLoading, setModalMessage, path) => {
     },
   })
     .then((response) => {
-      console.log(response);
       setLoading(false);
       if (response.err && response.message === `User with email: ${data.email} already exists`) {
         return setModalMessage({
@@ -82,7 +82,10 @@ export const createUser = (data, setLoading, setModalMessage, path) => {
       }
       setModalMessage({ title: 'Usuario creado exitosamente' });
     })
-    .catch(() => setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' }));
+    .catch((err) => {
+      console.info(err);
+      setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
+    });
 };
 
 export const createOrder = (client, products, userId, setLoading, setModalMessage, path) => {
@@ -98,12 +101,11 @@ export const createOrder = (client, products, userId, setLoading, setModalMessag
   })
     .then((data) => {
       setLoading(false);
-      console.log(data);
       if (data.err && data.status === 400) return setModalMessage({ title: 'Ups!! no puede crear una orden vacía' });
       setModalMessage({ title: 'Orden creada exitósamente' });
     })
     .catch((err) => {
-      console.log(err);
+      console.info(err);
       setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
     });
 };

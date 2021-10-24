@@ -5,7 +5,7 @@
     z-index: 999;
     width: 100%;
     min-height: 100vh;
-    background-color: rgba(0,0,0, 0.5);
+    background-color: rgba(0,0,0, 0.7);
     display: none;
     align-items: center;
     justify-content: center;
@@ -15,24 +15,25 @@
 }
 .modal-container{
     position: relative;
-    background-color: #fff;
-    min-width: 320px;
-    max-width: 480px;
+    background-color: #dcca87;;
+    min-width: 280px;
+    max-width: 350px;
     min-height: 200px;
     max-height: 600px;
     overflow-y: auto;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.493),0 6px 20px 0 rgba(0, 0, 0, 0.527);
     animation-name: animatetop;
     animation-duration: 0.4s;
-    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 10px 30px;
 }
 .modal-close{
-    color: gray;
+    color: black;
     position: absolute;
+    background: none;
     top: 5px;
     right: 10px;
     font-size: 15px;
@@ -48,7 +49,39 @@
   cursor: pointer;
 }
 .modal-body {
-    color: #FA4A0C;
+    color: black;
     font-size:18px;
     text-align: center;
+}
+
+.modal-cancel{
+    background: none;
+    border: 1px solid black;
+    font-family: 'Cormorant Upright', serif;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    width: 80px;
+
+}
+
+.modal-remove, .modal-update{
+    background-color: black;
+    border: 1px solid black;
+    font-family: 'Cormorant Upright', serif;
+    color: white;
+    font-size: 18px;
+    margin: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    width: 80px;
+}
+
+.modal-container h3{
+    font-family: 'Cormorant Upright', serif;
+    color: black;
+    font-size: 22px;
+    margin-bottom: 15px;
 }

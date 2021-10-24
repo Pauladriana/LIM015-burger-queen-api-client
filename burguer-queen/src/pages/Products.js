@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CreateIcon from '@material-ui/icons/Create';
 import '../style/Admin.css';
 import Cookies from 'universal-cookie';
-import edit from '../media/pencil.png';
-import remove from '../media/close.png';
 import { getData } from '../services/get';
 import { redirectToNotFound } from '../helpers/helpers';
 
@@ -36,17 +36,15 @@ const Products = ({ setModalMessage }) => {
       <td>{product.type}</td>
       <td>{`S/ ${product.price}`}</td>
       <td>
-        <img
-          src={edit}
-          alt="pencil"
+        <CreateIcon
+          fontSize="small"
           className="optTable"
           onClick={() => { cookies.remove('product', { path: '/' }); cookies.set('product', product, { path: '/' }); window.location.href = '#/admin/products/editproduct'; }}
         />
-        <img
-          src={remove}
-          alt="remove"
+        <DeleteIcon
+          fontSize="small"
           className="optTable"
-          onClick={() => {
+          onClick={() => () => {
             setModalMessage({
               title: '¿Está Seguro de eliminar este producto?',
               body: 'Al removerse no podrá volver a recuperarlo más tarde.',
@@ -61,18 +59,17 @@ const Products = ({ setModalMessage }) => {
   ));
 
   return (
-    <div>
+    <div className="container">
       {!(cookies.get('userLogged')).roles.admin
         ? redirectToNotFound()
         : (
-          <div className="OptionContent">
+          <div className="optionContent">
             <div className="tableCnt">
-              <h2>Productos</h2>
               <table>
                 <thead>
                   <tr>
                     <th>Nombre</th>
-                    <th>Menu</th>
+                    <th>Menú</th>
                     <th>Precio</th>
                   </tr>
                 </thead>
@@ -83,7 +80,7 @@ const Products = ({ setModalMessage }) => {
                 </tbody>
               </table>
             </div>
-            <Link to={`${url}/newproduct`}>Crear Producto</Link>
+            <div className="linkAdmin"><Link to={`${url}/newproduct`}>Crear Producto</Link></div>
           </div>
         )}
     </div>

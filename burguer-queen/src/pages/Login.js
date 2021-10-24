@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import Cookies from 'universal-cookie';
 import '../style/Login.css';
-import logo from '../media/logo1.svg';
 import { signIn } from '../services/post';
 
 const cookies = new Cookies();
 
 const Login = ({ setLoading, setModalMessage }) => {
+  const [inputType, setInputType] = useState('password');
+
   const initialForm = {
     email: '',
     password: '',
@@ -76,38 +79,36 @@ const Login = ({ setLoading, setModalMessage }) => {
 
   return (
     <div className="login-container">
-      <div className="login-header">
-        <div className="login-logo">
-          <img className="login-img" src={logo} alt="Logo" />
-        </div>
-        <div className="login-title">Iniciar Sesión</div>
-      </div>
       <div className="login-formContainer">
+        <p className="login-title">Iniciar Sesion</p>
         <form className="login-form" onSubmit={handleSubmit}>
-          <div className="login-form-section">
-            <label htmlFor="email" className="login-form-label"> Correo: </label>
+          <div className="form-section">
+            <label htmlFor="email" className="form-label"> Correo: </label>
             <input
               type="text"
               id="email"
-              className="login-form-input"
+              className="form-input"
               name="email"
               onChange={handleChange}
               value={form.email}
               onKeyUp={() => goEmail()}
             />
-            <p className="goEmail">{messages.emailMsg}</p>
+            <p className="goEmail formValidation">{messages.emailMsg}</p>
           </div>
-          <div className="login-form-section">
-            <label htmlFor="password" className="login-form-label">Contraseña: </label>
+          <div className="form-section">
+            <label htmlFor="password" className="form-label">Contraseña:</label>
             <input
-              type="password"
-              className="login-form-input"
+              type={inputType}
+              className="form-input"
               name="password"
               id="password"
               onChange={handleChange}
               onKeyUp={() => goPassword()}
             />
-            <p className="goPassword">{messages.passwordMsg}</p>
+            {inputType === 'password'
+              ? <VisibilityOffIcon onClick={() => setInputType('text')} className="login-eye-icon" />
+              : <VisibilityIcon onClick={() => setInputType('password')} className="login-eye-icon" />}
+            <p className="goPassword formValidation">{messages.passwordMsg}</p>
           </div>
 
           <button className="login-formButton" type="submit">

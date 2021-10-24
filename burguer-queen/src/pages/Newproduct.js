@@ -24,59 +24,64 @@ const ProductForm = ({ setLoading, setModalMessage }) => {
   };
   return (
     <div className="container">
-      <button type="button" onClick={() => { window.location.href = '#/admin/products'; }} className="back">Atrás</button>
-      <h2> Nuevo Producto </h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Nombre:</label>
-          <br />
-          <input
-            type="text"
-            className="form-control"
-            placeholder="nombre de producto"
-            name="name"
-            id="name"
-            onChange={handleChange}
-          />
+      <div className="optionContent">
+        <div className="optionContentHeader">
+          <button type="button" onClick={() => { window.location.href = '#/admin/products'; }} className="back">Atrás</button>
+          <h2> Nuevo Producto </h2>
         </div>
-        <div className="form-group">
-          <label htmlFor="menu">Menu:</label>
-          <br />
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Desayuno o Diario"
-            name="type"
-            id="menu"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="description">Precio:</label>
-          <br />
-          <input
-            type="number"
-            className="form-control"
-            placeholder="S/"
-            name="price"
-            id="price"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="urlImage">Agregar Imagen</label>
-          <br />
-          <input
-            type="file"
-            accept="image/*"
-            className="form-control"
-            name="image"
-            id="urlImage"
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit">Guardar</button>
-      </form>
+        <form onSubmit={handleSubmit} className="formUser">
+          <div className="formCnt">
+            <div className="form-section">
+              <label className="form-label" htmlFor="name">Nombre:</label>
+              <br />
+              <input
+                type="text"
+                className="form-input newProductForm"
+                placeholder="Nombre de producto"
+                name="name"
+                id="name"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-section">
+              <label className="form-label" htmlFor="menu">Menu:</label>
+              <br />
+              <input
+                type="text"
+                className="form-input newProductForm"
+                placeholder="Desayuno o Diario"
+                name="type"
+                id="menu"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-section">
+              <label className="form-label" htmlFor="description">Precio:</label>
+              <br />
+              <input
+                type="number"
+                className="form-input newProductForm"
+                placeholder="S/"
+                name="price"
+                id="price"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-section">
+              <label className="form-label" htmlFor="urlImage">Agregar Imagen</label>
+              <br />
+              <input
+                type="text"
+                className="form-input newProductForm"
+                name="image"
+                id="urlImage"
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <button type="submit" className="userSubmit">Guardar</button>
+        </form>
+      </div>
     </div>
   );
 };

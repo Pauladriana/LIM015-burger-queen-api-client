@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import {
   NavLink, Switch, Route, useRouteMatch, HashRouter,
 } from 'react-router-dom';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import Avatar from '@mui/material/Avatar';
+import { brown } from '@mui/material/colors';
 import Cookies from 'universal-cookie';
-import userPhoto from '../media/man.png';
 import '../style/Admin.css';
-import logo from '../media/LOGOBQO.png';
 import { close, redirectToNotFound } from '../helpers/helpers';
 import Users from './Users';
 import Products from './Products';
@@ -30,74 +31,74 @@ const Admin = ({ setLoading, setModalMessage }) => {
       {(!userLogged.roles.admin)
         ? redirectToNotFound()
         : (
-          <div>
-            <div>
-              <div className="header">
-                <img src={logo} alt="" className="logo" />
-                <nav>
-                  <NavLink to={`${url}/users`} activeClassName="red">Usuarios</NavLink>
-                  <NavLink to={`${url}/products`} activeClassName="red">Productos</NavLink>
-                  <NavLink to={`${url}/allorders`} activeClassName="red">Órdenes</NavLink>
-                </nav>
-                <button type="button" onClick={() => close()}>Cerrar Sesión</button>
-              </div>
-              <div>
-                <div>
-                  <h1>Administradx</h1>
-                  <div className="userData">
-                    <img src={userPhoto} alt="" className="userPhoto" />
-                    <p><b>{userLogged.roles.name}</b></p>
-                    <p>{userLogged.email}</p>
-                  </div>
+          <div className="adminContainer">
+            <div className="navContainer">
+              <p className="navlogo">BQ</p>
+              <nav className="nav">
+                <NavLink to={`${url}/users`} activeClassName="active" className="navlink">Usuarios</NavLink>
+                <div className="navLine" />
+                <NavLink to={`${url}/products`} activeClassName="active" className="navlink">Productos</NavLink>
+                <div className="navLine" />
+                <NavLink to={`${url}/allorders`} activeClassName="active" className="navlink">Órdenes</NavLink>
+              </nav>
+              <ExitToAppIcon fontSize="medium" onClick={() => close()} />
+            </div>
+            <div className="adminBodyContainer">
+              <div className="adminCard">
+                <h1 className="adminH1">Administradorx</h1>
+                <div className="userData">
+                  <Avatar sx={{ bgcolor: brown[200] }} alt="avatar" className="userPhoto" />
+                  <p><b>{userLogged.roles.name}</b></p>
+                  <p>{userLogged.email}</p>
                 </div>
-                <Switch>
-                  <Route
-                    exact
-                    path={`${path}/users`}
-                    component={() => (
-                      <Users setLoading={setLoading} setModalMessage={setModalMessage} />
-                    )}
-                  />
-                  <Route
-                    path={`${path}/users/newuser`}
-                    component={() => (
-                      <NewUser setLoading={setLoading} setModalMessage={setModalMessage} />
-                    )}
-                  />
-                  <Route
-                    path={`${path}/users/edituser`}
-                    component={() => (
-                      <EditUser setLoading={setLoading} setModalMessage={setModalMessage} />
-                    )}
-                  />
-                  <Route
-                    exact
-                    path={`${path}/products`}
-                    component={() => (
-                      <Products setLoading={setLoading} setModalMessage={setModalMessage} />
-                    )}
-                  />
-                  <Route
-                    path={`${path}/products/newproduct`}
-                    component={() => (
-                      <Newproduct setLoading={setLoading} setModalMessage={setModalMessage} />
-                    )}
-                  />
-                  <Route
-                    path={`${path}/products/editproduct`}
-                    component={() => (
-                      <EditProduct setLoading={setLoading} setModalMessage={setModalMessage} />
-                    )}
-                  />
-                  <Route
-                    exact
-                    path={`${path}/allorders`}
-                    component={() => (
-                      <AllOrders setLoading={setLoading} setModalMessage={setModalMessage} />
-                    )}
-                  />
-                </Switch>
               </div>
+              <Switch>
+                <Route
+                  exact
+                  path={`${path}/users`}
+                  component={() => (
+                    <Users setLoading={setLoading} setModalMessage={setModalMessage} />
+                  )}
+                />
+                <Route
+                  path={`${path}/users/newuser`}
+                  component={() => (
+                    <NewUser setLoading={setLoading} setModalMessage={setModalMessage} />
+                  )}
+                />
+                <Route
+                  path={`${path}/users/edituser`}
+                  component={() => (
+                    <EditUser setLoading={setLoading} setModalMessage={setModalMessage} />
+                  )}
+                />
+                <Route
+                  exact
+                  path={`${path}/products`}
+                  component={() => (
+                    <Products setLoading={setLoading} setModalMessage={setModalMessage} />
+                  )}
+                />
+                <Route
+                  path={`${path}/products/newproduct`}
+                  component={() => (
+                    <Newproduct setLoading={setLoading} setModalMessage={setModalMessage} />
+                  )}
+                />
+                <Route
+                  path={`${path}/products/editproduct`}
+                  component={() => (
+                    <EditProduct setLoading={setLoading} setModalMessage={setModalMessage} />
+                  )}
+                />
+                <Route
+                  exact
+                  path={`${path}/allorders`}
+                  component={() => (
+                    <AllOrders setLoading={setLoading} setModalMessage={setModalMessage} />
+                  )}
+                />
+              </Switch>
             </div>
           </div>
         )}

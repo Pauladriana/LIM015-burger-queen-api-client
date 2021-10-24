@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import '../style/Admin.css';
+import '../style/Orders.css';
 import Cookies from 'universal-cookie';
 import { getData } from '../services/get';
 
 const cookies = new Cookies();
 
-function ChefOrders({ setLoading, setModalMessage }) {
+const showProductsOrder = (array) => array.map((products) => (
+  <div className="chef-orderContent">
+    <p className="chef-item">{products.productId && products.productId.name}</p>
+    <p className="chef-qty">{products.qty}</p>
+  </div>
+));
+
+function ChefOrders() {
   const [kitchenOrder, setKitchenOrders] = useState(null);
 
   useEffect(() => {
@@ -23,29 +30,36 @@ function ChefOrders({ setLoading, setModalMessage }) {
 
   const time = (order) => {
     const { dateProcessed, dateEntry } = order;
-    if (dateProcessed.slice(0, -14) === dateEntry.slice(0, -14)) {
-      const finalHour = Number(dateProcessed.slice(11, -11)) - Number(dateEntry.slice(11, -11));
-      const finalMinutes = Number(dateProcessed.slice(14, -8)) - Number(dateEntry.slice(14, -8));
-      const finalSeconds = Number(dateProcessed.slice(17, -5)) - Number(dateEntry.slice(17, -5));
-      return (
-        `${finalHour < 10 ? `0${finalHour}` : finalHour}: ${finalMinutes < 10 ? `0${finalMinutes}` : finalMinutes}: ${finalSeconds < 10 ? `0${finalSeconds}` : finalSeconds}`);
+    const localDateProcessed = (new Date(dateProcessed)).toString();
+    const localDateEntry = (new Date(dateEntry)).toString();
+    if (localDateProcessed.slice(0, 15) === localDateEntry.slice(0, 15)) {
+      const miliseconds = Math.abs(new Date(dateProcessed) - new Date(dateEntry));
+      const msToTime = (duration) => {
+        let seconds = Math.floor((duration / 1000) % 60);
+        let minutes = Math.floor((duration / (1000 * 60)) % 60);
+        let hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+        hours = (hours < 10) ? `0${hours}` : hours;
+        minutes = (minutes < 10) ? `0${minutes}` : minutes;
+        seconds = (seconds < 10) ? `0${seconds}` : seconds;
+        return `${hours} : ${minutes} : ${seconds}`;
+      };
+      return msToTime(miliseconds);
     }
     return 'Orden fuera de tiempo';
   };
 
   const showOrders = (orders) => orders.map((order) => (
-    <div className="waiter-orders" key={order._id}>
-      <p>{time(order)}</p>
-      <p>{order.client}</p>
+    <div className="ordersCard" key={order._id}>
+      <p className="orderTimer">{time(order)}</p>
+      <p className="orderClient">{order.client}</p>
       <div>
-        <p>{order.products[0].productId.name}</p>
-        <p>{order.products[0].qty}</p>
+        {showProductsOrder(order.products)}
       </div>
     </div>
   ));
 
   return (
-    <div>
+    <div className="chef-ordersContainer">
       {kitchenOrder
         ? showOrders(kitchenOrder)
         : <div />}

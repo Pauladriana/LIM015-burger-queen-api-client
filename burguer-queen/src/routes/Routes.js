@@ -7,6 +7,7 @@ import Waiter from '../pages/Waiter';
 import Chef from '../pages/Chef';
 import Loader from '../components/Loader';
 import Modals from '../components/Modals';
+import '../style/Routes.css';
 
 const Routes = () => {
   const [modalMessage, setModalMessage] = useState(null);

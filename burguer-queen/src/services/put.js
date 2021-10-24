@@ -20,12 +20,14 @@ export const updateData = (data, setLoading, setModalMessage, path, id) => {
       image,
     },
   })
-    .then((data) => {
+    .then(() => {
       setLoading(false);
-      console.log(data);
       setModalMessage({ title: '¡Producto actualizado exitosamente!' });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.info(err);
+      setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
+    });
 };
 
 export const updateUser = (data, setLoading, setModalMessage, path, id) => {
@@ -35,31 +37,29 @@ export const updateUser = (data, setLoading, setModalMessage, path, id) => {
     headers: { Authorization: `Bearer ${token}` },
     body: data,
   })
-    .then((data) => {
+    .then(() => {
       setLoading(false);
-      console.log(data);
       setModalMessage({ title: '!Usuario actualizado exitosamente!' });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.info(err);
+      setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
+    });
 };
 
 export const updateOrder = (path, id, status, setModalMessage, orderMessage) => {
   const token = cookies.get('token');
-  console.log(id);
-  console.log(id);
-  // const { userId, client } = data;
-  // setLoading(true);
   return put(`${url}${path}/${id}`, {
     headers: { Authorization: `Bearer ${token}` },
     body: {
       status,
     },
   })
-    .then((response) => {
-      console.log(response);
+    .then(() => {
       setModalMessage({ title: orderMessage });
-      // setLoading(false);
-      // Agregar mensajes de éxito y error
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.info(err);
+      setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
+    });
 };
