@@ -12,7 +12,7 @@ const showProductsOrder = (array) => array.map((products) => (
   </div>
 ));
 
-function ChefOrders({ setLoading, setModalMessage }) {
+function ChefOrders() {
   const [kitchenOrder, setKitchenOrders] = useState(null);
 
   useEffect(() => {
@@ -59,7 +59,7 @@ function ChefOrders({ setLoading, setModalMessage }) {
   ));
 
   return (
-    <div>
+    <div className="chef-ordersContainer">
       {kitchenOrder
         ? showOrders(kitchenOrder)
         : <div />}

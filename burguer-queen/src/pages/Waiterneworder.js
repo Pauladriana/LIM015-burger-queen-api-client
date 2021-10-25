@@ -1,7 +1,8 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import React, { useEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
 import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { styled } from '@mui/material/styles';
 import Breakfast from '../components/Breakfast';
 import Diary from '../components/Diary';

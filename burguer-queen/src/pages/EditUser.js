@@ -35,7 +35,6 @@ const EditUser = ({ setLoading, setModalMessage }) => {
     if (reg.test(value) === true) {
       setValidationEmail('');
       setValidEmail(value);
-      console.log(newEmail);
     } else {
       setValidationEmail('La estructura es example@correo');
     }
@@ -46,7 +45,6 @@ const EditUser = ({ setLoading, setModalMessage }) => {
     if (reg.test(value) === true) {
       setValidationPassword('');
       setValidPassword(value);
-      console.log(newPassword);
     } else {
       setValidationPassword('La contraseña debe contener mayusculas, numeros y caracteres especiales');
     }

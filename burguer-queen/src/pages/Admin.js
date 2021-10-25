@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import {
   NavLink, Switch, Route, useRouteMatch, HashRouter,
 } from 'react-router-dom';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import Avatar from '@mui/material/Avatar';
+import { brown } from '@mui/material/colors';
 import Cookies from 'universal-cookie';
-import userPhoto from '../media/man.png';
 import '../style/Admin.css';
 import { close, redirectToNotFound } from '../helpers/helpers';
 import Users from './Users';
@@ -46,7 +47,7 @@ const Admin = ({ setLoading, setModalMessage }) => {
               <div className="adminCard">
                 <h1 className="adminH1">Administradorx</h1>
                 <div className="userData">
-                  <img src={userPhoto} alt="" className="userPhoto" />
+                  <Avatar sx={{ bgcolor: brown[200] }} alt="avatar" className="userPhoto" />
                   <p><b>{userLogged.roles.name}</b></p>
                   <p>{userLogged.email}</p>
                 </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
-import DeleteIcon from '@mui/icons-material/Delete';
-import CreateIcon from '@mui/icons-material/Create';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CreateIcon from '@material-ui/icons/Create';
 import '../style/Admin.css';
 import Cookies from 'universal-cookie';
 import { getData } from '../services/get';

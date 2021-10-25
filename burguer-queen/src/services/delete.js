@@ -11,8 +11,7 @@ export const deleteData = (setLoading, setModalMessage, path, id) => {
   return del(`${url}${path}/${id}`, {
     headers: { Authorization: `Bearer ${token}` },
   })
-    .then((data) => {
-      console.log(data);
+    .then(() => {
       setLoading(false);
       setModalMessage({ body: '¡Producto eliminado!' });
     })

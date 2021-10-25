@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
   NavLink, Switch, Route, useRouteMatch, HashRouter,
 } from 'react-router-dom';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Cookies from 'universal-cookie';
 import { close, redirectToNotFound } from '../helpers/helpers';
 import WaiterNewOrder from './Waiterneworder';

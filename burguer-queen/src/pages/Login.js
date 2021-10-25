@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import Cookies from 'universal-cookie';
 import '../style/Login.css';
 import { signIn } from '../services/post';
@@ -97,19 +97,17 @@ const Login = ({ setLoading, setModalMessage }) => {
           </div>
           <div className="form-section">
             <label htmlFor="password" className="form-label">Contraseña:</label>
-            <label className="login-form-label-password">
-              <input
-                type={inputType}
-                className="form-input"
-                name="password"
-                id="password"
-                onChange={handleChange}
-                onKeyUp={() => goPassword()}
-              />
-              {inputType === 'password'
-                ? <VisibilityOffIcon onClick={() => setInputType('text')} className="login-eye-icon" />
-                : <VisibilityIcon onClick={() => setInputType('password')} className="login-eye-icon" />}
-            </label>
+            <input
+              type={inputType}
+              className="form-input"
+              name="password"
+              id="password"
+              onChange={handleChange}
+              onKeyUp={() => goPassword()}
+            />
+            {inputType === 'password'
+              ? <VisibilityOffIcon onClick={() => setInputType('text')} className="login-eye-icon" />
+              : <VisibilityIcon onClick={() => setInputType('password')} className="login-eye-icon" />}
             <p className="goPassword formValidation">{messages.passwordMsg}</p>
           </div>
 
