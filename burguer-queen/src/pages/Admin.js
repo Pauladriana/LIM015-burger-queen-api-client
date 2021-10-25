@@ -12,9 +12,9 @@ import Users from './Users';
 import Products from './Products';
 import AllOrders from './AllOrders';
 import NewUser from './Newuser';
-import EditUser from './Edituser';
+import EditUser from './EditUser';
 import Newproduct from './Newproduct';
-import EditProduct from './Editproduct';
+import EditProduct from './EditProduct';
 
 const cookies = new Cookies();
 
@@ -27,11 +27,11 @@ const Admin = ({ setLoading, setModalMessage }) => {
   }, []);
 
   return (
-    <HashRouter>
+    <HashRouter aria-label="admin">
       {(!userLogged.roles.admin)
         ? redirectToNotFound()
         : (
-          <div className="adminContainer">
+          <div aria-label="admin" className="adminContainer">
             <div className="navContainer">
               <p className="navlogo">BQ</p>
               <nav className="nav">

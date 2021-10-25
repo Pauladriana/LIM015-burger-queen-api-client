@@ -9,3 +9,32 @@ export const close = () => {
 };
 
 export const redirectToNotFound = () => <h3> Not found </h3>;
+
+export const goEmail = (email, setMessages) => {
+  const reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+  if (reg.test(email) === false) {
+    setMessages({
+      emailMsg: 'La estructura es example@correo',
+      passwordMsg: '',
+    });
+  } else {
+    setMessages({
+      emailMsg: '',
+      passwordMsg: '',
+    });
+  }
+};
+export const goPassword = (password, setMessages) => {
+  const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@.$ %^&*-]).{8,}$/;
+  if (reg.test(password) === false) {
+    setMessages({
+      emailMsg: '',
+      passwordMsg: 'La contraseña debe contener mayúsculas, números y carácteres especiales',
+    });
+  } else {
+    setMessages({
+      emailMsg: '',
+      passwordMsg: '',
+    });
+  }
+};

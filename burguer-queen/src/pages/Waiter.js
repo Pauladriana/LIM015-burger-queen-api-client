@@ -18,7 +18,7 @@ const Waiter = ({ setLoading, setModalMessage }) => {
     <HashRouter>
       {(cookies.get('userLogged')).roles.name === 'mesera' || (cookies.get('userLogged')).roles.admin
         ? (
-          <div className="waiterContainer">
+          <div aria-label="waiter" className="waiterContainer">
             <div className="navContainer">
               <p role="banner" className="navlogo">BQ</p>
               <nav className="nav">

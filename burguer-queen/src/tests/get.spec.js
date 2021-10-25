@@ -38,7 +38,7 @@ describe('Get data', () => {
   it('Fail with an error', async () => {
     const err = new Error('Fail');
     fetch.mockReject(() => Promise.reject(err));
-    const data = await getUserLogged('users/some@test.com', 'fail');
+    const data = await getUserLogged('users/some@test.com');
     expect(data).toEqual(err);
     expect(fetch).toHaveBeenCalled();
   });
