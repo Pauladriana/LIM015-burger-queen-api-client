@@ -17,7 +17,7 @@ const Chef = ({ setLoading, setModalMessage }) => {
     <HashRouter>
       {(cookies.get('userLogged')).roles.name === 'cocinera' || (cookies.get('userLogged')).roles.admin
         ? (
-          <div className="chefContainer">
+          <div aria-label="chef" className="chefContainer">
             <div className="navContainer">
               <p role="banner" className="navlogo">BQ</p>
               <nav className="nav">
