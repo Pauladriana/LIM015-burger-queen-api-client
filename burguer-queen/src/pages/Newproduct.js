@@ -33,7 +33,6 @@ const NewProduct = ({ setLoading, setModalMessage }) => {
           <div className="formCnt">
             <div className="form-section">
               <label className="form-label" htmlFor="name">Nombre:</label>
-              <br />
               <input
                 type="text"
                 className="form-input newProductForm"
@@ -45,7 +44,6 @@ const NewProduct = ({ setLoading, setModalMessage }) => {
             </div>
             <div className="form-section">
               <label className="form-label" htmlFor="menu">Menu:</label>
-              <br />
               <input
                 type="text"
                 className="form-input newProductForm"
@@ -57,7 +55,6 @@ const NewProduct = ({ setLoading, setModalMessage }) => {
             </div>
             <div className="form-section">
               <label className="form-label" htmlFor="description">Precio:</label>
-              <br />
               <input
                 type="number"
                 className="form-input newProductForm"
@@ -69,7 +66,6 @@ const NewProduct = ({ setLoading, setModalMessage }) => {
             </div>
             <div className="form-section">
               <label className="form-label" htmlFor="urlImage">Agregar Imagen</label>
-              <br />
               <input
                 type="text"
                 className="form-input newProductForm"

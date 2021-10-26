@@ -53,7 +53,6 @@ function NewUser({ setLoading, setModalMessage }) {
           <div className="formCnt">
             <div className="form-section">
               <label className="form-label" htmlFor="email">Correo:</label>
-              <br />
               <input
                 type="text"
                 className="form-input newProductForm"
@@ -62,13 +61,10 @@ function NewUser({ setLoading, setModalMessage }) {
                 id="email"
                 onChange={(e) => goNewEmail(e.target.value)}
               />
-              <br />
               <p className="goNewEmail formValidation">{typeEmail}</p>
-              <br />
             </div>
             <div className="form-section">
               <label className="form-label" htmlFor="password">Contraseña:</label>
-              <br />
               <input
                 type="text"
                 className="form-input newProductForm"
@@ -77,50 +73,51 @@ function NewUser({ setLoading, setModalMessage }) {
                 id="password"
                 onChange={(e) => goNewPassword(e.target.value)}
               />
-              <br />
               <p className="goNewPassword formValidation">{typePassword}</p>
-              <br />
             </div>
             <label htmlFor="option" className="form-label">Rol:</label>
             <div className="option-group">
-              <input
-                type="radio"
-                name="option"
-                id="adminOpt"
-                onChange={(e) => (
-                  e.target.checked
-                    ? setRole({ name: 'administradora' })
-                    : setRole({ name: '' })
-                )}
-              />
-              <label htmlFor="adminOpt" className="form-options">Administradora</label>
-              <br />
-              <input
-                type="radio"
-                className="form-options"
-                name="opt"
-                id="waiterOpt"
-                onChange={(e) => (
-                  e.target.checked
-                    ? setRole({ name: 'mesera' })
-                    : setRole({ name: '' })
-                )}
-              />
-              <label htmlFor="waiterOpt" className="form-options">Mesera</label>
-              <br />
-              <input
-                type="radio"
-                className="form-options"
-                name="opt"
-                id="chefOpt"
-                onChange={(e) => (
-                  e.target.checked
-                    ? setRole({ name: 'cocinera' })
-                    : setRole({ name: '' })
-                )}
-              />
-              <label htmlFor="chefOpt" className="form-options">Cocinera</label>
-              <br />
+              <div className="option-section">
+                <input
+                  type="radio"
+                  name="option"
+                  id="adminOpt"
+                  onChange={(e) => (
+                    e.target.checked
+                      ? setRole({ name: 'administradora' })
+                      : setRole({ name: '' })
+                  )}
+                />
+                <label htmlFor="adminOpt" className="form-options">Administradora</label>
+              </div>
+              <div className="option-section">
+                <input
+                  type="radio"
+                  className="form-options"
+                  name="opt"
+                  id="waiterOpt"
+                  onChange={(e) => (
+                    e.target.checked
+                      ? setRole({ name: 'mesera' })
+                      : setRole({ name: '' })
+                  )}
+                />
+                <label htmlFor="waiterOpt" className="form-options">Mesera</label>
+              </div>
+              <div className="option-section">
+                <input
+                  type="radio"
+                  className="form-options"
+                  name="opt"
+                  id="chefOpt"
+                  onChange={(e) => (
+                    e.target.checked
+                      ? setRole({ name: 'cocinera' })
+                      : setRole({ name: '' })
+                  )}
+                />
+                <label htmlFor="chefOpt" className="form-options">Cocinera</label>
+              </div>
             </div>
           </div>
           <button type="submit" className="userSubmit">Guardar</button>

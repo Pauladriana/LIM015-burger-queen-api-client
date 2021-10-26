@@ -58,6 +58,7 @@
   width: 100%;
 }
 .optionContent{
+  overflow-y: scroll;
   width: 70%;
   height: 90%;
   border: 1px solid white;
@@ -133,14 +134,12 @@ th {
   margin: 0;
 }
 .formUser {
-  height: 85%;
   width: 100%;
-  display: grid;
-  grid-template-rows: 85% 15%;
 }
 .formCnt {
   height: 100%;
   margin: 5% 20% 0;
+  width: 60%;
 }
 form button {
   border: none;

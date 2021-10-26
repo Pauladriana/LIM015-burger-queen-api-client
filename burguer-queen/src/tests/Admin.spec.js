@@ -26,7 +26,7 @@ beforeEach(() => {
 });
 
 describe('Admin component', () => {
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNjc2MmViZDMwMDZjNWYzOWNhYWVmOSIsImlhdCI6MTYzNTIxODA5MCwiZXhwIjoxNjM1MzA0NDkwfQ.5O4z0kgKiOE1SI9rqFyw7cA6X6o0L2JjqFKMtOTmPCo';
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNjc2MmViZDMwMDZjNWYzOWNhYWVmOSIsImlhdCI6MTYzNTI1ODQyMiwiZXhwIjoxNjM1MzQ0ODIyfQ.I0giRFvqs_gBF0Or_b5k9_KozpU1frWL4LRluQhx_8E';
   it('Should contain texts', () => {
     const { getByLabelText, getByText } = render(<Admin />);
     expect(getByLabelText('navlogo').textContent).toContain('BQ');
