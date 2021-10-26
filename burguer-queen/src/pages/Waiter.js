@@ -12,7 +12,7 @@ import '../style/Waiter.css';
 const cookies = new Cookies();
 
 const Waiter = ({ setLoading, setModalMessage }) => {
-  const { path, url } = useRouteMatch();
+  // const { path, url } = useRouteMatch();
 
   return (
     <HashRouter>
@@ -22,22 +22,22 @@ const Waiter = ({ setLoading, setModalMessage }) => {
             <div className="navContainer">
               <p role="banner" className="navlogo">BQ</p>
               <nav className="nav">
-                <NavLink className="navlink" to={`${url}/neworder`} activeClassName="active">Generar Orden</NavLink>
+                <NavLink className="navlink" to="/meserx/neworder" activeClassName="active" aria-label="new-order">Generar Orden</NavLink>
                 <div className="navLine" />
-                <NavLink className="navlink" to={`${url}/allorders`} activeClassName="active">Ver Órdenes</NavLink>
+                <NavLink className="navlink" to="/meserx/allorders" activeClassName="active" aria-label="all-order">Ver Órdenes</NavLink>
               </nav>
-              <ExitToAppIcon fontSize="medium" onClick={() => close()} />
+              <ExitToAppIcon fontSize="medium" onClick={() => close()} aria-label="logout" />
             </div>
             <Switch>
               <Route
-                path={`${path}/neworder`}
+                path="/meserx/neworder"
                 component={() => (
                   <WaiterNewOrder setLoading={setLoading} setModalMessage={setModalMessage} />
                 )}
               />
               <Route
                 exact
-                path={`${path}/allorders`}
+                path="/meserx/allorders"
                 component={() => (
                   <AllOrders setLoading={setLoading} setModalMessage={setModalMessage} />
                 )}

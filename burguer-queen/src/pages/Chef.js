@@ -12,7 +12,8 @@ import Chefdelivering from './Chefdelivering';
 const cookies = new Cookies();
 
 const Chef = ({ setLoading, setModalMessage }) => {
-  const { path, url } = useRouteMatch();
+  // const { path, url } = useRouteMatch();
+  // console.log(path, url);
   return (
     <HashRouter>
       {(cookies.get('userLogged')).roles.name === 'cocinera' || (cookies.get('userLogged')).roles.admin
@@ -21,23 +22,23 @@ const Chef = ({ setLoading, setModalMessage }) => {
             <div className="navContainer">
               <p role="banner" className="navlogo">BQ</p>
               <nav className="nav">
-                <NavLink to={`${url}/pendingorders`} activeClassName="active" className="navlink">Ordenes Pendientes</NavLink>
+                <NavLink to="/chef/pendingorders" activeClassName="active" className="navlink" aria-label="pending-link">Ordenes Pendientes</NavLink>
                 <div className="navLine" />
-                <NavLink to={`${url}/deliveringorders`} activeClassName="active" className="navlink">Ordenes Listas</NavLink>
+                <NavLink to="/chef/deliveringorders" activeClassName="active" className="navlink" aria-label="delivering-link">Ordenes Listas</NavLink>
               </nav>
-              <ExitToAppIcon fontSize="medium" onClick={() => close()} />
+              <ExitToAppIcon fontSize="medium" onClick={() => close()} aria-label="logout" />
             </div>
             <Switch>
               <Route
                 exact
-                path={`${path}/pendingorders`}
+                path="/chef/pendingorders"
                 component={() => (
                   <ChefOrders setLoading={setLoading} setModalMessage={setModalMessage} />
                 )}
               />
               <Route
                 exact
-                path={`${path}/deliveringorders`}
+                path="/chef/deliveringorders"
                 component={() => (
                   <Chefdelivering setLoading={setLoading} setModalMessage={setModalMessage} />
                 )}
