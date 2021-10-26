@@ -50,7 +50,7 @@ function ChefOrders({ setModalMessage }) {
   ));
 
   return (
-    <div className="chef-ordersContainer">
+    <div className="chef-ordersContainer" aria-label="chef-pending">
       {kitchenOrder
         ? showOrders(kitchenOrder)
         : <div />}

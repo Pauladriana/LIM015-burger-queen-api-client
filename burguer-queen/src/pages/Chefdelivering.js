@@ -57,9 +57,8 @@ function ChefOrders() {
       </div>
     </div>
   ));
-
   return (
-    <div className="chef-ordersContainer">
+    <div className="chef-ordersContainer" aria-label="chef-delivering">
       {kitchenOrder
         ? showOrders(kitchenOrder)
         : <div />}
