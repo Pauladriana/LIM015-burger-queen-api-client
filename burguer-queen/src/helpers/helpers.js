@@ -8,7 +8,7 @@ export const close = () => {
   window.location.href = '#/';
 };
 
-export const redirectToNotFound = () => <h3> Not found </h3>;
+export const redirectToNotFound = () => <h3 aria-label="notFound">Not found</h3>;
 
 export const goEmail = (email, setMessages) => {
   const reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;

@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
-import fetcMock from 'jest-fetch-mock';
+import fetchMock from 'jest-fetch-mock';
 import { getData, getUserLogged } from '../services/get';
 
-fetcMock.enableMocks();
+fetchMock.enableMocks();
 
 beforeEach(() => {
   fetch.resetMocks();

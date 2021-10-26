@@ -32,7 +32,7 @@ const EditProductForm = ({ setLoading, setModalMessage }) => {
     updateData(productToEdit, setLoading, setModalMessage, 'products', _id);
   }
   return (
-    <div className="container">
+    <div aria-label="editProduct" className="container">
       <button type="button" onClick={() => { window.location.href = '#/admin/products'; }} className="back">Atrás</button>
       <h2> Editar Producto </h2>
       <form onSubmit={handleSubmit}>

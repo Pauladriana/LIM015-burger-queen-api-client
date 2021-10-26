@@ -43,7 +43,7 @@ function NewUser({ setLoading, setModalMessage }) {
   };
 
   return (
-    <div className="container">
+    <div aria-label="newUser" className="container">
       <div className="optionContent">
         <div className="optionContentHeader">
           <button type="button" onClick={() => { window.location.href = '#/admin/users'; }} className="back">Atrás</button>

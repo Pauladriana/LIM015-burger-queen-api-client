@@ -6,6 +6,7 @@ const url = 'https://bq-lab-2021.herokuapp.com/';
 const cookies = new Cookies();
 
 export const updateData = (data, setLoading, setModalMessage, path, id) => {
+  console.log(data);
   const token = cookies.get('token');
   const {
     name, price, type, image,

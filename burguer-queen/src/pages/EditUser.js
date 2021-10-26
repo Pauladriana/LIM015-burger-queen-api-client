@@ -55,7 +55,7 @@ const EditUser = ({ setLoading, setModalMessage }) => {
     updateUser(userToEdit, setLoading, setModalMessage, 'users', _id);
   }
   return (
-    <div className="container">
+    <div aria-label="editUser" className="container">
       <button type="button" onClick={() => { window.location.href = '#/admin/users'; }} className="back">Atrás</button>
       <h2> Editar Usuario </h2>
       <form onSubmit={handleSubmit} className="formUser">

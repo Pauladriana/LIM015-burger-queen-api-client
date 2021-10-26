@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CreateIcon from '@mui/icons-material/Create';
 import '../style/Admin.css';
@@ -10,7 +10,6 @@ import { redirectToNotFound } from '../helpers/helpers';
 const cookies = new Cookies();
 
 function Users({ setModalMessage }) {
-  const { url } = useRouteMatch();
   const [users, setUsers] = useState(null);
 
   const userLogged = cookies.get('userLogged');
@@ -38,9 +37,10 @@ function Users({ setModalMessage }) {
       <td className="tableIdContent">{user._id}</td>
       <td>
         <CreateIcon
+          aria-label="editIcon"
           fontSize="small"
           className="optTable"
-          onClick={() => { cookies.remove('user', { path: '/' }); cookies.set('user', user, { path: '/' }); window.location.href = '#/admin/users/editUser'; }}
+          onClick={() => { cookies.remove('user', { path: '/' }); cookies.set('user', user); window.location.href = '#/admin/users/edituser'; }}
         />
         <DeleteIcon
           fontSize="small"
@@ -60,7 +60,7 @@ function Users({ setModalMessage }) {
   ));
 
   return (
-    <div className="container">
+    <div aria-label="users" className="container">
       {!(cookies.get('userLogged')).roles.admin
         ? redirectToNotFound()
         : (
@@ -76,12 +76,12 @@ function Users({ setModalMessage }) {
                 </thead>
                 <tbody>
                   {!users
-                    ? <div />
+                    ? <tr />
                     : showUsers(users)}
                 </tbody>
               </table>
             </div>
-            <div className="linkAdmin"><Link to={`${url}/newuser`}>Crear Usuario</Link></div>
+            <div className="linkAdmin"><Link to="/admin/users/newuser">Crear Usuario</Link></div>
           </div>
         )}
     </div>

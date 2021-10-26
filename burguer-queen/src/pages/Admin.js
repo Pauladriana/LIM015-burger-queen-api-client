@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  NavLink, Switch, Route, useRouteMatch, HashRouter,
+  NavLink, Switch, Route, HashRouter,
 } from 'react-router-dom';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Avatar from '@mui/material/Avatar';
@@ -11,15 +11,14 @@ import { close, redirectToNotFound } from '../helpers/helpers';
 import Users from './Users';
 import Products from './Products';
 import AllOrders from './AllOrders';
-import NewUser from './Newuser';
+import NewUser from './NewUser';
 import EditUser from './EditUser';
-import Newproduct from './Newproduct';
+import NewProduct from './NewProduct';
 import EditProduct from './EditProduct';
 
 const cookies = new Cookies();
 
 const Admin = ({ setLoading, setModalMessage }) => {
-  const { path, url } = useRouteMatch();
   const userLogged = cookies.get('userLogged');
 
   useEffect(() => {
@@ -33,15 +32,15 @@ const Admin = ({ setLoading, setModalMessage }) => {
         : (
           <div aria-label="admin" className="adminContainer">
             <div className="navContainer">
-              <p className="navlogo">BQ</p>
+              <p aria-label="navlogo" className="navlogo">BQ</p>
               <nav className="nav">
-                <NavLink to={`${url}/users`} activeClassName="active" className="navlink">Usuarios</NavLink>
+                <NavLink to="/admin/users" activeClassName="active" className="navlink">Usuarios</NavLink>
                 <div className="navLine" />
-                <NavLink to={`${url}/products`} activeClassName="active" className="navlink">Productos</NavLink>
+                <NavLink to="/admin/products" activeClassName="active" className="navlink">Productos</NavLink>
                 <div className="navLine" />
-                <NavLink to={`${url}/allorders`} activeClassName="active" className="navlink">Órdenes</NavLink>
+                <NavLink to="/admin/allorders" activeClassName="active" className="navlink">Órdenes</NavLink>
               </nav>
-              <ExitToAppIcon fontSize="medium" onClick={() => close()} />
+              <ExitToAppIcon aria-label="exitIcon" fontSize="medium" onClick={() => close()} />
             </div>
             <div className="adminBodyContainer">
               <div className="adminCard">
@@ -55,45 +54,45 @@ const Admin = ({ setLoading, setModalMessage }) => {
               <Switch>
                 <Route
                   exact
-                  path={`${path}/users`}
+                  path="/admin/users"
                   component={() => (
                     <Users setLoading={setLoading} setModalMessage={setModalMessage} />
                   )}
                 />
                 <Route
-                  path={`${path}/users/newuser`}
+                  path="/admin/users/newuser"
                   component={() => (
                     <NewUser setLoading={setLoading} setModalMessage={setModalMessage} />
                   )}
                 />
                 <Route
-                  path={`${path}/users/edituser`}
+                  path="/admin/users/edituser"
                   component={() => (
                     <EditUser setLoading={setLoading} setModalMessage={setModalMessage} />
                   )}
                 />
                 <Route
                   exact
-                  path={`${path}/products`}
+                  path="/admin/products"
                   component={() => (
                     <Products setLoading={setLoading} setModalMessage={setModalMessage} />
                   )}
                 />
                 <Route
-                  path={`${path}/products/newproduct`}
+                  path="/admin/products/newproduct"
                   component={() => (
-                    <Newproduct setLoading={setLoading} setModalMessage={setModalMessage} />
+                    <NewProduct setLoading={setLoading} setModalMessage={setModalMessage} />
                   )}
                 />
                 <Route
-                  path={`${path}/products/editproduct`}
+                  path="/admin/products/editproduct"
                   component={() => (
                     <EditProduct setLoading={setLoading} setModalMessage={setModalMessage} />
                   )}
                 />
                 <Route
                   exact
-                  path={`${path}/allorders`}
+                  path="/admin/allorders"
                   component={() => (
                     <AllOrders setLoading={setLoading} setModalMessage={setModalMessage} />
                   )}

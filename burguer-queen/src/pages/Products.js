@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 import '../style/Admin.css';
@@ -10,7 +10,6 @@ import { redirectToNotFound } from '../helpers/helpers';
 const cookies = new Cookies();
 
 const Products = ({ setModalMessage }) => {
-  const { url } = useRouteMatch();
   const [products, setProducts] = useState(null);
   const userLogged = cookies.get('userLogged');
 
@@ -37,9 +36,10 @@ const Products = ({ setModalMessage }) => {
       <td>{`S/ ${product.price}`}</td>
       <td>
         <CreateIcon
+          aria-label="editIcon"
           fontSize="small"
           className="optTable"
-          onClick={() => { cookies.remove('product', { path: '/' }); cookies.set('product', product, { path: '/' }); window.location.href = '#/admin/products/editproduct'; }}
+          onClick={() => { cookies.remove('product', { path: '/' }); cookies.set('product', product); window.location.href = '#/admin/products/editproduct'; }}
         />
         <DeleteIcon
           fontSize="small"
@@ -59,7 +59,7 @@ const Products = ({ setModalMessage }) => {
   ));
 
   return (
-    <div className="container">
+    <div aria-label="products" className="container">
       {!(cookies.get('userLogged')).roles.admin
         ? redirectToNotFound()
         : (
@@ -75,12 +75,12 @@ const Products = ({ setModalMessage }) => {
                 </thead>
                 <tbody>
                   {!products
-                    ? <div />
+                    ? <tr />
                     : showProducts(products)}
                 </tbody>
               </table>
             </div>
-            <div className="linkAdmin"><Link to={`${url}/newproduct`}>Crear Producto</Link></div>
+            <div className="linkAdmin"><Link to="/admin/products/newproduct">Crear Producto</Link></div>
           </div>
         )}
     </div>

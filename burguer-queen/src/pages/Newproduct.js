@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createData } from '../services/post';
 
-const ProductForm = ({ setLoading, setModalMessage }) => {
+const NewProduct = ({ setLoading, setModalMessage }) => {
   const initialProduct = {
     name: '',
     type: '',
@@ -23,7 +23,7 @@ const ProductForm = ({ setLoading, setModalMessage }) => {
     await createData(product, setLoading, setModalMessage, 'products');
   };
   return (
-    <div className="container">
+    <div aria-label="newProduct" className="container">
       <div className="optionContent">
         <div className="optionContentHeader">
           <button type="button" onClick={() => { window.location.href = '#/admin/products'; }} className="back">Atrás</button>
@@ -86,4 +86,4 @@ const ProductForm = ({ setLoading, setModalMessage }) => {
   );
 };
 
-export default ProductForm;
+export default NewProduct;

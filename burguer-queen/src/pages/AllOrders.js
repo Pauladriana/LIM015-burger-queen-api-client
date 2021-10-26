@@ -41,7 +41,7 @@ const styleTwo = {
 };
 
 const showProductsOrder = (array) => array.map((products) => (
-  <div className="chef-orderContent">
+  <div className="chef-orderContent" key={products.productId && products.productId._id}>
     <p className="chef-item">{products.productId && products.productId.name}</p>
     <p className="chef-qty">{products.qty}</p>
   </div>
@@ -340,7 +340,7 @@ function AllOrders({ setLoading, setModalMessage }) {
   const ColorButton5 = styled(Button)(styleButton5);
 
   return (
-    <div className="waiterNewOrderContainer">
+    <div aria-label="orders" className="waiterNewOrderContainer">
       <div className="waiterHeaderAllOrder">
         <ColorButton
           onClick={() => { setFilterOrders('allOrders'); setStyleButton1(styleOne); setStyleButton2(styleTwo); setStyleButton3(styleTwo); setStyleButton4(styleTwo); setStyleButton5(styleTwo); }}
