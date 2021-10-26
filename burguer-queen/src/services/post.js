@@ -22,24 +22,23 @@ export const signIn = async (data, setLoading, setModalMessage) => {
     cookies.set('userLogged', user, { path: '/' });
     if (user.roles.admin) {
       window.location.hash = '#/admin/users';
-    } else if (user.roles.name === 'mesera') {
-      window.location.hash = '#/meserx/neworder';
     } else if (user.roles.name === 'cocinera') {
       window.location.hash = '#/chef/pendingorders';
+    } else {
+      window.location.hash = '#/meserx/neworder';
     }
   } catch (err) {
-    console.info(err);
     setLoading(false);
     setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
   }
 };
 
-export const createData = (data, setLoading, setModalMessage, path) => {
+export const createData = async (data, setLoading, setModalMessage, path) => {
   setLoading(true);
   const {
     name, type, price, image,
   } = data;
-  post(`${url}${path}`, {
+  const response = await post(`${url}${path}`, {
     headers: { Authorization: `Bearer ${cookies.get('token')}` },
     body: {
       name,
@@ -47,15 +46,12 @@ export const createData = (data, setLoading, setModalMessage, path) => {
       price: Number(price),
       image,
     },
-  })
-    .then(() => {
-      setLoading(false);
-      setModalMessage({ title: 'Producto creado exitosamente.' });
-    })
-    .catch((err) => {
-      console.info(err);
-      setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
-    });
+  });
+  setLoading(false);
+  if (response._id) {
+    return setModalMessage({ title: 'Producto creado exitosamente.' });
+  }
+  return setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
 };
 
 export const createUser = (data, setLoading, setModalMessage, path) => {
@@ -72,16 +68,13 @@ export const createUser = (data, setLoading, setModalMessage, path) => {
   })
     .then((response) => {
       setLoading(false);
+      if (response._id) return setModalMessage({ title: 'Usuario creado exitosamente' });
       if (response.err && response.message === `User with email: ${data.email} already exists`) {
         return setModalMessage({
           title: `Usuario con email: ${data.email} ya se encuentra registrado`,
         });
       }
-      setModalMessage({ title: 'Usuario creado exitosamente' });
-    })
-    .catch((err) => {
-      console.info(err);
-      setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
+      return setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
     });
 };
 
@@ -98,11 +91,8 @@ export const createOrder = (client, products, userId, setLoading, setModalMessag
   })
     .then((data) => {
       setLoading(false);
-      if (data.err && data.status === 400) return setModalMessage({ title: 'Ups!! no puede crear una orden vacía' });
-      setModalMessage({ title: 'Orden creada exitósamente' });
-    })
-    .catch((err) => {
-      console.info(err);
-      setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
+      if (data.err && data.status === 400) return setModalMessage({ title: '!Ups! no puede crear una orden vacía' });
+      if (data._id) return setModalMessage({ title: 'Orden creada exitosamente' });
+      return setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
     });
 };
