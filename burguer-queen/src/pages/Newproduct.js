@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createData } from '../services/post';
 
-const ProductForm = ({ setLoading, setModalMessage }) => {
+const NewProduct = ({ setLoading, setModalMessage }) => {
   const initialProduct = {
     name: '',
     type: '',
@@ -23,7 +23,7 @@ const ProductForm = ({ setLoading, setModalMessage }) => {
     await createData(product, setLoading, setModalMessage, 'products');
   };
   return (
-    <div className="container">
+    <div aria-label="newProduct" className="container">
       <div className="optionContent">
         <div className="optionContentHeader">
           <button type="button" onClick={() => { window.location.href = '#/admin/products'; }} className="back">Atrás</button>
@@ -33,7 +33,6 @@ const ProductForm = ({ setLoading, setModalMessage }) => {
           <div className="formCnt">
             <div className="form-section">
               <label className="form-label" htmlFor="name">Nombre:</label>
-              <br />
               <input
                 type="text"
                 className="form-input newProductForm"
@@ -45,7 +44,6 @@ const ProductForm = ({ setLoading, setModalMessage }) => {
             </div>
             <div className="form-section">
               <label className="form-label" htmlFor="menu">Menu:</label>
-              <br />
               <input
                 type="text"
                 className="form-input newProductForm"
@@ -57,7 +55,6 @@ const ProductForm = ({ setLoading, setModalMessage }) => {
             </div>
             <div className="form-section">
               <label className="form-label" htmlFor="description">Precio:</label>
-              <br />
               <input
                 type="number"
                 className="form-input newProductForm"
@@ -68,10 +65,10 @@ const ProductForm = ({ setLoading, setModalMessage }) => {
               />
             </div>
             <div className="form-section">
-              <label className="form-label" htmlFor="urlImage">Agregar Imagen</label>
-              <br />
+              <label className="form-label" htmlFor="urlImage">Agregar URL de Imagen</label>
               <input
                 type="text"
+                placeholder="https://imagen.com"
                 className="form-input newProductForm"
                 name="image"
                 id="urlImage"
@@ -86,4 +83,4 @@ const ProductForm = ({ setLoading, setModalMessage }) => {
   );
 };
 
-export default ProductForm;
+export default NewProduct;
