@@ -96,7 +96,7 @@ function ShowAllOrders({ setModalMessage }) {
             type="button"
             className="chef-orderReady"
             onClick={() => {
-              updateOrder(order, 'orders', order._id, 'delivered');
+              updateOrder(order, 'orders', order._id, 'delivered', cookies.get('token'));
             }}
           >
             Entregar
@@ -156,7 +156,7 @@ function ShowPendingOrders({ setModalMessage }) {
             type="button"
             className="chef-orderReady"
             onClick={() => {
-              updateOrder(order, 'orders', order._id, 'delivered');
+              updateOrder(order, 'orders', order._id, 'delivered', cookies.get('token'));
             }}
           >
             Entregar
@@ -203,7 +203,7 @@ function ShowDeliveringOrders({ setModalMessage }) {
           type="button"
           className="chef-orderReady"
           onClick={() => {
-            updateOrder('orders', order._id, 'delivered', setModalMessage, 'Orden finalizada');
+            updateOrder('orders', order._id, 'delivered', setModalMessage, 'Orden finalizada', cookies.get('token'));
           }}
         >
           Entregar
@@ -250,7 +250,7 @@ function ShowDeliveredOrders() {
             className="chef-orderReady"
             type="button"
             onClick={() => {
-              updateOrder(order, 'orders', order._id, 'canceled');
+              updateOrder(order, 'orders', order._id, 'canceled', cookies.get('token'));
             }}
           >
             Cancelar
@@ -260,7 +260,7 @@ function ShowDeliveredOrders() {
           <button
             type="button"
             onClick={() => {
-              updateOrder(order, 'orders', order._id, 'delivered');
+              updateOrder(order, 'orders', order._id, 'delivered', cookies.get('token'));
             }}
           >
             Entregar
@@ -306,7 +306,7 @@ function ShowCanceledOrders() {
           <button
             type="button"
             onClick={() => {
-              updateOrder(order, 'orders', order._id, 'delivered');
+              updateOrder(order, 'orders', order._id, 'delivered', cookies.get('token'));
             }}
           >
             Entregar

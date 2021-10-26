@@ -52,7 +52,8 @@ const EditUser = ({ setLoading, setModalMessage }) => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    updateUser(userToEdit, setLoading, setModalMessage, 'users', _id);
+    const token = cookies.get('token');
+    updateUser(userToEdit, setLoading, setModalMessage, 'users', _id, token);
   }
   return (
     <div aria-label="editUser" className="container">

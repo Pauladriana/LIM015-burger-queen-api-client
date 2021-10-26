@@ -1,7 +1,10 @@
 import React from 'react';
+import Cookies from 'universal-cookie';
 import '../style/Modal.css';
 import { deleteData } from '../services/delete';
 import { updateOrder } from '../services/put';
+
+const cookies = new Cookies();
 
 const Modals = ({ setLoading, modalMessage, setModalMessage }) => {
   const {
@@ -9,9 +12,9 @@ const Modals = ({ setLoading, modalMessage, setModalMessage }) => {
   } = modalMessage;
   const closeModal = () => setModalMessage(null);
 
-  const del = async () => await deleteData(setLoading, setModalMessage, path, id, '/admin');
+  const del = async () => await deleteData(setLoading, setModalMessage, path, id, '/admin', cookies.get('token'));
 
-  const update = async () => await updateOrder(path, id, 'canceled', setModalMessage, 'Orden cancelada');
+  const update = async () => await updateOrder(path, id, 'canceled', setModalMessage, 'Orden cancelada', cookies.get('token'));
 
   return (
     <article onClick={() => closeModal()} className="modal is-open">

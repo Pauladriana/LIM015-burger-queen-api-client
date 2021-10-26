@@ -10,8 +10,8 @@ import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
 import Admin from '../pages/Admin';
 import Users from '../pages/Users';
-import NewUser from '../pages/NewUser';
-import NewProduct from '../pages/NewProduct';
+import NewUser from '../pages/Newuser';
+import NewProduct from '../pages/Newproduct';
 
 const cookies = new Cookies();
 
