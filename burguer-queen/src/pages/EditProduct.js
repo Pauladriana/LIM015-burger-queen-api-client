@@ -29,7 +29,8 @@ const EditProductForm = ({ setLoading, setModalMessage }) => {
   function handleSubmit(event) {
     event.preventDefault();
     if (!productToEdit) return setModalMessage({ title: 'Debe ingresar al menos un campo' });
-    updateData(productToEdit, setLoading, setModalMessage, 'products', _id);
+    const token = cookies.get('token');
+    updateData(productToEdit, setLoading, setModalMessage, 'products', _id, token);
   }
   return (
     <div aria-label="editProduct" className="container">
