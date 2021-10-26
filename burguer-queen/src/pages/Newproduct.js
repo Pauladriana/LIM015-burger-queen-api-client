@@ -65,9 +65,10 @@ const NewProduct = ({ setLoading, setModalMessage }) => {
               />
             </div>
             <div className="form-section">
-              <label className="form-label" htmlFor="urlImage">Agregar Imagen</label>
+              <label className="form-label" htmlFor="urlImage">Agregar URL de Imagen</label>
               <input
                 type="text"
+                placeholder="https://imagen.com"
                 className="form-input newProductForm"
                 name="image"
                 id="urlImage"
