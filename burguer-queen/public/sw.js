@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-restricted-globals */
-const CACHE_NAME = 'v1_cache_programador_fitness';
+const CACHE_NAME = '#BurguerQueen';
 const urlsToCache = [
   './',
   './style/Admin.css',

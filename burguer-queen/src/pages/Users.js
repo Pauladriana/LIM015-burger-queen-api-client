@@ -29,7 +29,6 @@ function Users({ setModalMessage }) {
       };
     }
   }, []);
-
   const showUsers = (users) => users.map((user) => (
     <tr key={user._id}>
       <td>{user.email}</td>
