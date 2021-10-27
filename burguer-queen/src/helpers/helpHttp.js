@@ -1,3 +1,4 @@
+/* eslint-disable prefer-promise-reject-errors */
 export const helpHttp = () => {
   const customFetch = (endPoint, options) => {
     const defaultHeaders = { 'Content-Type': 'application/json' };

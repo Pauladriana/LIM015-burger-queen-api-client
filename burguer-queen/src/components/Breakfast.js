@@ -11,7 +11,7 @@ const Breakfast = ({
   productsOrder, setProductsOrder, setQtyChange, setSum, sum,
 }) => {
   const [products, setProducts] = useState(null);
-  const [searchValue, setSearchValue] = useState(null);
+  const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
     let cancel = false;
