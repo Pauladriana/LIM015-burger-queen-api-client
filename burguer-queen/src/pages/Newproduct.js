@@ -1,84 +1,74 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { createData } from '../services/post';
 
-import Cookies from 'universal-cookie';
-import { updateData } from '../services/put';
-
-const cookies = new Cookies();
-
-const EditProductForm = ({ setLoading, setModalMessage }) => {
-  const product = cookies.get('product');
-  const {
-    _id, name, type, price, image,
-  } = cookies.get('product');
-
-  const [productToEdit, setProductToEdit] = useState(product);
-
-  useEffect(() => {
-    if (!cookies.get('userLogged')) {
-      window.location.href = '#/';
-    }
-  }, []);
+const NewProduct = ({ setLoading, setModalMessage }) => {
+  const initialProduct = {
+    name: '',
+    type: '',
+    price: '',
+    image: '',
+  };
+  const [product, setProduct] = useState(initialProduct);
 
   const handleChange = (e) => {
-    setProductToEdit({
-      ...productToEdit,
+    setProduct({
+      ...product,
       [e.target.name]: e.target.value,
     });
   };
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    if (!productToEdit) return setModalMessage({ title: 'Debe ingresar al menos un campo' });
-    const token = cookies.get('token');
-    updateData(productToEdit, setLoading, setModalMessage, 'products', _id, token);
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!product.name || !product.type || !product.price) return setModalMessage({ body: 'Los campos nombre, menú y precio son obligatorios.' });
+    await createData(product, setLoading, setModalMessage, 'products');
+  };
   return (
-    <div aria-label="editProduct" className="container">
+    <div aria-label="newProduct" className="container">
       <div className="optionContent">
         <div className="optionContentHeader">
           <button type="button" onClick={() => { window.location.href = '#/admin/products'; }} className="back">Atrás</button>
-          <h2> Editar Producto </h2>
+          <h2> Nuevo Producto </h2>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="formUser">
           <div className="formCnt">
             <div className="form-section">
               <label className="form-label" htmlFor="name">Nombre:</label>
               <input
                 type="text"
                 className="form-input newProductForm"
-                placeholder={name}
+                placeholder="Nombre de producto"
                 name="name"
                 id="name"
                 onChange={handleChange}
               />
             </div>
             <div className="form-section">
-              <label className="form-label" htmlFor="type">Menú:</label>
+              <label className="form-label" htmlFor="menu">Menu:</label>
               <input
                 type="text"
                 className="form-input newProductForm"
-                placeholder={type}
+                placeholder="Desayuno o Diario"
                 name="type"
-                id="type"
+                id="menu"
                 onChange={handleChange}
               />
             </div>
             <div className="form-section">
-              <label className="form-label" htmlFor="price">Precio:</label>
+              <label className="form-label" htmlFor="description">Precio:</label>
               <input
-                type="text"
+                type="number"
                 className="form-input newProductForm"
-                placeholder={price}
+                placeholder="S/"
                 name="price"
                 id="price"
                 onChange={handleChange}
               />
             </div>
             <div className="form-section">
-              <label className="form-label" htmlFor="urlImage">Cambiar Imagen</label>
+              <label className="form-label" htmlFor="urlImage">Agregar URL de Imagen</label>
               <input
-                placeholder={image}
                 type="text"
+                placeholder="https://imagen.com"
                 className="form-input newProductForm"
                 name="image"
                 id="urlImage"
@@ -93,4 +83,4 @@ const EditProductForm = ({ setLoading, setModalMessage }) => {
   );
 };
 
-export default EditProductForm;
+export default NewProduct;
