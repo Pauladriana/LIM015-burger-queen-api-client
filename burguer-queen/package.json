@@ -2,7 +2,8 @@
   "name": "burguer-queen",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://alissonch.github.io/LIM015-burger-queen-api-client/burguer-queen",
+  "main": "public/index.html",
+  "homepage": "https://alissonch.github.io/LIM015-burger-queen-api-client",
   "author": "Cruz Holguin, Rocio Alisson",
   "dependencies": {
     "@emotion/react": "^11.5.0",
