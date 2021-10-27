@@ -1,12 +1,9 @@
-import Cookies from 'universal-cookie';
 import { helpHttp } from '../helpers/helpHttp';
 
 const { put } = helpHttp();
 const url = 'https://bq-lab-2021.herokuapp.com/';
-const cookies = new Cookies();
 
-export const updateData = (data, setLoading, setModalMessage, path, id) => {
-  const token = cookies.get('token');
+export const updateData = (data, setLoading, setModalMessage, path, id, token) => {
   const {
     name, price, type, image,
   } = data;
@@ -20,46 +17,44 @@ export const updateData = (data, setLoading, setModalMessage, path, id) => {
       image,
     },
   })
-    .then((data) => {
+    .then((res) => {
       setLoading(false);
-      console.log(data);
-      setModalMessage({ title: '¡Producto actualizado exitosamente!' });
-    })
-    .catch((err) => console.log(err));
+      if (res._id) {
+        setModalMessage({ title: '¡Producto actualizado exitosamente!' });
+        return res;
+      }
+      return setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
+    });
 };
 
-export const updateUser = (data, setLoading, setModalMessage, path, id) => {
-  const token = cookies.get('token');
+export const updateUser = (data, setLoading, setModalMessage, path, id, token) => {
   setLoading(true);
-  return put(`${url}${path}/${id}`, {
+  return put(`https://bq-lab-2021.herokuapp.com/${path}/${id}`, {
     headers: { Authorization: `Bearer ${token}` },
     body: data,
   })
-    .then((data) => {
+    .then((res) => {
       setLoading(false);
-      console.log(data);
-      setModalMessage({ title: '!Usuario actualizado exitosamente!' });
-    })
-    .catch((err) => console.log(err));
+      if (res._id) {
+        setModalMessage({ title: '!Usuario actualizado exitosamente!' });
+        return res;
+      }
+      setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
+    });
 };
 
-export const updateOrder = (path, id, status, setModalMessage, orderMessage) => {
-  const token = cookies.get('token');
-  console.log(id);
-  console.log(id);
-  // const { userId, client } = data;
-  // setLoading(true);
+export const updateOrder = (path, id, status, setModalMessage, orderMessage, token) => {
   return put(`${url}${path}/${id}`, {
     headers: { Authorization: `Bearer ${token}` },
     body: {
       status,
     },
   })
-    .then((response) => {
-      console.log(response);
-      setModalMessage({ title: orderMessage });
-      // setLoading(false);
-      // Agregar mensajes de éxito y error
-    })
-    .catch((err) => console.log(err));
+    .then((res) => {
+      if (res._id) {
+        setModalMessage({ title: orderMessage });
+        return res;
+      }
+      setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
+    });
 };

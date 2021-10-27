@@ -29,63 +29,66 @@ const EditProductForm = ({ setLoading, setModalMessage }) => {
   function handleSubmit(event) {
     event.preventDefault();
     if (!productToEdit) return setModalMessage({ title: 'Debe ingresar al menos un campo' });
-    updateData(productToEdit, setLoading, setModalMessage, 'products', _id);
+    const token = cookies.get('token');
+    updateData(productToEdit, setLoading, setModalMessage, 'products', _id, token);
   }
   return (
-    <div className="container">
-      <button type="button" onClick={() => { window.location.href = '#/admin/products'; }} className="back">Atrás</button>
-      <h2> Editar Producto </h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Nombre:</label>
-          <br />
-          <input
-            type="text"
-            className="form-control"
-            placeholder={name}
-            name="name"
-            id="name"
-            onChange={handleChange}
-          />
+    <div aria-label="editProduct" className="container">
+      <div className="optionContent">
+        <div className="optionContentHeader">
+          <button type="button" onClick={() => { window.location.href = '#/admin/products'; }} className="back">Atrás</button>
+          <h2> Editar Producto </h2>
         </div>
-        <div className="form-group">
-          <label htmlFor="type">Menú:</label>
-          <br />
-          <input
-            type="text"
-            className="form-control"
-            placeholder={type}
-            name="type"
-            id="type"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="price">Precio:</label>
-          <br />
-          <input
-            type="text"
-            className="form-control"
-            placeholder={price}
-            name="price"
-            id="price"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="urlImage">Cambiar Imagen</label>
-          <br />
-          <input
-            type="file"
-            accept="image/*"
-            className="form-control"
-            name="image"
-            id="urlImage"
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit">Guardar</button>
-      </form>
+        <form onSubmit={handleSubmit}>
+          <div className="formCnt">
+            <div className="form-section">
+              <label className="form-label" htmlFor="name">Nombre:</label>
+              <input
+                type="text"
+                className="form-input newProductForm"
+                placeholder={name}
+                name="name"
+                id="name"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-section">
+              <label className="form-label" htmlFor="type">Menú:</label>
+              <input
+                type="text"
+                className="form-input newProductForm"
+                placeholder={type}
+                name="type"
+                id="type"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-section">
+              <label className="form-label" htmlFor="price">Precio:</label>
+              <input
+                type="text"
+                className="form-input newProductForm"
+                placeholder={price}
+                name="price"
+                id="price"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-section">
+              <label className="form-label" htmlFor="urlImage">Cambiar Imagen</label>
+              <input
+                placeholder={image}
+                type="text"
+                className="form-input newProductForm"
+                name="image"
+                id="urlImage"
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <button type="submit" className="userSubmit">Guardar</button>
+        </form>
+      </div>
     </div>
   );
 };

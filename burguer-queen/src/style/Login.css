@@ -1,92 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200&display=swap');
-
-*{
-  font-family: 'Montserrat', sans-serif;
-  margin:0;
-
+.login-container{
+  position: absolute;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
-.login-container {
-    font-family: 'Times New Roman', Times, serif;
-    background-color: rgba(242, 242, 242,1);
-    font-size: 20px;
-    margin:0;
-    box-sizing: border-box;
-    overflow-y: hidden;
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: 40% 60%;
-}
-.login-header{
-    position: relative;
-    display: flex;
-    background-color: white;
-    border-radius: 0 0 50px 50px;
-    align-items: center;
-    justify-content: flex-end;
-    flex-direction: column;
-}
-.login-title{
-    height: 49px;
-    width: 300px;
-    text-align: center;
-    border-bottom: 5px solid #FA4A0C;
-    border-width: 5px;
-    font-weight: 900;
-    font-size: 25px;
-    line-height: 30px;
-}
-.login-formContainer{
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(242, 242, 242,1);
+.login-textLogo {
+  display: block;
+  margin: auto;
+  font-size: 60px;
+  color: black;
+  font-weight: bolder;
 }
 .login-form{
-    display: flex;
-    border:none;
-    flex-direction: column;
-    align-items: center;
+  width: 50%;
 }
-.login-form-section{
-    width: 394px;
-    padding-bottom: 25px;
+.login-title {
+  font-size: 34px;
+  font-weight: 900;
+  color: #dcca87;
 }
-.login-form-label{
-    font-size: 23px;
-    font-weight: 900;
-    line-height: 28px;
-    opacity: 0.4;
-    color: #000000;
-}
-.login-form-input{
-    border: none;
-    outline: none;
-    width: 380px;
-    background-color: rgba(242, 242, 242,1);
-    border-bottom: 0.5px solid #000000;
-    height: 20px;
-    padding: 5px;
-    line-height: 24px;
-    font-size: 20px;
-    font-weight: 500;
+.login-formContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  height: 80%;
 }
 
-.login-formButton{
-    border: none;
-    background-color: #fa4a0c;
-    color: #f6f6f9;
-    width: 354px;
-    height: 70px;
-    border-radius: 20px;
-    font-size: 25px;
-    font-weight: 900;
-    margin-top: 40px;
+.login-eye-icon {
+  position: relative;
+  bottom: 30px;
+  left: 94%;
 }
-.login-logo{
-   padding-bottom: 30px;
+
+.login-formButton {
+  border: none;
+  background-color: #dcca87;
+  color: #000000;
+  width: 100%;
+  height: 70px;
+  font-size: 25px;
+  font-weight: 900;
+  margin-top: 40px;
 }
-.login-img{
-    height: 140px;
+.login-logo {
+  padding-bottom: 30px;
+}
+.login-img {
+  height: 140px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .login-formContainer{
+    width: 70%;
+  }
+  .login-form{
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .login-form{
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .login-formContainer{
+    height: 70%;
+  }
+  .login-formContainer{
+    width: 100%;
+  }
 }

@@ -1,11 +1,46 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import React, { useEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { styled } from '@mui/material/styles';
 import Breakfast from '../components/Breakfast';
 import Diary from '../components/Diary';
-import trash from '../media/trash.svg';
 import { createOrder } from '../services/post';
 
 const cookies = new Cookies();
+
+const styleOne = {
+  fontFamily: 'Cormorant Upright',
+  textTransform: 'none',
+  fontSize: 16,
+  fontWeight: 600,
+  lineHeight: 1.75,
+  width: 130,
+  backgroundColor: '#DCCA87',
+  border: '1px solid #DCCA87',
+  color: '#0C0B08',
+  borderRadius: 0,
+  '&:hover': {
+    backgroundColor: '#DCCA87',
+    color: '#0C0B08',
+  },
+};
+const styleTwo = {
+  fontFamily: 'Cormorant Upright',
+  textTransform: 'none',
+  fontSize: 16,
+  width: 130,
+  backgroundColor: '#0C0B08',
+  color: '#FFFFFF',
+  border: '1px solid #DCCA87',
+  borderRadius: 0,
+  '&:hover': {
+    backgroundColor: '#DCCA87',
+    border: '1px solid #DCCA87',
+    color: '#0C0B08',
+  },
+};
 
 export default function NewOrder({ setLoading, setModalMessage }) {
   const [menu, setMenu] = useState('breakfast');
@@ -13,6 +48,11 @@ export default function NewOrder({ setLoading, setModalMessage }) {
   const [name, setName] = useState('');
   const [qtychange, setQtyChange] = useState(null);
   const [sum, setSum] = useState(0);
+  const [styleButton1, setStyleButton1] = useState(styleOne);
+  const [styleButton2, setStyleButton2] = useState(styleTwo);
+
+  const ColorButton = styled(Button)(styleButton1);
+  const ColorButton2 = styled(Button)(styleButton2);
 
   const removeProduct = (product) => {
     setSum(sum - (Number(product.price) * product.qty));
@@ -23,12 +63,16 @@ export default function NewOrder({ setLoading, setModalMessage }) {
   };
   const showOrder = () => productsOrder.map((product) => (
     <tr key={product._id}>
-      <td>{product.qty}</td>
-      <td>
+      <td className="golden">{product.qty}</td>
+      <td className="golden">
         {product.name}
-        <img src={trash} alt="trash" className="waiterIcon" onClick={() => removeProduct(product)} />
       </td>
-      <td>{`S/. ${product.price}`}</td>
+      <td>
+        {`S/. ${product.price}`}
+      </td>
+      <td>
+        <DeleteIcon fontSize="small" onClick={() => removeProduct(product)} />
+      </td>
     </tr>
   ));
 
@@ -41,13 +85,19 @@ export default function NewOrder({ setLoading, setModalMessage }) {
     return createOrder(name, products, (cookies.get('userLogged'))._id, setLoading, setModalMessage, 'orders');
   };
   return (
-    <div className="waiterContainer">
+    <div className="waiterNewOrderContainer">
       <section className="waiterHeader">
-        <div>
-          <button type="button" onClick={() => { setMenu('breakfast'); }}>Desayuno</button>
-          <button type="button" onClick={() => { setMenu('diary'); }}>Diario</button>
+        <div className="waiterHeaderSection1">
+          <ColorButton onClick={() => { setMenu('breakfast'); setStyleButton1(styleOne); setStyleButton2(styleTwo); }}>
+            Desayuno
+          </ColorButton>
+          <ColorButton2 onClick={() => { setMenu('diary'); setStyleButton1(styleTwo); setStyleButton2(styleOne); }}>
+            Diario
+          </ColorButton2>
         </div>
-        <input className="waiterInput" placeholder="Nombre Cliente" onChange={(e) => setName(e.target.value)} />
+        <div className="waiterHeaderSection2">
+          <input className="waiterInput" onChange={(e) => setName(e.target.value)} placeholder="Nombre Cliente" />
+        </div>
       </section>
 
       <section className="waiterBody">
@@ -58,11 +108,11 @@ export default function NewOrder({ setLoading, setModalMessage }) {
         </div>
         <div className="waiterOrderSection">
           <h3 className="waiterOrderTitle">Orden</h3>
-          <div className="waiterOrderTab">
-            <table>
+          <div className="waiterOrderTableContainer">
+            <table className="waiterOrderTable">
               <thead>
                 <tr>
-                  <th>Qty</th>
+                  <th>Cant.</th>
                   <th>Producto</th>
                   <th>Precio Unit.</th>
                 </tr>
@@ -72,14 +122,15 @@ export default function NewOrder({ setLoading, setModalMessage }) {
                   ? showOrder()
                   : <div />}
                 <tr>
-                  <td>Total </td>
-                  <td>{sum}</td>
+                  <td className="golden">Total </td>
+                  <td />
+                  <td className="golden">{`S/.${sum}`}</td>
                 </tr>
               </tbody>
             </table>
           </div>
           {(qtychange) ? setQtyChange(null) : false}
-          <button type="button" onClick={() => saveOrder()}>Guardar</button>
+          <div className="buttonContainer"><ColorButton onClick={() => saveOrder()}>Guardar</ColorButton></div>
         </div>
       </section>
     </div>

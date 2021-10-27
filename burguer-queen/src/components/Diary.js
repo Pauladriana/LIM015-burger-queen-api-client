@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
+import { styled } from '@mui/material/styles';
+import SearchIcon from '@material-ui/icons/Search';
 import { getData } from '../services/get';
-import plus from '../media/plus.svg';
 import '../style/Waiter.css';
 
 const cookies = new Cookies();
@@ -10,13 +11,14 @@ const Diary = ({
   productsOrder, setProductsOrder, setQtyChange, setSum, sum,
 }) => {
   const [products, setProducts] = useState(null);
+  const [searchValue, setSearchValue] = useState(null);
 
   useEffect(() => {
     let cancel = false;
     getData('products', cookies.get('token'))
       .then((products) => {
         if (cancel) return;
-        const diaryProducts = products.filter((p) => p.type === 'Diario');
+        const diaryProducts = products.filter((p) => p.type.toLowerCase() === 'diario');
         setProducts(diaryProducts);
       });
     return () => { cancel = true; };
@@ -35,19 +37,62 @@ const Diary = ({
   };
 
   const showProducts = (products) => products.map((product) => (
-    <div key={product._id}>
-      <button type="button" onClick={() => addProduct(product)}><img src={plus} alt="plus" className="waiterIcon" /></button>
-      <p>{product.name}</p>
-      <p>{product.type}</p>
-      <p>{product.image}</p>
+    <div key={product._id} className="waiterProductCard" onClick={() => addProduct(product)}>
+      <div className="waiterProductCardText">
+        <h3>{product.name}</h3>
+        <span>{product.price}</span>
+      </div>
+      <div className="waiterProductCardImage">
+        <img className="waiterImgCard" src={product.image} alt="food" />
+      </div>
     </div>
   ));
 
+  const SearchIconWrapper = styled('div')(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#ffffff',
+  }));
+
+  const handleChange = (e) => {
+    setSearchValue((e.target.value).toLowerCase());
+  };
+
+  const showFilterProducts = (products) => {
+    if (searchValue) {
+      const productsFilter = products.filter((p) => p.name.toLowerCase().includes(searchValue));
+      return showProducts(productsFilter);
+    }
+    return showProducts(products);
+  };
+
   return (
     <div>
-      {products
-        ? showProducts(products)
-        : <div />}
+      <div className="searchContent">
+        <SearchIconWrapper>
+          <SearchIcon />
+        </SearchIconWrapper>
+        <div className="waiterSearchInputContent">
+          <input
+            className="waiterSearchInput"
+            autoComplete="string"
+            placeholder="Buscar…"
+            aria-label="search"
+            value={searchValue}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+      <div className="waiterProductsContainer">
+        {products
+          ? showFilterProducts(products)
+          : <div />}
+      </div>
     </div>
   );
 };

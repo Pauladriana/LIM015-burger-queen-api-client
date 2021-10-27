@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import '../style/Admin.css';
+import '../style/Orders.css';
 import Cookies from 'universal-cookie';
 import { getData } from '../services/get';
 import { updateOrder } from '../services/put';
 
 const cookies = new Cookies();
 
-function ChefOrders({ setLoading, setModalMessage }) {
+const showProductsOrder = (array) => array.map((products) => (
+  <div className="chef-orderContent">
+    <p className="chef-item">{products.productId && products.productId.name}</p>
+    <p className="chef-qty">{products.qty}</p>
+  </div>
+));
+
+function ChefOrders({ setModalMessage }) {
   const [kitchenOrder, setKitchenOrders] = useState(null);
 
   useEffect(() => {
@@ -23,17 +30,17 @@ function ChefOrders({ setLoading, setModalMessage }) {
   }, []);
 
   const showOrders = (orders) => orders.map((order) => (
-    <div className="waiter-orders" key={order._id}>
-      <p>{order.client}</p>
+    <div className="ordersCard" key={order._id}>
+      <p className="orderClient">{order.client}</p>
       <div>
-        <p>{order.products[0].productId.name}</p>
-        <p>{order.products[0].qty}</p>
+        {showProductsOrder(order.products)}
       </div>
-      <div>
+      <div className="orderCardButtonContainer">
         <button
           type="button"
+          className="chef-orderReady"
           onClick={() => {
-            updateOrder('orders', order._id, 'delivering', setModalMessage, 'Orden lista para entregarse.');
+            updateOrder('orders', order._id, 'delivering', setModalMessage, 'La orden está lista para entregarse.', cookies.get('token'));
           }}
         >
           Listo
@@ -43,7 +50,7 @@ function ChefOrders({ setLoading, setModalMessage }) {
   ));
 
   return (
-    <div>
+    <div className="chef-ordersContainer" aria-label="chef-pending">
       {kitchenOrder
         ? showOrders(kitchenOrder)
         : <div />}

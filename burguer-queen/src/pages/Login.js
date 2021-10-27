@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import Cookies from 'universal-cookie';
 import '../style/Login.css';
-import logo from '../media/logo1.svg';
 import { signIn } from '../services/post';
+import { goEmail, goPassword } from '../helpers/helpers';
 
 const cookies = new Cookies();
 
 const Login = ({ setLoading, setModalMessage }) => {
+  const [inputType, setInputType] = useState('password');
+
   const initialForm = {
     email: '',
     password: '',
@@ -45,73 +49,42 @@ const Login = ({ setLoading, setModalMessage }) => {
     }
   }, []);
 
-  const goEmail = () => {
-    const reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-    if (reg.test(form.email) === false) {
-      setMessages({
-        emailMsg: 'La estructura es example@correo',
-        passwordMsg: '',
-      });
-    } else {
-      setMessages({
-        emailMsg: '',
-        passwordMsg: '',
-      });
-    }
-  };
-  const goPassword = () => {
-    const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@.$ %^&*-]).{8,}$/;
-    if (reg.test(form.password) === false) {
-      setMessages({
-        emailMsg: '',
-        passwordMsg: 'La contraseña debe contener mayúsculas, números y carácteres especiales',
-      });
-    } else {
-      setMessages({
-        emailMsg: '',
-        passwordMsg: '',
-      });
-    }
-  };
-
   return (
-    <div className="login-container">
-      <div className="login-header">
-        <div className="login-logo">
-          <img className="login-img" src={logo} alt="Logo" />
-        </div>
-        <div className="login-title">Iniciar Sesión</div>
-      </div>
+    <div aria-label="login" className="login-container">
       <div className="login-formContainer">
-        <form className="login-form" onSubmit={handleSubmit}>
-          <div className="login-form-section">
-            <label htmlFor="email" className="login-form-label"> Correo: </label>
+        <p role="heading" aria-level="1" className="login-title">Iniciar Sesión</p>
+        <form aria-label="form" className="login-form" onSubmit={handleSubmit}>
+          <div className="form-section">
+            <label aria-label="email" htmlFor="email" className="form-label"> Correo: </label>
             <input
+              aria-label="emailInput"
               type="text"
               id="email"
-              className="login-form-input"
+              className="form-input"
               name="email"
-              onChange={handleChange}
               value={form.email}
-              onKeyUp={() => goEmail()}
+              onChange={(e) => { handleChange(e); goEmail(form.email, setMessages); }}
             />
-            <p className="goEmail">{messages.emailMsg}</p>
+            <p className="goEmail formValidation">{messages.emailMsg}</p>
           </div>
-          <div className="login-form-section">
-            <label htmlFor="password" className="login-form-label">Contraseña: </label>
+          <div className="form-section">
+            <label aria-label="password" htmlFor="password" className="form-label">Contraseña:</label>
             <input
-              type="password"
-              className="login-form-input"
+              aria-label="passwordInput"
+              type={inputType}
+              className="form-input"
               name="password"
               id="password"
-              onChange={handleChange}
-              onKeyUp={() => goPassword()}
+              onChange={(e) => { handleChange(e); goPassword(form.password, setMessages); }}
             />
-            <p className="goPassword">{messages.passwordMsg}</p>
+            {inputType === 'password'
+              ? <VisibilityOffIcon onClick={() => setInputType('text')} aria-label="iconOpen" className="login-eye-icon" />
+              : <VisibilityIcon onClick={() => setInputType('password')} aria-label="iconClose" className="login-eye-icon" />}
+            <p className="goPassword formValidation">{messages.passwordMsg}</p>
           </div>
 
-          <button className="login-formButton" type="submit">
-            Iniciar Sesion
+          <button aria-label="iniciarSesion" className="login-formButton" type="submit">
+            Iniciar Sesión
             {' '}
           </button>
         </form>

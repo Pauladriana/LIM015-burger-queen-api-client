@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CreateIcon from '@material-ui/icons/Create';
 import '../style/Admin.css';
 import Cookies from 'universal-cookie';
-import edit from '../media/pencil.png';
-import remove from '../media/close.png';
 import { getData } from '../services/get';
 import { redirectToNotFound } from '../helpers/helpers';
 
 const cookies = new Cookies();
 
 const Products = ({ setModalMessage }) => {
-  const { url } = useRouteMatch();
   const [products, setProducts] = useState(null);
   const userLogged = cookies.get('userLogged');
 
@@ -36,15 +35,14 @@ const Products = ({ setModalMessage }) => {
       <td>{product.type}</td>
       <td>{`S/ ${product.price}`}</td>
       <td>
-        <img
-          src={edit}
-          alt="pencil"
+        <CreateIcon
+          aria-label="editIcon"
+          fontSize="small"
           className="optTable"
-          onClick={() => { cookies.remove('product', { path: '/' }); cookies.set('product', product, { path: '/' }); window.location.href = '#/admin/products/editproduct'; }}
+          onClick={() => { cookies.remove('product', { path: '/' }); cookies.set('product', product); window.location.href = '#/admin/products/editproduct'; }}
         />
-        <img
-          src={remove}
-          alt="remove"
+        <DeleteIcon
+          fontSize="small"
           className="optTable"
           onClick={() => {
             setModalMessage({
@@ -61,29 +59,28 @@ const Products = ({ setModalMessage }) => {
   ));
 
   return (
-    <div>
+    <div aria-label="products" className="container">
       {!(cookies.get('userLogged')).roles.admin
         ? redirectToNotFound()
         : (
-          <div className="OptionContent">
+          <div className="optionContent">
             <div className="tableCnt">
-              <h2>Productos</h2>
               <table>
                 <thead>
                   <tr>
                     <th>Nombre</th>
-                    <th>Menu</th>
+                    <th>Menú</th>
                     <th>Precio</th>
                   </tr>
                 </thead>
                 <tbody>
                   {!products
-                    ? <div />
+                    ? <tr />
                     : showProducts(products)}
                 </tbody>
               </table>
             </div>
-            <Link to={`${url}/newproduct`}>Crear Producto</Link>
+            <div className="linkAdmin"><Link to="/admin/products/newproduct">Crear Producto</Link></div>
           </div>
         )}
     </div>
