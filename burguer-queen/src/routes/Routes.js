@@ -5,6 +5,7 @@ import Admin from '../pages/Admin';
 import Error404 from '../pages/Error404';
 import Waiter from '../pages/Waiter';
 import Chef from '../pages/Chef';
+import LandingPage from '../pages/LandingPage';
 import Loader from '../components/Loader';
 import Modals from '../components/Modals';
 import '../style/Routes.css';
@@ -21,6 +22,13 @@ const Routes = () => {
         <Route
           exact
           path="/"
+          component={() => (
+            <LandingPage />
+          )}
+        />
+        <Route
+          exact
+          path="/login"
           component={() => (
             <Login setLoading={setLoading} setModalMessage={setModalMessage} />
           )}
