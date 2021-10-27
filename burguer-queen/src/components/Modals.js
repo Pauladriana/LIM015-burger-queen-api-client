@@ -11,8 +11,7 @@ const Modals = ({ setLoading, modalMessage, setModalMessage }) => {
     title, body, button, button2, id, path,
   } = modalMessage;
   const closeModal = () => setModalMessage(null);
-
-  const del = async () => await deleteData(setLoading, setModalMessage, path, id, '/admin', cookies.get('token'));
+  const del = async () => await deleteData(setLoading, setModalMessage, path, id, cookies.get('token'));
 
   const update = async () => await updateOrder(path, id, 'canceled', setModalMessage, 'Orden cancelada', cookies.get('token'));
 

@@ -40,7 +40,7 @@ function ChefOrders({ setModalMessage }) {
           type="button"
           className="chef-orderReady"
           onClick={() => {
-            updateOrder('orders', order._id, 'delivering', setModalMessage, 'Orden lista para entregarse.', cookies.get('token'));
+            updateOrder('orders', order._id, 'delivering', setModalMessage, 'La orden está lista para entregarse.', cookies.get('token'));
           }}
         >
           Listo

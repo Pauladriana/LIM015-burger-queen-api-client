@@ -44,7 +44,7 @@ const Products = ({ setModalMessage }) => {
         <DeleteIcon
           fontSize="small"
           className="optTable"
-          onClick={() => () => {
+          onClick={() => {
             setModalMessage({
               title: '¿Está Seguro de eliminar este producto?',
               body: 'Al removerse no podrá volver a recuperarlo más tarde.',

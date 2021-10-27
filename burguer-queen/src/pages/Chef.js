@@ -1,8 +1,9 @@
 import React from 'react';
 import {
-  HashRouter, NavLink, Switch, Route, useRouteMatch,
+  HashRouter, NavLink, Switch, Route,
 } from 'react-router-dom';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Cookies from 'universal-cookie';
 import '../style/Orders.css';
 import ChefOrders from './ChefOrders';
@@ -12,8 +13,6 @@ import Chefdelivering from './Chefdelivering';
 const cookies = new Cookies();
 
 const Chef = ({ setLoading, setModalMessage }) => {
-  // const { path, url } = useRouteMatch();
-  // console.log(path, url);
   return (
     <HashRouter>
       {(cookies.get('userLogged')).roles.name === 'cocinera' || (cookies.get('userLogged')).roles.admin
@@ -26,6 +25,9 @@ const Chef = ({ setLoading, setModalMessage }) => {
                 <div className="navLine" />
                 <NavLink to="/chef/deliveringorders" activeClassName="active" className="navlink" aria-label="delivering-link">Ordenes Listas</NavLink>
               </nav>
+              {(cookies.get('userLogged')).roles.admin
+                ? <AccountCircleIcon fontSize="medium" onClick={() => { window.location.href = '#/admin/users'; }} />
+                : <div />}
               <ExitToAppIcon fontSize="medium" onClick={() => close()} aria-label="logout" />
             </div>
             <Switch>

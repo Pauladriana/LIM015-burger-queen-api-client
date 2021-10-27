@@ -18,7 +18,7 @@ const Breakfast = ({
     getData('products', cookies.get('token'))
       .then((products) => {
         if (cancel) return;
-        const breakfastProducts = products.filter((p) => p.type === 'Desayuno');
+        const breakfastProducts = products.filter((p) => p.type.toLowerCase() === 'desayuno');
         setProducts(breakfastProducts);
       });
     return () => {

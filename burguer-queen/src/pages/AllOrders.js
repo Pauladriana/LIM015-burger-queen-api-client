@@ -84,7 +84,7 @@ function ShowAllOrders({ setModalMessage }) {
             className="chef-orderReady"
             onClick={() => {
               setModalMessage({
-                title: '¿Está seguro de eliminar esta orden?', button2: 'Cancelar', path: 'orders', id: order._id,
+                title: '¿Está seguro de cancelar esta orden?', button2: 'Cancelar', path: 'orders', id: order._id,
               });
             }}
           >
@@ -144,7 +144,7 @@ function ShowPendingOrders({ setModalMessage }) {
             className="chef-orderReady"
             onClick={() => {
               setModalMessage({
-                title: '¿Está seguro de eliminar esta orden?', button2: 'Cancelar', path: 'orders', id: order._id,
+                title: '¿Está seguro de cancelar esta orden?', button2: 'Cancelar', path: 'orders', id: order._id,
               });
             }}
           >

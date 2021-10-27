@@ -47,11 +47,13 @@
   overflow-y: auto;
   overflow-x: hidden;
   max-height: 95%;
+  background: black;
 }
 .waiterOrderSection {
   padding: 0 0 0 10%;
   overflow-y: auto;
   max-height: 95%;
+  background: black;
 }
 .waiterProductsContainer {
   padding-top: 1%;
@@ -63,12 +65,21 @@
   padding: 0 5%;
 }
 .waiterProductCardText {
+  align-items: center;
   font-size: 16px;
   color: #b9b08c;
   line-height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+.waiterProductCardText span{
+  font-weight: bolder;
+  flex:20;
+  text-align: right;
+}
+.waiterProductCardText h3{
+  flex:80;
 }
 .waiterProductCardImage {
   padding: 5% 0;
@@ -128,7 +139,7 @@
   -webkit-box-align: center;
   align-items: center;
   color: inherit;
-  left: 27%;
+  left: 50px;
 }
 .waiterSearchInput {
   padding: 8px 8px 8px 0;

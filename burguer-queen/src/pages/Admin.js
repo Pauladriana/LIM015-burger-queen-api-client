@@ -3,6 +3,8 @@ import {
   NavLink, Switch, Route, HashRouter,
 } from 'react-router-dom';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ChairAltIcon from '@mui/icons-material/ChairAlt';
+import KitchenIcon from '@mui/icons-material/Kitchen';
 import Avatar from '@mui/material/Avatar';
 import { brown } from '@mui/material/colors';
 import Cookies from 'universal-cookie';
@@ -40,6 +42,8 @@ const Admin = ({ setLoading, setModalMessage }) => {
                 <div className="navLine" />
                 <NavLink to="/admin/allorders" activeClassName="active" className="navlink">Órdenes</NavLink>
               </nav>
+              <ChairAltIcon fontSize="medium" onClick={() => { window.location.href = '#/meserx/neworder'; }} />
+              <KitchenIcon fontSize="medium" onClick={() => { window.location.href = '#/chef/pendingorders'; }} />
               <ExitToAppIcon aria-label="exitIcon" fontSize="medium" onClick={() => close()} />
             </div>
             <div className="adminBodyContainer">

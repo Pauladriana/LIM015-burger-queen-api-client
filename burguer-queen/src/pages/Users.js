@@ -45,7 +45,7 @@ function Users({ setModalMessage }) {
         <DeleteIcon
           fontSize="small"
           className="optTable"
-          onClick={() => () => {
+          onClick={() => {
             setModalMessage({
               title: '¿Está Seguro de eliminar este usuario?',
               body: 'Al removerse no podrá volver a recuperarlo más tarde.',

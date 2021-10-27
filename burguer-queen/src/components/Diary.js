@@ -18,7 +18,7 @@ const Diary = ({
     getData('products', cookies.get('token'))
       .then((products) => {
         if (cancel) return;
-        const diaryProducts = products.filter((p) => p.type === 'Diario');
+        const diaryProducts = products.filter((p) => p.type.toLowerCase() === 'diario');
         setProducts(diaryProducts);
       });
     return () => { cancel = true; };
