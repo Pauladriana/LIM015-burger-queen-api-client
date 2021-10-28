@@ -6,8 +6,7 @@
 .adminBodyContainer {
   position: absolute;
   top: 10%;
-  display: grid;
-  grid-template-rows: 20% 80%;
+  display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -18,7 +17,6 @@
 .adminCard {
   display: flex;
   flex-direction: column;
-  height: 100%;
   align-items: center;
   width: 15%;
 }
@@ -42,6 +40,7 @@
   height: 100%;
   align-items: center;
   justify-content: center;
+  padding-top: 3px;
 }
 .userData p {
   text-align: center;
@@ -227,9 +226,13 @@ form button {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-
 .white {
   background-color: black;
+}
+/*------------------AdminOrders --------------------------------*/
+.adminContainer .waiterNewOrderContainer{
+  top:5%;
+  height: 75vh;
 }
 @media only screen and (max-width: 1200px) {
   .adminBodyContainer {
@@ -252,6 +255,9 @@ form button {
   }
   .userData{
     width: 100%;
+  }
+  .adminContainer .waiterNewOrderContainer{
+    top:1%;
   }
 
 }

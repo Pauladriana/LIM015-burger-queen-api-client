@@ -2,6 +2,9 @@
 * {
   font-family: 'Cormorant Upright', 'Open Sans', sans-serif;
 }
+#root{
+  height: 0;
+}
 body {
   position: absolute;
   background-size: cover;

@@ -13,9 +13,9 @@ import { close, redirectToNotFound } from '../helpers/helpers';
 import Users from './Users';
 import Products from './Products';
 import AllOrders from './AllOrders';
-import NewUser from './Newuser';
+import NewUser from './NewUser';
 import EditUser from './EditUser';
-import NewProduct from './Newproduct';
+import NewProduct from './NewProduct';
 import EditProduct from './EditProduct';
 
 const cookies = new Cookies();
@@ -98,7 +98,9 @@ const Admin = ({ setLoading, setModalMessage }) => {
                   exact
                   path="/admin/allorders"
                   component={() => (
-                    <AllOrders setLoading={setLoading} setModalMessage={setModalMessage} />
+                    <div className="adminAllOrdersContainer">
+                      <AllOrders setLoading={setLoading} setModalMessage={setModalMessage} />
+                    </div>
                   )}
                 />
               </Switch>
