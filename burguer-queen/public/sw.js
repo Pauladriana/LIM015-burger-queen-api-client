@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-restricted-globals */
-const CACHE_NAME = '#BurguerQueen';
+const CACHE_NAME = 'Burger-queen';
 const urlsToCache = [
   './static/css/main.c54c1807.chunk.css',
   './static/css/main.c54c1807.chunk.css.map',
@@ -12,12 +12,50 @@ const urlsToCache = [
   './static/js/runtime-main.8f1c5824.js',
   './static/js/runtime-main.8f1c5824.js.map',
   './static/media/background.7ff1a916.jpg',
+  // '../',
+  // '../style/Admin.css',
+  // '../style/loader.css',
+  // '../style/Login.css',
+  // '../style/Modal.css',
+  // '../style/Orders.css',
+  // '../style/Routes.css',
+  // '../style/Waiter.css',
+  // '../services/get.js',
+  // '../services/delete.js',
+  // '../services/post.js',
+  // '../services/put.js',
+  // '../routes/routes.js',
+  // '../pages/Admin.js',
+  // '../pages/AllOrders.js',
+  // '../pages/Chef.js',
+  // '../pages/Chefdelivering.js',
+  // '../pages/ChefOrders.js',
+  // '../pages/EditProduct.js',
+  // '../pages/EditUser.js',
+  // '../pages/Error404.js',
+  // '../pages/Login.js',
+  // '../pages/NewProduct.js',
+  // '../pages/NewUser.js',
+  // '../pages/Products.js',
+  // '../pages/Users.js',
+  // '../pages/Waiter.js',
+  // '../pages/Waiterneworder.js',
+  // '../media/background.jpg',
+  // '../media/bq-logo.svg',
+  // '../helpers/helpers.js',
+  // '../helpers/helpHttp.js',
+  // '../components/Breakfast.js',
+  // '../components/Diary.js',
+  // '../components/Loader.js',
+  // '../components/Modals.js',
+  // '../index.js',
 ];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
+        console.log(cache);
         return cache.addAll(urlsToCache)
           .then(() => self.skipWaiting());
       })
