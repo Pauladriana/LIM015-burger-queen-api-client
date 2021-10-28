@@ -149,11 +149,28 @@ body {
   .navlink{
     font-size: 14px;
   }
+  .landingBodyContainer{
+    top:8%;
+    height: 92vh;
+  }
   .landingTitle{
     font-size: 30px;
   }
   .landingButton{
     font-size: 12px;
     width: 100px;
+  }
+  .form-label {
+    font-size: 16px;
+  }
+  .form-section{
+    padding-bottom: 5px;
+  }
+  .form-input {
+    padding: 10px 10px 10px;
+    font-size: 14px;
+  }
+  .formValidation{
+    font-size: 12px;
   }
 }

@@ -5,8 +5,7 @@ import {
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ChairAltIcon from '@mui/icons-material/ChairAlt';
 import KitchenIcon from '@mui/icons-material/Kitchen';
-import Avatar from '@mui/material/Avatar';
-import { brown } from '@mui/material/colors';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Cookies from 'universal-cookie';
 import '../style/Admin.css';
 import { close, redirectToNotFound } from '../helpers/helpers';
@@ -34,7 +33,7 @@ const Admin = ({ setLoading, setModalMessage }) => {
         : (
           <div aria-label="admin" className="adminContainer">
             <div className="navContainer">
-              <p aria-label="navlogo" className="navlogo">BQ</p>
+              <NavLink to="/" aria-label="navlogo" className="navlogo">BQ</NavLink>
               <nav className="nav">
                 <NavLink to="/admin/users" activeClassName="active" className="navlink">Usuarios</NavLink>
                 <div className="navLine" />
@@ -50,9 +49,9 @@ const Admin = ({ setLoading, setModalMessage }) => {
               <div className="adminCard">
                 <h1 className="adminH1">Administradorx</h1>
                 <div className="userData">
-                  <Avatar sx={{ bgcolor: brown[200] }} alt="avatar" className="userPhoto" />
+                  <AccountCircleIcon fontSize="large" alt="avatar" className="userPhoto" />
                   <p><b>{userLogged.roles.name}</b></p>
-                  <p>{userLogged.email}</p>
+                  <p className="userDataEmail">{userLogged.email}</p>
                 </div>
               </div>
               <Switch>

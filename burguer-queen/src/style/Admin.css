@@ -56,7 +56,7 @@
   align-items: center;
   width: 100%;
 }
-.optionContent{
+.optionContent {
   overflow-y: scroll;
   width: 70%;
   height: 90%;
@@ -69,7 +69,7 @@
   height: 76%;
   width: 94%;
 }
-.linkAdmin{
+.linkAdmin {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,7 +105,7 @@ th {
 .optTable {
   padding: 3px;
 }
-.optionContentHeader{
+.optionContentHeader {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -153,13 +153,13 @@ form button {
   font-weight: bold;
   font-size: 20px;
 }
-.form-input.newProductForm{
-  padding-top:3%;
+.form-input.newProductForm {
+  padding-top: 3%;
 }
 .option-group {
   padding: 15px 0;
 }
-.form-options{
+.form-options {
   font-size: 20px;
 }
 .adminContainer .form-section {
@@ -230,8 +230,8 @@ form button {
   background-color: black;
 }
 /*------------------AdminOrders --------------------------------*/
-.adminContainer .waiterNewOrderContainer{
-  top:5%;
+.adminContainer .waiterNewOrderContainer {
+  top: 5%;
   height: 75vh;
 }
 @media only screen and (max-width: 1200px) {
@@ -241,48 +241,80 @@ form button {
   .adminCard {
     width: 20%;
   }
-  .userPhoto{
+  .userPhoto {
     max-width: 25%;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .optionContent{
+  .optionContent {
     width: 90%;
   }
-  .adminCard{
+  .adminCard {
     width: 30%;
   }
-  .userData{
+  .userData {
     width: 100%;
   }
-  .adminContainer .waiterNewOrderContainer{
-    top:1%;
+  .adminContainer .waiterNewOrderContainer {
+    top: 1%;
   }
-
 }
 
 @media only screen and (max-width: 500px) {
-  .adminH1{
+  .adminH1 {
+    display: none;
     font-size: 16px;
   }
-  .userData p{
+  .userData p {
     font-size: 12px;
+    color: #dcca87;
   }
-  .optionContent a{
+  .userDataEmail {
+    display: none;
+  }
+  .optionContentHeader {
+    padding-top: 5%;
+  }
+  .optionContent a {
     font-size: 14px;
   }
-  th, td{
+  th,
+  td {
     padding: 0;
     font-size: 12px;
   }
-  .tableIdContent{
+  .tableIdContent {
     display: none;
   }
-  .nav{
+  .nav {
     width: 62%;
   }
-  .optionContent a{
+  .optionContent a {
     width: 40%;
+  }
+  .container h2 {
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 20%;
+  }
+  .back {
+    font-size: 12px;
+    height: 28px;
+    width: 45px;
+  }
+  .adminContainer .form-label {
+    font-size: 14px;
+  }
+  .adminContainer .form-input {
+    font-size: 12px;
+  }
+  .form-options {
+    font-size: 12px;
+  }
+  form button {
+    font-size: 14px;
+    width: 60%;
+    padding: 3.5% 0;
   }
 }

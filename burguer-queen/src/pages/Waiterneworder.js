@@ -88,10 +88,10 @@ export default function NewOrder({ setLoading, setModalMessage }) {
     <div className="waiterNewOrderContainer">
       <section className="waiterHeader">
         <div className="waiterHeaderSection1">
-          <ColorButton onClick={() => { setMenu('breakfast'); setStyleButton1(styleOne); setStyleButton2(styleTwo); }}>
+          <ColorButton className="waiterButton" onClick={() => { setMenu('breakfast'); setStyleButton1(styleOne); setStyleButton2(styleTwo); }}>
             Desayuno
           </ColorButton>
-          <ColorButton2 onClick={() => { setMenu('diary'); setStyleButton1(styleTwo); setStyleButton2(styleOne); }}>
+          <ColorButton2 className="waiterButton" onClick={() => { setMenu('diary'); setStyleButton1(styleTwo); setStyleButton2(styleOne); }}>
             Diario
           </ColorButton2>
         </div>
@@ -130,7 +130,7 @@ export default function NewOrder({ setLoading, setModalMessage }) {
             </table>
           </div>
           {(qtychange) ? setQtyChange(null) : false}
-          <div className="buttonContainer"><ColorButton onClick={() => saveOrder()}>Guardar</ColorButton></div>
+          <div className="buttonContainer"><ColorButton className="waiterButton" onClick={() => saveOrder()}>Guardar</ColorButton></div>
         </div>
       </section>
     </div>

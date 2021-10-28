@@ -58,6 +58,7 @@ const Login = ({ setLoading, setModalMessage }) => {
         <NavLink to="/" aria-label="navlogo" className="navlogo">BQ</NavLink>
         <nav className="nav">
           <NavLink to="/" activeClassName="active" className="navlink">Inicio</NavLink>
+          <div className="navLine" />
           <NavLink to="/login" activeClassName="active" className="navlink">Iniciar Sesión</NavLink>
         </nav>
       </div>

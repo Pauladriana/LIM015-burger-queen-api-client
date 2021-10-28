@@ -14,7 +14,7 @@ export const goEmail = (email, setMessages) => {
   const reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
   if (reg.test(email) === false) {
     setMessages({
-      emailMsg: 'La estructura es example@correo',
+      emailMsg: 'La estructura es example@correo.com.',
       passwordMsg: '',
     });
   } else {
@@ -29,7 +29,7 @@ export const goPassword = (password, setMessages) => {
   if (reg.test(password) === false) {
     setMessages({
       emailMsg: '',
-      passwordMsg: 'La contraseña debe contener mayúsculas, números y carácteres especiales',
+      passwordMsg: 'La contraseña debe contener mayúsculas, números y carácteres especiales.',
     });
   } else {
     setMessages({
