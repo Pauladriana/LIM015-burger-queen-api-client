@@ -1,70 +1,101 @@
-# Getting Started with Create React App
+# Burger Queen (API Client)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Burger Queen es una interfaz desarrollada especialmente para un restaurante de comida rápida. Por medio de esta interfaz se pueden crear usuarios y asignar roles para los trabajadores del negocio, además de generar las ordenes y ser visibles para estos. De este modo digitalizamos el flujo de producción y venta del restaurante, y accedemos a información actualizada en cada momento. 
 
-## Available Scripts
+## Despliegue
 
-In the project directory, you can run:
+Puedes ver el proyecto en el siguiente link:
 
-### `npm start`
+[Ver proyecto](https://alissonch.github.io/LIM015-burger-queen-api-client/#/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Detalles Tecnicos
+La interfaz consume la API Burguer Queen que puede ser revisada en el siguiente link: [API](https://github.com/AlissonCH/LIM015-burger-queen-api)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Para mantener la interfaz actualizada, se utilizó React.js. La lógica del proyecto está implementada completamente en JavaScript (ES6+), HTML y CSS y empaquetada de manera automatizada.
 
-### `npm test`
+La aplicación es un Single Page App. El diseño ha tenido en cuenta que los pedidos los tomaremos desde una tablet
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Historias de Usuario
 
-### `npm run build`
+**[Historia de usuario 1] Mesero/a debe poder ingresar al sistema, si el admin ya le ha asignado credenciales**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Yo como meserx quiero poder ingresar al sistema de pedidos.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Criterios de aceptación**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Lo que debe ocurrir para que se satisfagan las necesidades del usuario.
 
-### `npm run eject`
+- Acceder a una pantalla de login.
+- Ingresar email y contraseña.
+- Recibir mensajes de error comprensibles, dependiendo de cuál es el error con la información ingresada.
+- Ingresar al sistema de pedidos si las crendenciales son correctas.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**[Historia de usuario 2] Mesero/a debe poder tomar pedido de cliente/a**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Yo como meserx quiero tomar el pedido de unx clientx para no depender de mi mala memoria, para saber cuánto cobrar, y enviarlo a la cocina para evitar errores y que se puedan ir preparando en orden.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**Criterios de aceptación**
 
-## Learn More
+Lo que debe ocurrir para que se satisfagan las necesidades del usuario
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Anotar nombre de clientx.
+- Agregar productos al pedido.
+- Eliminar productos.
+- Ver resumen y el total de la compra.
+- Enviar pedido a cocina (guardar en alguna base de datos).
+- Se ve y funciona bien en una tablet
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
+**[Historia de usuario 3] Jefe de cocina debe ver los pedidos**
 
-### Code Splitting
+Yo como jefx de cocina quiero ver los pedidos de lxs clientxs en orden y marcar cuáles están listos para saber qué se debe cocinar y avisar a lxs meserxs que un pedido está listo para servirlo a un clientx.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Criterios de aceptación**
+- Ver los pedidos ordenados según se van haciendo.
+- Marcar los pedidos que se han preparado y están listos para servirse.
+- Ver el tiempo que tomó prepara el pedido desde que llegó hasta que se marcó como completado.
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**[Historia de usuario 4] Meserx debe ver pedidos listos para servir**
 
-### Making a Progressive Web App
+Yo como meserx quiero ver los pedidos que están preparados para entregarlos rápidamente a lxs clientxs que las hicieron.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**Criterios de aceptación**
+- Ver listado de pedido listos para servir.
+- Marcar pedidos que han sido entregados.
+---
 
-### Advanced Configuration
+**[Historia de usuario 5] Administrador(a) de tienda debe administrar a sus trabajadorxs**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Yo como administrador(a) de tienda quiero gestionar a los usuarios de la plataforma para mantener actualizado la informacion de mis trabajadorxs.
 
-### Deployment
+**Criterios de aceptación**
+- Ver listado de trabajadorxs.
+- Agregar trabajadorxs.
+- Eliminar trabajadoxs.
+- Actualizar datos de trabajadorxs.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
+**[Historia de usuario 6] Administrador(a) de tienda debe administrar a sus productos**
 
-### `npm run build` fails to minify
+Yo como administrador(a) de tienda quiero gestionar los productos para mantener actualizado el menú.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Criterios de aceptación**
+- Ver listado de productos.
+- Agregar productos.
+- Eliminar productos.
+- Actualizar datos de productos.
+
+---
+
+## Prototipo
+![Blue Tablet Modern Elegance Technology   Gaming Facebook Shops Cover](https://user-images.githubusercontent.com/85115054/139164897-a375494c-b6f7-4e13-929d-7f194e7ba48a.png)
+
+![Blue Tablet Modern Elegance Technology   Gaming Facebook Shops Cover (1)](https://user-images.githubusercontent.com/85115054/139164912-30cea781-1b33-400a-b477-732149325249.png)
+
+![Blue Tablet Modern Elegance Technology   Gaming Facebook Shops Cover (2)](https://user-images.githubusercontent.com/85115054/139164924-4ef7c17b-9ff9-404d-a1ff-16a21039a343.png)
+
+
