@@ -1,6 +1,6 @@
 # Burger Queen (API Client)
 
-Burger Queen es una interfaz desarrollada especialmente para un restaurante de comida rápida. Por medio de esta interfaz se pueden crear usuarios y asignar roles para los trabajadores del negocio, además de generar las ordenes y ser visibles para esto. De este modo digitalizamos el flujo de produccion y venta del restaurante y accedemos a informacion actualizada en cada momento. 
+Burger Queen es una interfaz desarrollada especialmente para un restaurante de comida rápida. Por medio de esta interfaz se pueden crear usuarios y asignar roles para los trabajadores del negocio, además de generar las ordenes y ser visibles para estos. De este modo digitalizamos el flujo de producción y venta del restaurante, y accedemos a información actualizada en cada momento. 
 
 ## Despliegue
 
