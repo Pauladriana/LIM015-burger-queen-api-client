@@ -19,6 +19,7 @@ const Admin = () => {
       </div>
       <div className="landingBodyContainer">
         <h1 className="landingTitle">Bienvenidx a Burger Queen</h1>
+        <button className="landingButton" type="button" onClick={() => { window.location.href = '#/login'; }}>Iniciar Sesión</button>
       </div>
     </div>
   );
