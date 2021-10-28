@@ -45,7 +45,8 @@ function Users({ setModalMessage }) {
           fontSize="small"
           className="optTable"
           onClick={() => {
-            setModalMessage({
+            if (user._id === userLogged._id) return setModalMessage({ title: 'No puede eliminar su propio usuario.' });
+            return setModalMessage({
               title: '¿Está Seguro de eliminar este usuario?',
               body: 'Al removerse no podrá volver a recuperarlo más tarde.',
               button: 'Eliminar',

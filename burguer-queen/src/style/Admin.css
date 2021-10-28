@@ -34,7 +34,6 @@
 .userData {
   display: flex;
   flex-direction: column;
-  width: 70%;
   background-color: black;
   border: 1px solid white;
   height: 100%;

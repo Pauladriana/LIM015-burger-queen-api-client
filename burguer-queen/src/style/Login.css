@@ -92,18 +92,14 @@
     width: 100%;
   }
   .login-form {
-    width: 75%;
+    width: 80%;
   }
   .login-title {
-    font-size: 20px;
-    margin: 0 0 7% 0;
+    font-size: 25px;
   }
   .login-formButton{
-    font-size: 16px;
+    font-size: 20px;
     margin-top: 20px;
     height: 60px;
-  }
-  .login-eye-icon {
-    font-size: 1rem !important;
   }
 }

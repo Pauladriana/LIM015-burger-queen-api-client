@@ -46,6 +46,8 @@ const Login = ({ setLoading, setModalMessage }) => {
     if (cookies.get('userLogged')) {
       if ((cookies.get('userLogged')).roles.admin) {
         window.location.href = '#/admin/users';
+      } else if ((cookies.get('userLogged')).roles.name === 'cocinera') {
+        window.location.href = '#/chef/pendingorders';
       } else {
         window.location.href = '#/meserx/neworder';
       }
