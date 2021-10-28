@@ -20,9 +20,11 @@ export const signIn = async (data, setLoading, setModalMessage) => {
     const user = await getUserLogged(`users/${data.email}`, response.token);
     cookies.remove('userLogged', { path: '/' });
     cookies.set('userLogged', user, { path: '/' });
-    if (user.roles.admin) {
+    if (!user) {
+      window.location.hash = '#/login';
+    } else if (user && user.roles.admin) {
       window.location.hash = '#/admin/users';
-    } else if (user.roles.name === 'cocinera') {
+    } else if (user && user.roles.name === 'cocinera') {
       window.location.hash = '#/chef/pendingorders';
     } else {
       window.location.hash = '#/meserx/neworder';
