@@ -2,16 +2,6 @@
 /* eslint-disable no-restricted-globals */
 const CACHE_NAME = 'Burger-queen';
 const urlsToCache = [
-  // './static/css/main.c54c1807.chunk.css',
-  // './static/css/main.c54c1807.chunk.css.map',
-  // './static/js/2.0b4e5958.chunk.js',
-  // './static/js/2.0b4e5958.chunk.js.LICENSE.txt',
-  // './static/js/2.0b4e5958.chunk.js.map',
-  // './static/js/main.aa2c8223.chunk.js',
-  // './static/js/main.aa2c8223.chunk.js.map',
-  // './static/js/runtime-main.8f1c5824.js',
-  // './static/js/runtime-main.8f1c5824.js.map',
-  // './static/media/background.7ff1a916.jpg',
   '../',
   '../style/Admin.css',
   '../style/loader.css',
