@@ -2,6 +2,9 @@
 * {
   font-family: 'Cormorant Upright', 'Open Sans', sans-serif;
 }
+#root{
+  height: 0;
+}
 body {
   position: absolute;
   background-size: cover;
@@ -38,6 +41,7 @@ body {
   font-size: 50px;
   font-weight: bold;
   margin: 5px 10px;
+  text-decoration: none;
 }
 .navLine {
   height: 40%;
@@ -68,7 +72,6 @@ body {
   font-size: 23px;
   font-weight: 900;
   line-height: 28px;
-  opacity: 0.8;
   color: white;
 }
 .form-input {
@@ -87,10 +90,49 @@ body {
   margin: 0;
   color: #dcca87;
 }
+/*------------------------Landing Page-------------------*/
+.landingBodyContainer {
+  background: url('../media/landing.jpg');
+  position: absolute;
+  background-size: cover;
+  margin: 0;
+  top: 10%;
+  height: 90vh;
+  width: 100%;
+  color: #dcca87;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.landingTitle{
+  font-size: 90px;
+  font-weight: bold;
+  margin:0;
+  padding-bottom: 5%;
+}
+.landingButton{
+  background: none;
+  border: 1px solid black;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 10px;
+  margin-top: 20px;
+  padding: 10px;
+  width: 150px;
+  background: #dcca87;
+}
 @media only screen and (max-width: 1200px) {
+  .landingTitle{
+    font-size: 60px;
+  }
 }
 
 @media only screen and (max-width: 768px) {
+  .landingTitle{
+    font-size: 40px;
+  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -104,6 +146,28 @@ body {
     font-size: 30px;
   }
   .navlink{
-    font-size: 14px;
+    font-size: 18px;
+  }
+  .landingBodyContainer{
+    top:8%;
+    height: 92vh;
+  }
+  .landingTitle{
+    font-size: 30px;
+  }
+  .landingButton{
+    font-size: 16px;
+  }
+  .form-label {
+    font-size: 20px;
+  }
+  .form-section{
+    padding-bottom: 10%;
+  }
+  .form-input {
+    padding: 10px 10px 10px;
+  }
+  .formValidation{
+    font-size: 15px;
   }
 }

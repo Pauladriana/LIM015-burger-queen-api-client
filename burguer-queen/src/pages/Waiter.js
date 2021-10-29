@@ -19,7 +19,7 @@ const Waiter = ({ setLoading, setModalMessage }) => {
         ? (
           <div aria-label="waiter" className="waiterContainer">
             <div className="navContainer">
-              <p role="banner" className="navlogo">BQ</p>
+              <NavLink to="/" aria-label="navlogo" className="navlogo">BQ</NavLink>
               <nav className="nav">
                 <NavLink className="navlink" to="/meserx/neworder" activeClassName="active" aria-label="new-order">Generar Orden</NavLink>
                 <div className="navLine" />

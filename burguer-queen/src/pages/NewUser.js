@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import { createUser } from '../services/post';
 import '../style/Admin.css';
 
@@ -7,7 +9,8 @@ function NewUser({ setLoading, setModalMessage }) {
   const [newPassword, setValidPassword] = useState(null);
   const [typeEmail, setValidationEmail] = useState(null);
   const [typePassword, setValidationPassword] = useState(null);
-
+  const [error, setError] = useState(null);
+  const [inputType, setInputType] = useState('password');
   const [rol, setRole] = useState({ name: '' });
 
   const user = {
@@ -17,28 +20,35 @@ function NewUser({ setLoading, setModalMessage }) {
   };
 
   function goNewEmail(value) {
-    const reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    const reg = /^\S+@\S+\.\S+$/;
     if (reg.test(value) === true) {
+      setError(null);
       setValidationEmail('');
       setValidEmail(value);
     } else {
-      setValidationEmail('La estructura es example@correo');
+      setError('email');
+      setValidationEmail('La estructura es example@correo.com');
     }
   }
 
   function goNewPassword(value) {
-    const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+    const reg = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[.!@#&()–[{}\]:;',?/*~$^+=<>]).{8,}$/;
     if (reg.test(value) === true) {
+      setError(null);
       setValidationPassword('');
       setValidPassword(value);
     } else {
-      setValidationPassword('La contraseña debe contener mayusculas, numeros y caracteres especiales');
+      setError('password');
+      setValidationPassword('La contraseña debe contener al menos 8 dígitos entre mayúsculas, números y carácteres especiales.');
     }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!user.email || !user.password || !user.roles) return setModalMessage({ title: 'Debe ingresar todos los datos' });
+    setError(null);
+    if (error === 'email') return setModalMessage({ body: 'La estructura del correo es: example@correo.com' });
+    if (error === 'password') return setModalMessage({ body: 'La contraseña debe contener al menos 8 dígitos entre mayúsculas, números y carácteres especiales.' });
+    if (!user.email || !user.password || !user.roles.name) return setModalMessage({ title: 'Debe ingresar todos los datos' });
     await createUser(user, setLoading, setModalMessage, 'users');
   };
 
@@ -56,7 +66,7 @@ function NewUser({ setLoading, setModalMessage }) {
               <input
                 type="text"
                 className="form-input newProductForm"
-                placeholder="email"
+                placeholder="example@bq.com"
                 name="email"
                 id="email"
                 onChange={(e) => goNewEmail(e.target.value)}
@@ -66,13 +76,16 @@ function NewUser({ setLoading, setModalMessage }) {
             <div className="form-section">
               <label className="form-label" htmlFor="password">Contraseña:</label>
               <input
-                type="text"
+                type={inputType}
                 className="form-input newProductForm"
                 placeholder="contraseña"
                 name="password"
                 id="password"
                 onChange={(e) => goNewPassword(e.target.value)}
               />
+              {inputType === 'password'
+                ? <VisibilityOffIcon onClick={() => setInputType('text')} aria-label="iconOpen" className="login-eye-icon" />
+                : <VisibilityIcon onClick={() => setInputType('password')} aria-label="iconClose" className="login-eye-icon" />}
               <p className="goNewPassword formValidation">{typePassword}</p>
             </div>
             <label htmlFor="option" className="form-label">Rol:</label>
@@ -84,7 +97,7 @@ function NewUser({ setLoading, setModalMessage }) {
                   id="adminOpt"
                   onChange={(e) => (
                     e.target.checked
-                      ? setRole({ name: 'administradora' })
+                      ? setRole({ admin: true, name: 'administradora' })
                       : setRole({ name: '' })
                   )}
                 />
@@ -98,7 +111,7 @@ function NewUser({ setLoading, setModalMessage }) {
                   id="waiterOpt"
                   onChange={(e) => (
                     e.target.checked
-                      ? setRole({ name: 'mesera' })
+                      ? setRole({ admin: false, name: 'mesera' })
                       : setRole({ name: '' })
                   )}
                 />
@@ -112,7 +125,7 @@ function NewUser({ setLoading, setModalMessage }) {
                   id="chefOpt"
                   onChange={(e) => (
                     e.target.checked
-                      ? setRole({ name: 'cocinera' })
+                      ? setRole({ admin: false, name: 'cocinera' })
                       : setRole({ name: '' })
                   )}
                 />

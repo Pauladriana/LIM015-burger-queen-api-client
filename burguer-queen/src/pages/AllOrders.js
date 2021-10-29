@@ -343,26 +343,31 @@ function AllOrders({ setLoading, setModalMessage }) {
     <div aria-label="orders" className="waiterNewOrderContainer">
       <div className="waiterHeaderAllOrder">
         <ColorButton
+          className="waiterButton"
           onClick={() => { setFilterOrders('allOrders'); setStyleButton1(styleOne); setStyleButton2(styleTwo); setStyleButton3(styleTwo); setStyleButton4(styleTwo); setStyleButton5(styleTwo); }}
         >
           Todas
         </ColorButton>
         <ColorButton2
+          className="waiterButton"
           onClick={() => { setFilterOrders('pending'); setStyleButton1(styleTwo); setStyleButton2(styleOne); setStyleButton3(styleTwo); setStyleButton4(styleTwo); setStyleButton5(styleTwo); }}
         >
           Pendientes
         </ColorButton2>
         <ColorButton3
+          className="waiterButton"
           onClick={() => { setFilterOrders('delivering'); setStyleButton1(styleTwo); setStyleButton2(styleTwo); setStyleButton3(styleOne); setStyleButton4(styleTwo); setStyleButton5(styleTwo); }}
         >
           Listas
         </ColorButton3>
         <ColorButton4
+          className="waiterButton"
           onClick={() => { setFilterOrders('delivered'); setStyleButton1(styleTwo); setStyleButton2(styleTwo); setStyleButton3(styleTwo); setStyleButton4(styleOne); setStyleButton5(styleTwo); }}
         >
           Entregadas
         </ColorButton4>
         <ColorButton5
+          className="waiterButton"
           onClick={() => { setFilterOrders('canceled'); setStyleButton1(styleTwo); setStyleButton2(styleTwo); setStyleButton3(styleTwo); setStyleButton4(styleTwo); setStyleButton5(styleOne); }}
         >
           Canceladas

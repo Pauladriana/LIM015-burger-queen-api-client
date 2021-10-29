@@ -19,7 +19,7 @@ const Chef = ({ setLoading, setModalMessage }) => {
         ? (
           <div aria-label="chef" className="chefContainer">
             <div className="navContainer">
-              <p role="banner" className="navlogo">BQ</p>
+              <NavLink to="/" aria-label="navlogo" className="navlogo">BQ</NavLink>
               <nav className="nav">
                 <NavLink to="/chef/pendingorders" activeClassName="active" className="navlink" aria-label="pending-link">Ordenes Pendientes</NavLink>
                 <div className="navLine" />

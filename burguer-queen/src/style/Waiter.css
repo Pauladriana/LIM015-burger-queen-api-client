@@ -163,7 +163,7 @@
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  height: 15%;
+  height: 10%;
   align-items: center;
 }
 .waiterAllOrdersBody {
@@ -196,5 +196,18 @@
   }
   .waiterOrderTitle {
     margin: 0;
+  }
+  .waiterInput{
+    width: 100%;
+    font-size: 12px;
+  }
+  .waiterButton{
+    font-size: 14px !important;
+  }
+  .waiterSearchInput{
+    width: 63%;
+  }
+  .waiterOrderTitle{
+    font-size: 14px;
   }
 }

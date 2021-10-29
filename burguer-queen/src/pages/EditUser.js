@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import Cookies from 'universal-cookie';
 import '../style/Admin.css';
 import { updateUser } from '../services/put';
@@ -11,6 +12,8 @@ const EditUser = ({ setLoading, setModalMessage }) => {
   const [newPassword, setValidPassword] = useState(null);
   const [typeEmail, setValidationEmail] = useState(null);
   const [typePassword, setValidationPassword] = useState(null);
+  const [error, setError] = useState(null);
+  const [inputType, setInputType] = useState('password');
 
   useEffect(() => {
     if (!cookies.get('userLogged')) {
@@ -31,28 +34,35 @@ const EditUser = ({ setLoading, setModalMessage }) => {
   };
 
   function goNewEmail(value) {
-    const reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    const reg = /^\S+@\S+\.\S+$/;
     if (reg.test(value) === true) {
+      setError(null);
       setValidationEmail('');
       setValidEmail(value);
     } else {
-      setValidationEmail('La estructura es example@correo');
+      setError('email');
+      setValidationEmail('La estructura es example@correo.com');
     }
   }
 
   function goNewPassword(value) {
-    const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!.@$ %^&*-]).{8,}$/;
+    const reg = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[.!@#&()–[{}\]:;',?/*~$^+=<>]).{8,}$/;
     if (reg.test(value) === true) {
+      setError(null);
       setValidationPassword('');
       setValidPassword(value);
     } else {
-      setValidationPassword('La contraseña debe contener mayusculas, numeros y caracteres especiales');
+      setError('password');
+      setValidationPassword('La contraseña debe contener al menos 8 dígitos entre mayúsculas, números y carácteres especiales.');
     }
   }
 
   function handleSubmit(event) {
     event.preventDefault();
+    setError(null);
     const token = cookies.get('token');
+    if (error === 'email') return setModalMessage({ body: 'La estructura del correo es: example@correo.com' });
+    if (error === 'password') return setModalMessage({ body: 'La contraseña debe contener al menos 8 dígitos entre mayúsculas, números y carácteres especiales.' });
     updateUser(userToEdit, setLoading, setModalMessage, 'users', _id, token);
   }
   return (
@@ -79,12 +89,15 @@ const EditUser = ({ setLoading, setModalMessage }) => {
             <div className="form-section">
               <label className="form-label" htmlFor="password">Contraseña:</label>
               <input
-                type="password"
+                type={inputType}
                 className="form-input newProductForm"
                 name="password"
                 id="password"
                 onChange={(e) => goNewPassword(e.target.value)}
               />
+              {inputType === 'password'
+                ? <VisibilityOffIcon onClick={() => setInputType('text')} aria-label="iconOpen" className="login-eye-icon" />
+                : <VisibilityIcon onClick={() => setInputType('password')} aria-label="iconClose" className="login-eye-icon" />}
               <p className="goNewPassword formValidation">{typePassword}</p>
               <br />
             </div>

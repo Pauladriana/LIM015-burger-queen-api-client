@@ -82,4 +82,16 @@
   .waiterHeaderAllOrder {
     height: 10%;
   }
+  .chef-orderReady {
+    font-size: 14px;
+  }
+  .ordersCard{
+    width: 269px;
+  }
+  .orderClient{
+    font-size: 16px;
+  }
+  .chef-item, .orderStatus{
+    font-size: 13px;
+  }
 }
