@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "private": true,
   "main": "public/index.html",
-  "homepage": "",
+  "homepage": "https://alissonch.github.io/LIM015-burger-queen-api-client/",
   "author": "Rocio Alisson Cruz Holguin",
   "dependencies": {
     "@emotion/react": "^11.5.0",
