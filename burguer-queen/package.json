@@ -4,7 +4,7 @@
   "private": true,
   "main": "public/index.html",
   "homepage": "",
-  "author": "Cruz Holguin, Rocio Alisson",
+  "author": "Pintado Aspillaga, Paula Adriana",
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
