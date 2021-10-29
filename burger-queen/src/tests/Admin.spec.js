@@ -66,8 +66,8 @@ describe('Admin component', () => {
     cookies.set('token', token);
     const setLoading = () => false;
     const setModalMessage = () => null;
-    const { getByLabelText, getAllByLabelText } = render(<Admin setLoading={setLoading} setModalMessage={setModalMessage} />);
-    userEvent.click(getByLabelText('usuarios'));
+    const { getByText, getAllByLabelText } = render(<Admin setLoading={setLoading} setModalMessage={setModalMessage} />);
+    userEvent.click(getByText('Usuarios'));
     await waitFor(() => {
       expect(screen.getAllByLabelText('editIcon')).toBeDefined();
     });

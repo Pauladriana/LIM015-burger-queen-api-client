@@ -56,6 +56,7 @@ const Admin = ({ setLoading, setModalMessage }) => {
               </div>
               <Switch>
                 <Route
+                  exact
                   path="/admin/users"
                   component={() => (
                     <Users setLoading={setLoading} setModalMessage={setModalMessage} />
@@ -74,6 +75,7 @@ const Admin = ({ setLoading, setModalMessage }) => {
                   )}
                 />
                 <Route
+                  exact
                   path="/admin/products"
                   component={() => (
                     <Products setLoading={setLoading} setModalMessage={setModalMessage} />
@@ -92,6 +94,7 @@ const Admin = ({ setLoading, setModalMessage }) => {
                   )}
                 />
                 <Route
+                  exact
                   path="/admin/allorders"
                   component={() => (
                     <div className="adminAllOrdersContainer">
