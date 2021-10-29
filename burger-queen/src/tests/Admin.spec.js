@@ -10,8 +10,8 @@ import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
 import Admin from '../pages/Admin';
 import Users from '../pages/Users';
-import NewUser from '../pages/Newuser';
-import NewProduct from '../pages/Newproduct';
+import NewUser from '../pages/NewUser';
+import NewProduct from '../pages/NewProduct';
 
 const cookies = new Cookies();
 
@@ -26,7 +26,7 @@ beforeEach(() => {
 });
 
 describe('Admin component', () => {
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNjc2MmViZDMwMDZjNWYzOWNhYWVmOSIsImlhdCI6MTYzNTM4MzAyNSwiZXhwIjoxNjM1NDY5NDI1fQ.pfwLcHiZFmRmo3HXUD1gCCiw9H7puHdR5c6P0gzpblc';
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNjc2MmViZDMwMDZjNWYzOWNhYWVmOSIsImlhdCI6MTYzNTUzMDcyMywiZXhwIjoxNjM1NjE3MTIzfQ.K7Y7Gjpu57Ald7OWQkBEkjsjpWZqqThUoNHAG4UAZQ8';
   it('Should contain texts', () => {
     const { getByLabelText, getByText } = render(<Admin />);
     expect(getByLabelText('navlogo').textContent).toContain('BQ');
@@ -57,17 +57,17 @@ describe('Admin component', () => {
   it('Should redirect to NewUser', () => {
     const setLoading = () => false;
     const setModalMessage = () => null;
-    const { getByText } = render(<Admin setLoading={setLoading} setModalMessage={setModalMessage} />);
-    userEvent.click(getByText('Usuarios'));
+    const { getByText, getByLabelText } = render(<Admin setLoading={setLoading} setModalMessage={setModalMessage} />);
+    userEvent.click(getByLabelText('usuarios'));
     userEvent.click(getByText('Crear Usuario'));
-    expect(screen.getByLabelText('newUser')).toBeInTheDocument();
+    expect(window.location.href).toContain('#/admin/users/newuser');
   });
   it('Should redirect to EditUser', async () => {
     cookies.set('token', token);
     const setLoading = () => false;
     const setModalMessage = () => null;
-    const { getByText, getAllByLabelText } = render(<Admin setLoading={setLoading} setModalMessage={setModalMessage} />);
-    userEvent.click(getByText('Usuarios'));
+    const { getByLabelText, getAllByLabelText } = render(<Admin setLoading={setLoading} setModalMessage={setModalMessage} />);
+    userEvent.click(getByLabelText('usuarios'));
     await waitFor(() => {
       expect(screen.getAllByLabelText('editIcon')).toBeDefined();
     });
@@ -99,7 +99,7 @@ describe('Admin component', () => {
     const { getByText } = render(<Admin setLoading={setLoading} setModalMessage={setModalMessage} />);
     userEvent.click(getByText('Productos'));
     userEvent.click(getByText('Crear Producto'));
-    expect(screen.getByLabelText('newProduct')).toBeInTheDocument();
+    expect(window.location.href).toContain('#/admin/products/newproduct');
   });
   it('Should redirect to Orders', () => {
     const setLoading = () => false;

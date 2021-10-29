@@ -35,7 +35,7 @@ const Admin = ({ setLoading, setModalMessage }) => {
             <div className="navContainer">
               <NavLink to="/" aria-label="navlogo" className="navlogo">BQ</NavLink>
               <nav className="nav">
-                <NavLink to="/admin/users" activeClassName="active" className="navlink">Usuarios</NavLink>
+                <NavLink to="/admin/users" aria-label="usuarios" activeClassName="active" className="navlink">Usuarios</NavLink>
                 <div className="navLine" />
                 <NavLink to="/admin/products" activeClassName="active" className="navlink">Productos</NavLink>
                 <div className="navLine" />
@@ -56,7 +56,6 @@ const Admin = ({ setLoading, setModalMessage }) => {
               </div>
               <Switch>
                 <Route
-                  exact
                   path="/admin/users"
                   component={() => (
                     <Users setLoading={setLoading} setModalMessage={setModalMessage} />
@@ -75,7 +74,6 @@ const Admin = ({ setLoading, setModalMessage }) => {
                   )}
                 />
                 <Route
-                  exact
                   path="/admin/products"
                   component={() => (
                     <Products setLoading={setLoading} setModalMessage={setModalMessage} />
@@ -94,7 +92,6 @@ const Admin = ({ setLoading, setModalMessage }) => {
                   )}
                 />
                 <Route
-                  exact
                   path="/admin/allorders"
                   component={() => (
                     <div className="adminAllOrdersContainer">

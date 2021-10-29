@@ -21,7 +21,7 @@ export const signIn = async (data, setLoading, setModalMessage) => {
     if (user._id) {
       cookies.remove('userLogged', { path: '/' });
       cookies.set('userLogged', user, { path: '/' });
-      if (user && user.roles.admin) {
+      if (user.roles.admin) {
         window.location.hash = '#/admin/users';
       } else if (user && user.roles.name === 'cocinera') {
         window.location.hash = '#/chef/pendingorders';
