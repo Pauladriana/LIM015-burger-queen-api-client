@@ -18,7 +18,6 @@ export const signIn = async (data, setLoading, setModalMessage) => {
     cookies.remove('token', { path: '/' });
     cookies.set('token', response.token, { path: '/' });
     const user = await getUserLogged(`users/${data.email}`, response.token);
-    console.log(response, user);
     if (user._id) {
       cookies.remove('userLogged', { path: '/' });
       cookies.set('userLogged', user, { path: '/' });
@@ -56,7 +55,6 @@ export const createData = async (data, setLoading, setModalMessage, path) => {
   });
   setLoading(false);
   if (response._id) {
-    console.log(response);
     return setModalMessage({ title: 'Producto creado exitosamente.' });
   }
   return setModalMessage({ body: 'Upss!!! hubo un error en el sistema, por favor inténtelo nuevamente.' });
@@ -76,7 +74,6 @@ export const createUser = (data, setLoading, setModalMessage, path) => {
   })
     .then((response) => {
       setLoading(false);
-      console.log(response);
       if (response._id) return setModalMessage({ title: 'Usuario creado exitosamente' });
       if (response.err && response.message === `User with email: ${data.email} already exists`) {
         return setModalMessage({
@@ -99,7 +96,6 @@ export const createOrder = (client, products, userId, setLoading, setModalMessag
     },
   })
     .then((data) => {
-      console.log(data);
       setLoading(false);
       if (data.err && data.status === 400) return setModalMessage({ title: '!Ups! no puede crear una orden vacía' });
       if (data._id) return setModalMessage({ title: 'Orden creada exitosamente' });
