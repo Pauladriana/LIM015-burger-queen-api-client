@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "main": "public/index.html",
-  "homepage": "./burguer-queen/",
+  "homepage": "",
   "author": "Cruz Holguin, Rocio Alisson",
   "dependencies": {
     "@emotion/react": "^11.5.0",
