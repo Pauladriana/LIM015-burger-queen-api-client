@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom';
 import '../style/Routes.css';
 
-const Admin = () => {
+const LandingPage = () => {
   useEffect(() => {
   }, []);
 
@@ -25,4 +25,4 @@ const Admin = () => {
     </div>
   );
 };
-export default Admin;
+export default LandingPage;

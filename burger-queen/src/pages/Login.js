@@ -3,6 +3,7 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import Cookies from 'universal-cookie';
 import {
+  HashRouter,
   NavLink,
 } from 'react-router-dom';
 import '../style/Login.css';
@@ -57,12 +58,14 @@ const Login = ({ setLoading, setModalMessage }) => {
   return (
     <div className="home">
       <div className="navContainer">
-        <NavLink to="/" aria-label="navlogo" className="navlogo">BQ</NavLink>
-        <nav className="nav">
-          <NavLink to="/" activeClassName="active" className="navlink">Inicio</NavLink>
-          <div className="navLine" />
-          <NavLink to="/login" activeClassName="active" className="navlink">Iniciar Sesión</NavLink>
-        </nav>
+        <HashRouter>
+          <NavLink to="/" aria-label="navlogo" className="navlogo">BQ</NavLink>
+          <nav className="nav">
+            <NavLink to="/" className="navlink">Inicio</NavLink>
+            <div className="navLine" />
+            <NavLink to="/login" className="navlink">Iniciar Sesión</NavLink>
+          </nav>
+        </HashRouter>
       </div>
       <div aria-label="login" className="login-container">
         <div className="login-formContainer">
