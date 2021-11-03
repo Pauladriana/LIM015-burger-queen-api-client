@@ -1,21 +1,23 @@
 # Burger Queen (API Client)
 
-Burger Queen es una interfaz desarrollada especialmente para un restaurante de comida rápida. Por medio de esta interfaz se pueden crear usuarios y asignar roles para los trabajadores del negocio, además de generar las ordenes y ser visibles para estos. De este modo digitalizamos el flujo de producción y venta del restaurante, y accedemos a información actualizada en cada momento. 
+Burger Queen es un aplicativo web desarrollado especialmente para un restaurante de comida rápida. Por medio de esta interfaz se pueden crear usuarios y asignar roles para los trabajadores del negocio, además de generar las ordenes y ser visibles para estos. De este modo digitalizamos el flujo de producción y venta del restaurante, y accedemos a información actualizada en tiempo real en cada momento. 
 
 ## Despliegue
 
-Puedes ver el proyecto en el siguiente link:
+Puedes ver el proyecto en los siguientes enlaces:
 
+[Ver proyecto](https://bq-api-client-2021.herokuapp.com/#/)
 [Ver proyecto](https://alissonch.github.io/LIM015-burger-queen-api-client/#/)
 
-## Detalles Tecnicos
-La interfaz consume la API Burguer Queen que puede ser revisada en el siguiente link: [API](https://github.com/AlissonCH/LIM015-burger-queen-api)
 
-Para mantener la interfaz actualizada, se utilizó React.js. La lógica del proyecto está implementada completamente en JavaScript (ES6+), HTML y CSS y empaquetada de manera automatizada.
+## Detalles Técnicos
+La Aplicación web consume una API REST, que puede ser revisada en el siguiente link: [API](https://github.com/AlissonCH/LIM015-burger-queen-api)
 
-La aplicación es un Single Page App. El diseño ha tenido en cuenta que los pedidos los tomaremos desde una tablet
+Para mantener la interfaz actualizada, se utilizó la librería React.js. La lógica del proyecto está implementada completamente en JavaScript (ES6+), HTML y CSS y empaquetada de manera automatizada.
 
-## Historias de Usuario
+La aplicación es una Single Page App. El diseño es responsive pero ha sido adaptado primero para una tablet, teniendo en cuenta que los pedidos serán tomados principalmente por este dispositivo.
+
+## Historias de Usuario del Proyecto
 
 **[Historia de usuario 1] Mesero/a debe poder ingresar al sistema, si el admin ya le ha asignado credenciales**
 

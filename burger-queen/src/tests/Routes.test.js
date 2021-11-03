@@ -26,6 +26,17 @@ test('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<Routes />, div);
 });
+test('rendering Login component', () => {
+  const history = createMemoryHistory();
+  const route = '/login';
+  history.push(route);
+  render(
+    <Router history={history}>
+      <Login />
+    </Router>,
+  );
+  expect(screen.getByLabelText('login')).toBeInTheDocument();
+});
 test('rendering Admin component', () => {
   const history = createMemoryHistory();
   const route = '/admin';
@@ -37,19 +48,7 @@ test('rendering Admin component', () => {
   );
 
   expect(screen.getByLabelText('admin')).toBeInTheDocument();
-});
-
-test('rendering Login component', () => {
-  const history = createMemoryHistory();
-  const route = '/';
-  history.push(route);
-  render(
-    <Router history={history}>
-      <Login />
-    </Router>,
-  );
-
-  expect(screen.getByLabelText('login')).toBeInTheDocument();
+  expect(window.location.hash).toContain('#/admin/users');
 });
 
 test('rendering Waiter component', () => {

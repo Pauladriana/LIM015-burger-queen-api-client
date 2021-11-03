@@ -45,7 +45,9 @@ describe('Post', () => {
       expect(response).toBe(undefined);
     });
     it('Redirect to `#/meserx/neworder`', async () => {
-      const waiter = { email: 'some@test.com', password: 'Abc@12345', roles: { admin: false, name: 'mesera' } };
+      const waiter = {
+        _id: '12345', email: 'some2@test.com', password: 'Abc@12345', roles: { admin: false, name: 'mesera' },
+      };
       const setLoading = () => false;
       const setModalMessage = () => null;
       fetch.once(JSON.stringify(token));
@@ -55,7 +57,9 @@ describe('Post', () => {
       expect(response).toBe(undefined);
     });
     it('Redirect to `#/chef/pendingorders`', async () => {
-      const chef = { email: 'some@test.com', password: 'Abc@12345', roles: { admin: false, name: 'cocinera' } };
+      const chef = {
+        _id: '12345', email: 'some3@test.com', password: 'Abc@12345', roles: { admin: false, name: 'cocinera' },
+      };
       const setLoading = () => false;
       const setModalMessage = () => null;
       fetch.once(JSON.stringify(token));

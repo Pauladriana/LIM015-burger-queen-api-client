@@ -1,10 +1,10 @@
 {
-  "name": "burguer-queen",
-  "version": "1.0.0",
+  "name": "burger-queen",
+  "version": "1.0.1",
   "private": true,
   "main": "public/index.html",
-  "homepage": "",
-  "author": "Pintado Aspillaga, Paula Adriana",
+  "homepage": "https://pauladriana.github.io/LIM015-burger-queen-api-client/",
+  "author": "Paula Adriana Pintado Aspillaga",
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",

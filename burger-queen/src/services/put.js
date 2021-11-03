@@ -34,7 +34,6 @@ export const updateUser = (data, setLoading, setModalMessage, path, id, token) =
     body: data,
   })
     .then((res) => {
-      console.log(res);
       setLoading(false);
       if (res._id) {
         setModalMessage({ title: '!Usuario actualizado exitosamente!' });

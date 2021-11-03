@@ -27,7 +27,6 @@ const Routes = () => {
           )}
         />
         <Route
-          exact
           path="/login"
           component={() => (
             <Login setLoading={setLoading} setModalMessage={setModalMessage} />
